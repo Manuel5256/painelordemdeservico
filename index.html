@@ -451,12 +451,47 @@
     return currentUser && currentUser.isMaster === true;
   }
 
-  // Navegação
+  // ==================== SESSÃO PERSISTENTE ====================
+  
+  // Salva sessão no localStorage
+  function salvarSessao(user) {
+    try {
+      localStorage.setItem('total_user_session', JSON.stringify(user));
+    } catch (e) {
+      console.error('Erro ao salvar sessão:', e);
+    }
+  }
+
+  // Remove sessão do localStorage
+  function removerSessao() {
+    try {
+      localStorage.removeItem('total_user_session');
+    } catch (e) {
+      console.error('Erro ao remover sessão:', e);
+    }
+  }
+
+  // Recupera sessão do localStorage
+  function recuperarSessao() {
+    try {
+      const data = localStorage.getItem('total_user_session');
+      if (data) {
+        return JSON.parse(data);
+      }
+    } catch (e) {
+      console.error('Erro ao recuperar sessão:', e);
+    }
+    return null;
+  }
+
+  // ==================== Navegação ====================
+  
   document.getElementById('btnEntrar').addEventListener('click', () => {
     loginFormArea.classList.toggle('hidden');
   });
 
-  // Login
+  // ==================== Login ====================
+  
   document.getElementById('btnLoginExec').addEventListener('click', async () => {
     const usuario = document.getElementById('loginUser').value.trim();
     const senha = document.getElementById('loginPass').value.trim();
@@ -470,7 +505,6 @@
       const snapshot = await get(usersRef);
       const users = snapshot.val() || {};
       
-      // Verifica primeiro se é o mestre
       let found = null;
       
       if (usuario === 'IRLAN' && senha === '4747') {
@@ -489,21 +523,10 @@
         return;
       }
       
-      currentUser = found;
-      abaAtual = 'todas';
+      // Salva sessão antes de prosseguir
+      salvarSessao(found);
       
-      let userDisplay = document.getElementById('userDisplay');
-      userDisplay.innerHTML = `
-        <i class="fas fa-user-circle"></i> ${found.usuario} 
-        <span class="badge">${found.funcao}</span>
-        ${found.isMaster ? '<span class="master-badge"><i class="fas fa-crown"></i> MASTER</span>' : ''}
-      `;
-      
-      homeScreen.classList.remove('active');
-      panelScreen.classList.add('active');
-      loginFormArea.classList.add('hidden');
-      
-      await renderPanel();
+      await entrarNoSistema(found);
       
     } catch (error) {
       alert('Erro ao fazer login. Verifique a conexão.');
@@ -511,7 +534,32 @@
     }
   });
 
-  // Logout
+  // ==================== Função para entrar no sistema ====================
+  
+  async function entrarNoSistema(user) {
+    currentUser = user;
+    abaAtual = 'todas';
+    
+    let userDisplay = document.getElementById('userDisplay');
+    userDisplay.innerHTML = `
+      <i class="fas fa-user-circle"></i> ${user.usuario} 
+      <span class="badge">${user.funcao}</span>
+      ${user.isMaster ? '<span class="master-badge"><i class="fas fa-crown"></i> MASTER</span>' : ''}
+    `;
+    
+    homeScreen.classList.remove('active');
+    panelScreen.classList.add('active');
+    loginFormArea.classList.add('hidden');
+    
+    // Limpa campos de login
+    document.getElementById('loginUser').value = '';
+    document.getElementById('loginPass').value = '';
+    
+    await renderPanel();
+  }
+
+  // ==================== Logout ====================
+  
   document.getElementById('btnLogout').addEventListener('click', () => {
     if (ordensListener) {
       off(ordensRef, 'value', ordensListener);
@@ -519,13 +567,16 @@
     }
     currentUser = null;
     abaAtual = 'todas';
+    
+    // Remove sessão persistente
+    removerSessao();
+    
     panelScreen.classList.remove('active');
     homeScreen.classList.add('active');
-    document.getElementById('loginUser').value = '';
-    document.getElementById('loginPass').value = '';
   });
 
-  // Atualizar Dashboard
+  // ==================== Dashboard ====================
+  
   function atualizarDashboard(ordens) {
     const abertas = ordens.filter(o => o.status === 'ABERTA').length;
     const andamento = ordens.filter(o => o.status === 'EM ANDAMENTO').length;
@@ -591,7 +642,8 @@
     `;
   }
 
-  // Renderiza painel conforme perfil
+  // ==================== Renderização do Painel ====================
+  
   async function renderPanel() {
     if (!currentUser) return;
     
@@ -617,7 +669,8 @@
     });
   }
 
-  // Adiciona timeline
+  // ==================== Timeline ====================
+  
   async function addTimeline(ordemId, texto) {
     const ordemRef = ref(database, `ordens/${ordemId}/timeline`);
     const snapshot = await get(ordemRef);
@@ -626,7 +679,8 @@
     await set(ordemRef, timeline);
   }
 
-  // RENDER OPERADOR
+  // ==================== RENDER OPERADOR ====================
+  
   function renderOperador(ordens) {
     const user = currentUser;
     const minhasOS = ordens.filter(o => o.operador === user.usuario);
@@ -824,7 +878,8 @@
     `).join('');
   }
 
-  // RENDER GESTOR
+  // ==================== RENDER GESTOR ====================
+  
   function renderGestor(ordens, isMasterUser = false) {
     const minhasOS = ordens;
     
@@ -899,7 +954,8 @@
     listarOrdensGestor(ordens);
   }
 
-  // Carrega interface de gerenciamento de usuários (apenas MASTER)
+  // ==================== Gerenciamento de Usuários (Master) ====================
+  
   async function carregarGerenciamentoUsuarios() {
     const area = document.getElementById('gerenciarUsuariosArea');
     if (!area) return;
@@ -950,7 +1006,6 @@
         </div>
       `;
       
-      // Evento para adicionar usuário
       document.getElementById('btnAdicionarUsuario').addEventListener('click', async () => {
         const nome = document.getElementById('novoUsuarioNome').value.trim();
         const senha = document.getElementById('novoUsuarioSenha').value.trim();
@@ -994,7 +1049,6 @@
     }
   }
 
-  // Função global para remover usuário (MASTER apenas)
   window.removerUsuario = async function(userId) {
     if (!isMaster()) {
       alert('Apenas o usuário Master pode remover usuários!');
@@ -1160,7 +1214,8 @@
     }
   }
 
-  // RENDER TÉCNICO
+  // ==================== RENDER TÉCNICO ====================
+  
   function renderTecnico(ordens) {
     const user = currentUser.usuario;
     const minhasOS = ordens.filter(o => o.tecnico === user);
@@ -1316,8 +1371,6 @@
       const snapshot = await get(ref(database, `ordens/${osId}`));
       const os = snapshot.val();
       
-      // Para técnicos, não mostramos o número do protocolo
-      // Eles precisam entrar em contato com a central
       const confirma = confirm(
         '⚠️ ATENÇÃO TÉCNICO:\n\n' +
         'Para finalizar esta O.S., você precisa do número do protocolo.\n\n' +
@@ -1327,7 +1380,6 @@
       
       if (!confirma) return;
       
-      // Solicita o protocolo sem exibir o número
       const protocoloInformado = prompt(
         'Digite o número do protocolo fornecido pela CENTRAL:'
       );
@@ -1337,7 +1389,6 @@
         return;
       }
       
-      // Verifica se o protocolo informado corresponde ao da O.S.
       if (protocoloInformado != os.protocolo) {
         alert('❌ Número de protocolo incorreto!\n\nEntre em contato com a CENTRAL para confirmar o número correto.');
         return;
@@ -1363,18 +1414,52 @@
     }
   };
 
-  // Inicialização
-  window.addEventListener('load', async () => {
-    if (currentUser) {
-      homeScreen.classList.remove('active');
-      panelScreen.classList.add('active');
-      document.getElementById('userDisplay').innerHTML = `
-        <i class="fas fa-user-circle"></i> ${currentUser.usuario} 
-        <span class="badge">${currentUser.funcao}</span>
-        ${currentUser.isMaster ? '<span class="master-badge"><i class="fas fa-crown"></i> MASTER</span>' : ''}
-      `;
-      await renderPanel();
+  // ==================== INICIALIZAÇÃO ====================
+  
+  // Função para tentar restaurar sessão ao carregar a página
+  async function restaurarSessao() {
+    const sessao = recuperarSessao();
+    
+    if (sessao) {
+      console.log('🔄 Sessão encontrada, restaurando...');
+      
+      // Se for o master, restaura diretamente
+      if (sessao.isMaster) {
+        await entrarNoSistema(sessao);
+        return;
+      }
+      
+      // Para outros usuários, verifica se ainda existe no Firebase
+      try {
+        const snapshot = await get(usersRef);
+        const users = snapshot.val() || {};
+        
+        // Verifica se o usuário ainda existe
+        const userExists = Object.values(users).some(u => u.usuario === sessao.usuario);
+        
+        if (userExists) {
+          await entrarNoSistema(sessao);
+          return;
+        } else {
+          // Usuário foi removido, limpa sessão
+          removerSessao();
+          console.log('⚠️ Usuário não existe mais, sessão removida');
+        }
+      } catch (error) {
+        console.error('Erro ao verificar usuário:', error);
+        // Em caso de erro, mantém na tela de login
+        removerSessao();
+      }
     }
+    
+    // Se não há sessão ou falhou, mostra a tela de login
+    homeScreen.classList.add('active');
+    panelScreen.classList.remove('active');
+  }
+
+  // Inicializa a aplicação
+  window.addEventListener('load', async () => {
+    await restaurarSessao();
   });
 </script>
 </body>
