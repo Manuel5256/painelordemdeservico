@@ -310,6 +310,10 @@
       margin-left: 0.5rem;
     }
 
+    .protocolo-hidden {
+      display: none;
+    }
+
     @media (max-width: 600px) {
       #app { 
         padding: 1rem; 
@@ -820,7 +824,7 @@
     `).join('');
   }
 
-  // RENDER GESTOR (com opções de gerenciamento para o MASTER)
+  // RENDER GESTOR
   function renderGestor(ordens, isMasterUser = false) {
     const minhasOS = ordens;
     
@@ -1252,7 +1256,7 @@
             <button class="btn-outline-sm" onclick="window.pendenteOS('${o.id}')">
               <i class="fas fa-pause"></i> Pendente
             </button>
-            <button class="btn btn-sm" onclick="window.finalizarOS('${o.id}', '${o.protocolo}')">
+            <button class="btn btn-sm" onclick="window.finalizarOS('${o.id}')">
               <i class="fas fa-check"></i> Finalizar
             </button>
           ` : ''}
@@ -1307,17 +1311,36 @@
     }
   };
 
-  window.finalizarOS = async function(osId, protocolo) {
+  window.finalizarOS = async function(osId) {
     try {
       const snapshot = await get(ref(database, `ordens/${osId}`));
       const os = snapshot.val();
       
-      if (os.status !== 'PENDENTE') {
-        const confirmaProtocolo = prompt(`Confirme o número do protocolo (${protocolo}):`);
-        if (confirmaProtocolo != protocolo) {
-          alert('Protocolo incorreto! Não foi possível finalizar.');
-          return;
-        }
+      // Para técnicos, não mostramos o número do protocolo
+      // Eles precisam entrar em contato com a central
+      const confirma = confirm(
+        '⚠️ ATENÇÃO TÉCNICO:\n\n' +
+        'Para finalizar esta O.S., você precisa do número do protocolo.\n\n' +
+        'Entre em contato com a CENTRAL para obter esta informação.\n\n' +
+        'Deseja continuar com a finalização?'
+      );
+      
+      if (!confirma) return;
+      
+      // Solicita o protocolo sem exibir o número
+      const protocoloInformado = prompt(
+        'Digite o número do protocolo fornecido pela CENTRAL:'
+      );
+      
+      if (!protocoloInformado) {
+        alert('Operação cancelada. Você precisa do número do protocolo para finalizar.');
+        return;
+      }
+      
+      // Verifica se o protocolo informado corresponde ao da O.S.
+      if (protocoloInformado != os.protocolo) {
+        alert('❌ Número de protocolo incorreto!\n\nEntre em contato com a CENTRAL para confirmar o número correto.');
+        return;
       }
       
       const materiais = prompt('Materiais utilizados:');
@@ -1331,6 +1354,8 @@
       
       await addTimeline(osId, `Materiais utilizados: ${materiais || 'N/A'}`);
       await addTimeline(osId, `O.S. Finalizada. ${obsFinais || ''}`);
+      
+      alert('✅ O.S. finalizada com sucesso!');
       
     } catch (error) {
       alert('Erro ao finalizar O.S.');
