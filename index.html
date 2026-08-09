@@ -3,8 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  
   <title>TOTAL · Central de O.S.</title>
+  <meta name="description" content="Sistema de monitoramento e ordens de serviço TOTAL">
+  <meta name="theme-color" content="#ffcc00">
+  
+  <link rel="manifest" href="manifest.json">
+  <link rel="apple-touch-icon" href="logo.png">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  
   <style>
     * {
       margin: 0;
@@ -13,8 +20,9 @@
       font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
     }
 
+    /* FUNDO DO SITE NA COR DA LOGO */
     body {
-      background: #0a0a0a;
+      background: #ffcc00; /* Amarelo Ouro da Logo */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -25,9 +33,9 @@
     #app {
       width: 100%;
       max-width: 1300px;
-      background: #0f0f0f;
+      background: #111111; /* Fundo escuro para dar contraste na caixa principal */
       border-radius: 2.5rem;
-      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 0 1px rgba(255,215,0,0.2);
+      box-shadow: 0 25px 50px -12px rgba(0,0,0,0.8), 0 0 0 2px #ffcc00;
       padding: 1.8rem 1.5rem;
       transition: all 0.3s ease;
       display: flex;
@@ -52,36 +60,16 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 0.25rem;
+      gap: 1.5rem; /* Espaço maior entre a logo e o login */
     }
 
-    .logo-icon {
-      background: #f5b400;
-      color: #0a0a0a;
-      font-size: 3.8rem;
-      font-weight: 800;
-      padding: 0.5rem 2rem;
-      border-radius: 3rem;
-      letter-spacing: 2px;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-      box-shadow: 0 0 25px #f5b40080;
-      text-transform: uppercase;
-    }
-
-    .system-name {
-      color: #fff;
-      font-weight: 400;
-      font-size: 1.8rem;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      margin-top: 0.5rem;
-      border-top: 1px solid #f5b400;
-      padding-top: 0.75rem;
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+    /* LOGO DA EMPRESA */
+    .logo-img {
+      max-width: 350px;
+      width: 100%;
+      height: auto;
+      filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.4));
+      margin-bottom: 0.5rem;
     }
 
     .btn-group {
@@ -91,10 +79,11 @@
       justify-content: center;
     }
 
+    /* BOTÕES PRETOS COM TEXTO AMARELO (Invertido da Logo) */
     .btn {
-      background: #f5b400;
-      border: none;
-      color: #0a0a0a;
+      background: #111111;
+      border: 2px solid #ffcc00;
+      color: #ffcc00;
       font-weight: bold;
       padding: 0.9rem 2.2rem;
       border-radius: 3rem;
@@ -105,13 +94,12 @@
       align-items: center;
       gap: 0.6rem;
       transition: all 0.2s;
-      box-shadow: 0 6px 16px rgba(245,180,0,0.4);
-      border: 1px solid rgba(255,215,0,0.5);
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
     }
 
     .btn:hover {
-      background: #ffcc29;
-      box-shadow: 0 10px 22px #f5b400b3;
+      background: #222;
+      color: #fff;
       transform: translateY(-1px);
     }
 
@@ -122,49 +110,33 @@
 
     .btn-outline {
       background: transparent;
-      color: #f5b400;
-      border: 1.5px solid #f5b400;
+      color: #ffcc00;
+      border: 1.5px solid #ffcc00;
       box-shadow: none;
     }
 
     .btn-outline:hover {
-      background: #1e1e1e;
+      background: #222;
     }
 
     .btn-outline-sm {
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       background: transparent;
-      color: #f5b400;
-      border: 1.5px solid #f5b400;
+      color: #ffcc00;
+      border: 1.5px solid #ffcc00;
       box-shadow: none;
       border-radius: 2rem;
       cursor: pointer;
     }
 
-    .btn-excluir {
-      padding: 0.5rem 1rem;
-      font-size: 0.9rem;
-      background: transparent;
-      color: #f5b400;
-      border: 1.5px solid #f5b400;
-      box-shadow: none;
-      border-radius: 2rem;
-      cursor: pointer;
-    }
-
-    .btn-excluir:hover {
-      background: #f5b40020;
-      border-color: #ffcc29;
-      color: #ffcc29;
-    }
-
+    /* CARDS BRANCOS COM BORDAS AMARELAS */
     .card {
-      background: #1a1a1a;
+      background: #ffffff;
       border-radius: 1.8rem;
       padding: 1.8rem;
-      box-shadow: 0 10px 20px rgba(0,0,0,0.7);
-      border: 1px solid #2e2e2e;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+      border: 1px solid #ffcc00;
       width: 100%;
     }
 
@@ -176,30 +148,32 @@
     }
 
     .stat-card {
-      background: #111;
-      border-left: 4px solid #f5b400;
+      background: #ffffff;
+      border-left: 6px solid #ffcc00;
       border-radius: 1.2rem;
       padding: 1rem 1.5rem;
       display: flex;
       align-items: center;
       gap: 0.8rem;
-      color: white;
+      color: #111;
       min-width: 150px;
       flex: 1 1 180px;
       transition: all 0.3s;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     }
 
     .stat-card:hover {
-      background: #1a1a1a;
-      border-left-color: #ffcc29;
+      background: #f8f8f8;
+      border-left-color: #d4a800;
     }
 
+    /* INPUTS PRETOS COM TEXTO AMARELO */
     input, select, textarea {
-      background: #0e0e0e;
-      border: 1px solid #333;
+      background: #111;
+      border: 1px solid #ffcc00;
       border-radius: 1rem;
       padding: 0.9rem 1.2rem;
-      color: white;
+      color: #ffcc00;
       font-size: 1rem;
       outline: none;
       width: 100%;
@@ -207,8 +181,8 @@
     }
 
     input:focus, select:focus, textarea:focus {
-      border-color: #f5b400;
-      box-shadow: 0 0 8px #f5b40040;
+      border-color: #fff;
+      box-shadow: 0 0 8px rgba(255, 204, 0, 0.6);
     }
 
     .flex-row {
@@ -225,7 +199,7 @@
     }
 
     .badge {
-      background: #f5b400;
+      background: #ffcc00;
       color: #000;
       padding: 0.2rem 0.7rem;
       border-radius: 2rem;
@@ -238,38 +212,24 @@
       border-radius: 2rem;
       font-weight: bold;
       font-size: 0.85rem;
+      border: 1px solid #111;
     }
 
-    .badge-aberta {
-      background: #ff6600;
-      color: white;
-    }
-
-    .badge-andamento {
-      background: #0066ff;
-      color: white;
-    }
-
-    .badge-pendente {
-      background: #ffcc00;
-      color: black;
-    }
-
-    .badge-finalizada {
-      background: #00cc66;
-      color: white;
-    }
+    .badge-aberta { background: #ff6600; color: white; }
+    .badge-andamento { background: #0066ff; color: white; }
+    .badge-pendente { background: #ffcc00; color: black; }
+    .badge-finalizada { background: #00cc66; color: white; }
 
     .timeline {
-      background: #0d0d0d;
+      background: #f5f5f5;
       border-radius: 1rem;
       padding: 1rem;
       margin-top: 0.8rem;
       font-size: 0.9rem;
-      color: #ccc;
+      color: #333;
       max-height: 150px;
       overflow-y: auto;
-      border-left: 2px solid #f5b400;
+      border-left: 3px solid #ffcc00;
     }
 
     .hidden {
@@ -277,7 +237,7 @@
     }
 
     .loading {
-      color: #f5b400;
+      color: #ffcc00;
       text-align: center;
       padding: 2rem;
     }
@@ -293,28 +253,28 @@
       padding: 0.5rem 1.2rem;
       border-radius: 2rem;
       cursor: pointer;
-      background: #1a1a1a;
-      color: #888;
-      border: 1px solid #333;
+      background: #111;
+      color: #ffcc00;
+      border: 1px solid #ffcc00;
       transition: all 0.2s;
       font-size: 0.9rem;
     }
 
     .tab.active {
-      background: #f5b400;
+      background: #ffcc00;
       color: #000;
-      border-color: #f5b400;
+      border-color: #ffcc00;
       font-weight: bold;
     }
 
     .tab:hover:not(.active) {
-      border-color: #f5b400;
-      color: #f5b400;
+      border-color: #fff;
+      color: #fff;
     }
 
     .highlight-card {
-      border: 2px solid #f5b400;
-      background: #1a1a1a;
+      border: 2px solid #ffcc00;
+      background: #f8f8f8;
     }
 
     .master-badge {
@@ -327,22 +287,20 @@
       margin-left: 0.5rem;
     }
 
-    /* Estilos para nome do cliente em branco */
-    .cliente-branco {
-      color: #ffffff;
+    /* Cores do texto */
+    .cliente-branco, .codmoni-branco {
+      color: #111;
+    }
+    h3, h4, h5, strong {
+      color: #111 !important;
     }
 
-    .codmoni-branco {
-      color: #ffffff;
-    }
-
-    /* Cor dourada para excluir */
     .btn-excluir-dourado {
       padding: 0.5rem 1rem;
       font-size: 0.9rem;
       background: transparent;
-      color: #f5b400;
-      border: 1.5px solid #f5b400;
+      color: #ffcc00;
+      border: 1.5px solid #ffcc00;
       box-shadow: none;
       border-radius: 2rem;
       cursor: pointer;
@@ -350,9 +308,30 @@
     }
 
     .btn-excluir-dourado:hover {
-      background: #f5b40020;
-      border-color: #ffcc29;
-      color: #ffcc29;
+      background: #ffcc00;
+      color: #000;
+    }
+
+    #installContainer {
+      display: none;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 999;
+    }
+    #installBtn {
+      background: #111;
+      color: #ffcc00;
+      border: 2px solid #ffcc00;
+      border-radius: 50px;
+      padding: 12px 20px;
+      font-weight: bold;
+      box-shadow: 0 4px 15px rgba(255, 204, 0, 0.6);
+      cursor: pointer;
+    }
+    #installBtn:hover {
+      background: #ffcc00;
+      color: #111;
     }
 
     @media (max-width: 600px) {
@@ -360,9 +339,8 @@
         padding: 1rem; 
         border-radius: 1.5rem;
       }
-      .logo-icon { 
-        font-size: 2.5rem; 
-        padding: 0.4rem 1.5rem;
+      .logo-img {
+        max-width: 250px;
       }
       .btn {
         padding: 0.7rem 1.5rem;
@@ -372,6 +350,14 @@
         min-width: 130px;
         flex: 1 1 130px;
       }
+      #installContainer {
+        bottom: 10px;
+        right: 10px;
+      }
+      #installBtn {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+      }
     }
   </style>
 </head>
@@ -380,21 +366,18 @@
   <!-- TELA INICIAL -->
   <div id="homeScreen" class="screen active">
     <div class="logo-area">
-      <div class="logo-icon">
+      <img src="logo.png" alt="Logo TOTAL Monitoramento" class="logo-img" onerror="this.style.display='none'; document.getElementById('fallbackLogo').style.display='flex';">
+      <div id="fallbackLogo" class="logo-icon" style="display:none; background:#ffcc00; color:#000; font-size:3.8rem; font-weight:800; padding:0.5rem 2rem; border-radius:3rem; letter-spacing:2px; align-items:center; gap:0.5rem; box-shadow:0 0 25px #ffcc00;">
         <i class="fas fa-shield-alt"></i> TOTAL
       </div>
-      <div class="system-name">
-        <i class="fas fa-broadcast-tower" style="color:#f5b400;"></i> MONITORAMENTO
+      
+      <!-- Formulário de Login JÁ APARECENDO (sem o botão Entrar) -->
+      <div id="loginFormArea" class="card active" style="max-width: 400px;">
+        <h3 style="color:#000; margin-bottom:1rem;"><i class="fas fa-lock"></i> Login</h3>
+        <input type="text" id="loginUser" placeholder="Usuário" autocomplete="off">
+        <input type="password" id="loginPass" placeholder="Senha">
+        <button class="btn" id="btnLoginExec" style="width:100%; margin-top:1rem;">Acessar Sistema</button>
       </div>
-    </div>
-    <div class="btn-group">
-      <button class="btn" id="btnEntrar"><i class="fas fa-sign-in-alt"></i> Entrar</button>
-    </div>
-    <div id="loginFormArea" class="card hidden" style="max-width: 400px;">
-      <h3 style="color:#f5b400; margin-bottom:1rem;"><i class="fas fa-lock"></i> Login</h3>
-      <input type="text" id="loginUser" placeholder="Usuário" autocomplete="off">
-      <input type="password" id="loginPass" placeholder="Senha">
-      <button class="btn" id="btnLoginExec" style="width:100%; margin-top:1rem;">Acessar Sistema</button>
     </div>
   </div>
 
@@ -402,11 +385,12 @@
   <div id="panelScreen" class="screen">
     <div style="display: flex; justify-content: space-between; align-items: center; width: 100%; flex-wrap: wrap; gap: 1rem;">
       <div style="display: flex; align-items: center; gap: 1rem;">
-        <span class="logo-icon" style="font-size:1.6rem; padding:0.3rem 1.2rem;">TOTAL</span>
-        <span style="color:#f5b400; font-size:0.9rem;"><i class="fas fa-circle" style="color:#00ff00; font-size:0.6rem;"></i> Online</span>
+        <img src="logo.png" alt="TOTAL" style="height: 45px; border-radius: 8px; background:#111; padding: 2px;" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <div class="logo-icon" style="display:none; background:#ffcc00; color:#000; font-size:1.6rem; font-weight:800; padding:0.3rem 1.2rem; border-radius:2rem;">TOTAL</div>
+        <span style="color:#ffcc00; font-size:0.9rem;"><i class="fas fa-circle" style="color:#00ff00; font-size:0.6rem;"></i> Online</span>
       </div>
-      <div style="color:white; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
-        <span id="userDisplay" style="color:#f5b400;"></span>
+      <div style="color:#fff; display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+        <span id="userDisplay" style="color:#ffcc00;"></span>
         <button class="btn-outline" id="btnLogout" style="padding:0.4rem 1rem;"><i class="fas fa-sign-out-alt"></i> Sair</button>
       </div>
     </div>
@@ -421,8 +405,11 @@
   </div>
 </div>
 
+<div id="installContainer">
+  <button id="installBtn"><i class="fas fa-download"></i> Instalar App</button>
+</div>
+
 <script type="module">
-  // Firebase Configuration
   import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
   import { getDatabase, ref, set, get, update, push, onValue, off, remove } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-database.js";
 
@@ -439,24 +426,20 @@
   const app = initializeApp(firebaseConfig);
   const database = getDatabase(app);
 
-  // Referências do Firebase
   const usersRef = ref(database, 'users');
   const ordensRef = ref(database, 'ordens');
   const configRef = ref(database, 'config');
 
-  // Estado local
   let currentUser = null;
   let ordensListener = null;
   let abaAtual = 'todas';
 
-  // Elementos DOM
   const homeScreen = document.getElementById('homeScreen');
   const panelScreen = document.getElementById('panelScreen');
   const loginFormArea = document.getElementById('loginFormArea');
   const profileContent = document.getElementById('profileContent');
   const dashboardArea = document.getElementById('dashboardArea');
 
-  // Helpers
   function getNow() {
     const d = new Date();
     return { 
@@ -487,12 +470,10 @@
     }
   }
 
-  // Verifica se é o mestre
   function isMaster() {
     return currentUser && currentUser.isMaster === true;
   }
 
-  // Sessão persistente
   function salvarSessao(user) {
     try {
       localStorage.setItem('total_user_session', JSON.stringify(user));
@@ -521,12 +502,6 @@
     return null;
   }
 
-  // Navegação
-  document.getElementById('btnEntrar').addEventListener('click', () => {
-    loginFormArea.classList.toggle('hidden');
-  });
-
-  // Login
   document.getElementById('btnLoginExec').addEventListener('click', async () => {
     const usuario = document.getElementById('loginUser').value.trim();
     const senha = document.getElementById('loginPass').value.trim();
@@ -588,7 +563,6 @@
     await renderPanel();
   }
 
-  // Logout
   document.getElementById('btnLogout').addEventListener('click', () => {
     if (ordensListener) {
       off(ordensRef, 'value', ordensListener);
@@ -601,7 +575,6 @@
     homeScreen.classList.add('active');
   });
 
-  // Dashboard
   function atualizarDashboard(ordens) {
     const abertas = ordens.filter(o => o.status === 'ABERTA').length;
     const andamento = ordens.filter(o => o.status === 'EM ANDAMENTO').length;
@@ -623,51 +596,50 @@
     
     dashboardArea.innerHTML = `
       <div class="stat-card">
-        <i class="fas fa-folder-open" style="color:#f5b400; font-size:1.5rem;"></i> 
+        <i class="fas fa-folder-open" style="color:#ffcc00; font-size:1.5rem;"></i> 
         <div>
-          <small style="color:#888;">Abertas</small>
+          <small style="color:#666;">Abertas</small>
           <br><strong style="font-size:1.3rem;">${abertas}</strong>
         </div>
       </div>
       <div class="stat-card">
         <i class="fas fa-play-circle" style="color:#ff9900; font-size:1.5rem;"></i> 
         <div>
-          <small style="color:#888;">Em Andamento</small>
+          <small style="color:#666;">Em Andamento</small>
           <br><strong style="font-size:1.3rem;">${andamento}</strong>
         </div>
       </div>
       <div class="stat-card">
         <i class="fas fa-pause-circle" style="color:#ffcc00; font-size:1.5rem;"></i> 
         <div>
-          <small style="color:#888;">Pendentes</small>
+          <small style="color:#666;">Pendentes</small>
           <br><strong style="font-size:1.3rem;">${pendentes}</strong>
         </div>
       </div>
       <div class="stat-card">
         <i class="fas fa-check-circle" style="color:#00cc66; font-size:1.5rem;"></i> 
         <div>
-          <small style="color:#888;">Finalizadas</small>
+          <small style="color:#666;">Finalizadas</small>
           <br><strong style="font-size:1.3rem;">${finalizadas}</strong>
         </div>
       </div>
       <div class="stat-card">
         <i class="fas fa-user-cog" style="color:#3399ff; font-size:1.5rem;"></i> 
         <div>
-          <small style="color:#888;">Téc. Atend.</small>
+          <small style="color:#666;">Téc. Atend.</small>
           <br><strong style="font-size:1.3rem;">${tecEmAtend}</strong>
         </div>
       </div>
       <div class="stat-card highlight-card">
-        <i class="fas fa-star" style="color:#f5b400; font-size:1.5rem;"></i> 
+        <i class="fas fa-star" style="color:#ffcc00; font-size:1.5rem;"></i> 
         <div>
-          <small style="color:#f5b400;">Minhas O.S.</small>
-          <br><strong style="font-size:1.3rem; color:#f5b400;">${minhasOS.length}</strong>
+          <small style="color:#666;">Minhas O.S.</small>
+          <br><strong style="font-size:1.3rem; color:#000;">${minhasOS.length}</strong>
         </div>
       </div>
     `;
   }
 
-  // Renderiza painel
   async function renderPanel() {
     if (!currentUser) return;
     
@@ -693,7 +665,6 @@
     });
   }
 
-  // Timeline
   async function addTimeline(ordemId, texto) {
     const ordemRef = ref(database, `ordens/${ordemId}/timeline`);
     const snapshot = await get(ordemRef);
@@ -702,13 +673,12 @@
     await set(ordemRef, timeline);
   }
 
-  // RENDER OPERADOR
   function renderOperador(ordens) {
     const user = currentUser;
     const minhasOS = ordens.filter(o => o.operador === user.usuario);
     
     profileContent.innerHTML = `
-      <h3 style="color:#f5b400; margin-bottom:1rem;">
+      <h3 style="color:#000; margin-bottom:1rem;">
         <i class="fas fa-user-shield"></i> Painel Operador · Turno ${user.turno || 'N/A'}
       </h3>
       
@@ -770,10 +740,10 @@
     if (existente) {
       msgDiv.classList.remove('hidden');
       msgDiv.innerHTML = `
-        <div class="card" style="background:#2d1f00; border: 1px solid #f5b400;">
-          <i class="fas fa-exclamation-triangle" style="color:#f5b400;"></i>
-          <strong style="color:#f5b400;">Já existe O.S. aberta para este Código MONI</strong><br>
-          <span style="color:white;">
+        <div class="card" style="background:#fafafa; border: 2px solid #ffcc00;">
+          <i class="fas fa-exclamation-triangle" style="color:#ffcc00;"></i>
+          <strong style="color:#000;">Já existe O.S. aberta para este Código MONI</strong><br>
+          <span style="color:#333;">
             Protocolo: <strong>${existente.protocolo}</strong> | 
             Operador: ${existente.operador}<br>
             Data: ${existente.dataAbertura} | Hora: ${existente.horaAbertura}<br>
@@ -791,8 +761,8 @@
       msgDiv.classList.add('hidden');
       novaDiv.classList.remove('hidden');
       novaDiv.innerHTML = `
-        <div class="card" style="border: 1px solid #f5b400;">
-          <h4 style="color:#f5b400;"><i class="fas fa-plus-circle"></i> Nova Ordem de Serviço</h4>
+        <div class="card" style="border: 2px solid #ffcc00;">
+          <h4 style="color:#000;"><i class="fas fa-plus-circle"></i> Nova Ordem de Serviço</h4>
           <input type="text" id="nomeCliente" placeholder="Nome do Cliente">
           <textarea id="obsAbertura" placeholder="Observação" rows="3"></textarea>
           <button class="btn" id="btnSalvarOS" style="margin-top:0.5rem;">
@@ -868,29 +838,29 @@
     const div = document.getElementById('listaOperador');
     
     if (lista.length === 0) {
-      div.innerHTML = '<p style="color:#888; text-align:center; padding:2rem;"><i class="fas fa-inbox"></i> Nenhuma O.S. encontrada</p>';
+      div.innerHTML = '<p style="color:#666; text-align:center; padding:2rem;"><i class="fas fa-inbox"></i> Nenhuma O.S. encontrada</p>';
       return;
     }
     
     div.innerHTML = lista.map(o => `
-      <div class="card" style="margin-bottom:0.8rem; padding:1.2rem; ${o.operador === currentUser.usuario ? 'border: 1px solid #f5b400;' : ''}">
+      <div class="card" style="margin-bottom:0.8rem; padding:1.2rem; ${o.operador === currentUser.usuario ? 'border: 2px solid #ffcc00;' : ''}">
         <div style="display:flex; justify-content:space-between; align-items:start;">
           <div>
-            <strong style="color:#f5b400;">#${o.protocolo}</strong> | 
-            <span style="color:white;">${o.codMoni} - ${o.cliente}</span>
-            ${o.operador === currentUser.usuario ? '<i class="fas fa-star" style="color:#f5b400; margin-left:0.5rem;" title="Minha O.S."></i>' : ''}
+            <strong style="color:#000;">#${o.protocolo}</strong> | 
+            <span style="color:#333;">${o.codMoni} - ${o.cliente}</span>
+            ${o.operador === currentUser.usuario ? '<i class="fas fa-star" style="color:#ffcc00; margin-left:0.5rem;" title="Minha O.S."></i>' : ''}
           </div>
           <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
         </div>
-        <div style="color:#aaa; margin-top:0.5rem; font-size:0.9rem;">
+        <div style="color:#555; margin-top:0.5rem; font-size:0.9rem;">
           <i class="fas fa-user"></i> ${o.operador} | 
           <i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}
-          ${o.prioridade ? `| <span style="color:#f5b400;">${o.prioridade}</span>` : ''}
+          ${o.prioridade ? `| <span style="color:#000;">${o.prioridade}</span>` : ''}
           ${o.tecnico ? `| <i class="fas fa-tools"></i> ${o.tecnico}` : ''}
         </div>
         ${o.timeline && o.timeline.length > 0 ? `
           <div class="timeline">
-            <strong style="color:#f5b400;"><i class="fas fa-history"></i> Linha do Tempo:</strong>
+            <strong style="color:#000;"><i class="fas fa-history"></i> Linha do Tempo:</strong>
             ${o.timeline.slice(-5).map(t => `
               <div style="margin-top:0.3rem;">🕐 ${t.hora} - ${t.texto}</div>
             `).join('')}
@@ -900,12 +870,11 @@
     `).join('');
   }
 
-  // RENDER GESTOR
   function renderGestor(ordens, isMasterUser = false) {
     const minhasOS = ordens;
     
     profileContent.innerHTML = `
-      <h3 style="color:#f5b400; margin-bottom:1rem;">
+      <h3 style="color:#000; margin-bottom:1rem;">
         <i class="fas fa-crown"></i> Painel ${isMasterUser ? 'Master' : 'Gestor'} · Controle Total
         ${isMasterUser ? '<span style="font-size:0.8rem; color:#ff0000; margin-left:1rem;"><i class="fas fa-bolt"></i> Autonomia Total</span>' : ''}
       </h3>
@@ -975,7 +944,6 @@
     listarOrdensGestor(ordens);
   }
 
-  // Gerenciamento de Usuários (Master)
   async function carregarGerenciamentoUsuarios() {
     const area = document.getElementById('gerenciarUsuariosArea');
     if (!area) return;
@@ -989,10 +957,10 @@
       }));
       
       area.innerHTML = `
-        <div class="card" style="border: 2px solid #f5b400; margin-bottom:1rem;">
-          <h4 style="color:#f5b400;"><i class="fas fa-users"></i> Gerenciamento de Usuários</h4>
+        <div class="card" style="border: 2px solid #ffcc00; margin-bottom:1rem;">
+          <h4 style="color:#000;"><i class="fas fa-users"></i> Gerenciamento de Usuários</h4>
           <div style="margin-bottom:1rem;">
-            <h5 style="color:#fff;">Adicionar Usuário</h5>
+            <h5 style="color:#000;">Adicionar Usuário</h5>
             <div class="flex-row">
               <input type="text" id="novoUsuarioNome" placeholder="Nome do usuário" style="flex:2;">
               <input type="password" id="novoUsuarioSenha" placeholder="Senha" style="flex:1;">
@@ -1003,18 +971,18 @@
               </select>
               <button class="btn btn-sm" id="btnAdicionarUsuario"><i class="fas fa-plus"></i> Adicionar</button>
             </div>
-            <div id="addUserMsg" style="color:#f5b400; margin-top:0.5rem;"></div>
+            <div id="addUserMsg" style="color:#000; margin-top:0.5rem;"></div>
           </div>
           
-          <h5 style="color:#fff;">Usuários Cadastrados</h5>
+          <h5 style="color:#000;">Usuários Cadastrados</h5>
           <div class="table-responsive">
-            ${userList.length === 0 ? '<p style="color:#888;">Nenhum usuário cadastrado.</p>' : 
+            ${userList.length === 0 ? '<p style="color:#666;">Nenhum usuário cadastrado.</p>' : 
               userList.map(u => `
-                <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem; border-bottom:1px solid #333;">
+                <div style="display:flex; justify-content:space-between; align-items:center; padding:0.5rem; border-bottom:1px solid #ddd;">
                   <div>
-                    <strong style="color:#f5b400;">${u.usuario}</strong>
+                    <strong style="color:#000;">${u.usuario}</strong>
                     <span class="badge">${u.funcao}</span>
-                    ${u.turno ? `<span style="color:#888; font-size:0.8rem;">Turno: ${u.turno}</span>` : ''}
+                    ${u.turno ? `<span style="color:#555; font-size:0.8rem;">Turno: ${u.turno}</span>` : ''}
                   </div>
                   <button class="btn-outline-sm" onclick="window.removerUsuario('${u.id}')" style="color:#ff4444; border-color:#ff4444;">
                     <i class="fas fa-trash"></i> Remover
@@ -1087,7 +1055,6 @@
     }
   };
 
-  // LISTAR ORDENS GESTOR - com nome do cliente em BRANCO, código MONI em BRANCO e botão excluir DOURADO
   function listarOrdensGestor(ordens) {
     let lista = [];
     
@@ -1114,7 +1081,7 @@
     const div = document.getElementById('listaGestor');
     
     if (lista.length === 0) {
-      div.innerHTML = '<p style="color:#888; text-align:center; padding:2rem;"><i class="fas fa-inbox"></i> Nenhuma O.S. encontrada</p>';
+      div.innerHTML = '<p style="color:#666; text-align:center; padding:2rem;"><i class="fas fa-inbox"></i> Nenhuma O.S. encontrada</p>';
       return;
     }
     
@@ -1123,11 +1090,11 @@
         <div style="display:flex; align-items:center; gap:1rem; flex-wrap: wrap;">
           <input type="checkbox" class="check-os" value="${o.id}" style="width:auto;">
           <div style="flex:1;">
-            <strong style="color:#f5b400;">#${o.protocolo}</strong> | 
+            <strong style="color:#000;">#${o.protocolo}</strong> | 
             <span class="codmoni-branco">${o.codMoni}</span> - 
             <span class="cliente-branco">${o.cliente}</span>
             <span class="badge-status ${getStatusBadgeClass(o.status)}" style="margin-left:0.5rem;">${o.status}</span>
-            ${o.prioridade ? `<span style="color:#f5b400; margin-left:0.5rem;">${o.prioridade}</span>` : ''}
+            ${o.prioridade ? `<span style="color:#000; margin-left:0.5rem;">${o.prioridade}</span>` : ''}
           </div>
           <div style="display:flex; gap:0.5rem;">
             <button class="btn-outline-sm" onclick="window.transferirOS('${o.id}')">
@@ -1143,7 +1110,7 @@
             ` : ''}
           </div>
         </div>
-        <div style="color:#aaa; margin-top:0.5rem; font-size:0.9rem;">
+        <div style="color:#555; margin-top:0.5rem; font-size:0.9rem;">
           <i class="fas fa-user"></i> ${o.operador} | 
           <i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}
           ${o.tecnico ? `| <i class="fas fa-tools"></i> ${o.tecnico}` : ''}
@@ -1236,13 +1203,12 @@
     }
   }
 
-  // RENDER TÉCNICO - com nome do cliente em BRANCO
   function renderTecnico(ordens) {
     const user = currentUser.usuario;
     const minhasOS = ordens.filter(o => o.tecnico === user);
     
     profileContent.innerHTML = `
-      <h3 style="color:#f5b400; margin-bottom:1rem;">
+      <h3 style="color:#000; margin-bottom:1rem;">
         <i class="fas fa-tools"></i> Painel Técnico · ${user}
       </h3>
       
@@ -1273,7 +1239,6 @@
     listarOrdensTecnico(ordens);
   }
 
-  // LISTAR ORDENS TÉCNICO - com nome do cliente em BRANCO
   function listarOrdensTecnico(ordens) {
     const user = currentUser.usuario;
     let lista = [];
@@ -1298,28 +1263,28 @@
     const div = document.getElementById('listaTecnico');
     
     if (lista.length === 0) {
-      div.innerHTML = '<p style="color:#888; text-align:center; padding:2rem;"><i class="fas fa-inbox"></i> Nenhuma O.S. na fila</p>';
+      div.innerHTML = '<p style="color:#666; text-align:center; padding:2rem;"><i class="fas fa-inbox"></i> Nenhuma O.S. na fila</p>';
       return;
     }
     
     div.innerHTML = lista.map(o => `
       <div class="card" style="margin-bottom:0.8rem; padding:1.2rem; 
-        ${o.tecnico === user ? 'border: 1px solid #f5b400;' : ''}
-        ${o.prioridade && o.prioridade.includes('Urgente') ? 'border-left: 4px solid #ff0000;' : ''}
-        ${o.prioridade && o.prioridade.includes('Alta') ? 'border-left: 4px solid #ff6600;' : ''}">
+        ${o.tecnico === user ? 'border: 2px solid #ffcc00;' : ''}
+        ${o.prioridade && o.prioridade.includes('Urgente') ? 'border-left: 6px solid #ff0000;' : ''}
+        ${o.prioridade && o.prioridade.includes('Alta') ? 'border-left: 6px solid #ff6600;' : ''}">
         
         <div style="display:flex; justify-content:space-between; align-items:start;">
           <div>
-            <strong style="color:white;">${o.codMoni}</strong> - 
+            <strong style="color:#000;">${o.codMoni}</strong> - 
             <span class="cliente-branco">${o.cliente}</span>
-            ${o.tecnico === user ? '<i class="fas fa-star" style="color:#f5b400; margin-left:0.5rem;" title="Minha O.S."></i>' : ''}
+            ${o.tecnico === user ? '<i class="fas fa-star" style="color:#ffcc00; margin-left:0.5rem;" title="Minha O.S."></i>' : ''}
             <br>
-            <span style="color:#f5b400;">${o.prioridade || 'Sem prioridade'}</span>
+            <span style="color:#000;">${o.prioridade || 'Sem prioridade'}</span>
           </div>
           <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
         </div>
         
-        <div style="color:#aaa; margin:0.5rem 0;">
+        <div style="color:#555; margin:0.5rem 0;">
           <i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}
           ${o.observacao ? `<br><strong>Obs:</strong> ${o.observacao}` : ''}
         </div>
@@ -1342,7 +1307,7 @@
         
         ${o.timeline && o.timeline.length > 0 ? `
           <div class="timeline" style="margin-top:0.8rem;">
-            <strong style="color:#f5b400;"><i class="fas fa-history"></i> Últimas ações:</strong>
+            <strong style="color:#000;"><i class="fas fa-history"></i> Últimas ações:</strong>
             ${o.timeline.slice(-3).map(t => `
               <div style="margin-top:0.3rem;">🕐 ${t.hora} - ${t.texto}</div>
             `).join('')}
@@ -1437,7 +1402,6 @@
     }
   };
 
-  // Restaurar sessão
   async function restaurarSessao() {
     const sessao = recuperarSessao();
     
@@ -1471,9 +1435,35 @@
     panelScreen.classList.remove('active');
   }
 
-  // Inicialização
   window.addEventListener('load', async () => {
     await restaurarSessao();
+  });
+
+  let deferredPrompt;
+  const installContainer = document.getElementById('installContainer');
+  const installBtn = document.getElementById('installBtn');
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installContainer.style.display = 'block';
+    
+    installBtn.addEventListener('click', async () => {
+      installContainer.style.display = 'none';
+      deferredPrompt.prompt();
+      const result = await deferredPrompt.userChoice;
+      if (result.outcome === 'accepted') {
+        console.log('App instalado com sucesso!');
+      } else {
+        console.log('Instalação cancelada pelo usuário.');
+      }
+      deferredPrompt = null;
+    });
+  });
+
+  window.addEventListener('appinstalled', () => {
+    installContainer.style.display = 'none';
+    console.log('App instalado com sucesso.');
   });
 </script>
 </body>
