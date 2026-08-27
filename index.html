@@ -420,6 +420,17 @@
       color: white;
     }
 
+    .protocolo-destacado {
+      background: #ffcc00;
+      color: #000;
+      padding: 0.2rem 0.8rem;
+      border-radius: 2rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+      display: inline-block;
+      margin-right: 0.5rem;
+    }
+
     @media (max-width: 600px) {
       #app { 
         padding: 1rem; 
@@ -1522,6 +1533,7 @@
         
         <div style="display:flex; justify-content:space-between; align-items:start;">
           <div>
+            <span class="protocolo-destacado">#${o.protocolo}</span>
             <strong style="color:#000;">${o.codMoni}</strong> - 
             <span style="color:#000; font-weight:500;">${o.cliente}</span>
             ${o.tecnico === user ? '<i class="fas fa-star" style="color:#ffcc00; margin-left:0.5rem;" title="Minha O.S."></i>' : ''}
