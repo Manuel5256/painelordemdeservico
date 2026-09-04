@@ -8,20 +8,14 @@
   <meta name="description" content="Sistema de monitoramento e ordens de serviço TOTAL">
   <meta name="theme-color" content="#ffcc00">
   
-  <!-- PWA - Manifest via JavaScript -->
   <link rel="manifest" href="manifest.json">
-  
-  <!-- Ícones -->
   <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
   <link rel="icon" type="image/png" sizes="512x512" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
-  <link rel="apple-touch-icon" sizes="192x192" href="logo.png">
-  <link rel="apple-touch-icon" sizes="512x512" href="logo.png">
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
   
   <style>
-    /* ==================== RESET E BASE ==================== */
     * {
       margin: 0;
       padding: 0;
@@ -38,7 +32,6 @@
       font-size: 18px;
     }
 
-    /* ==================== APP CONTAINER ==================== */
     #app {
       width: 100%;
       height: 100vh;
@@ -51,7 +44,6 @@
       overflow: hidden;
     }
 
-    /* ==================== TELAS ==================== */
     .screen {
       display: none;
       flex-direction: column;
@@ -70,7 +62,6 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ==================== TELA DE LOGIN CENTRALIZADA ==================== */
     #homeScreen {
       align-items: center;
       justify-content: center;
@@ -100,11 +91,6 @@
       height: auto;
       filter: drop-shadow(0 4px 30px rgba(255, 204, 0, 0.2));
       transition: all 0.3s ease;
-    }
-
-    .login-logo img:hover {
-      filter: drop-shadow(0 4px 40px rgba(255, 204, 0, 0.35));
-      transform: scale(1.02);
     }
 
     .login-logo .logo-sub {
@@ -185,7 +171,6 @@
       transform: scale(0.98);
     }
 
-    /* ==================== RODAPÉ DA TELA DE LOGIN ==================== */
     .login-footer {
       text-align: center;
       padding: 8px 0 4px 0;
@@ -212,7 +197,6 @@
       margin-left: 4px;
     }
 
-    /* ==================== PAINEL PRINCIPAL ==================== */
     #panelScreen {
       padding: 0;
     }
@@ -239,10 +223,6 @@
       width: auto;
       border-radius: 8px;
       transition: all 0.3s ease;
-    }
-
-    .panel-brand img:hover {
-      filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.2));
     }
 
     .panel-brand .status {
@@ -326,7 +306,6 @@
       border-color: rgba(255, 204, 0, 0.15);
     }
 
-    /* ==================== DASHBOARD ==================== */
     .dashboard-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
@@ -389,7 +368,6 @@
       background: rgba(255, 204, 0, 0.04);
     }
 
-    /* ==================== CONTEÚDO PRINCIPAL ==================== */
     .main-content {
       flex: 1;
       min-height: 0;
@@ -422,10 +400,6 @@
       color: #ffcc00;
       font-size: 1.2rem;
       font-weight: 600;
-    }
-
-    .content-card .card-header h3 i {
-      font-size: 1.1rem;
     }
 
     .content-card .card-header .actions {
@@ -469,7 +443,6 @@
       border-color: rgba(255, 204, 0, 0.3);
     }
 
-    /* ==================== LISTA DE O.S. ==================== */
     .os-list {
       flex: 1;
       overflow-y: auto;
@@ -640,51 +613,31 @@
       border-radius: 10px;
       font-size: 0.75rem;
       color: rgba(255,255,255,0.35);
-      max-height: 100px;
+      max-height: 300px;
       overflow-y: auto;
       border-left: 2px solid rgba(255, 204, 0, 0.1);
     }
 
+    .os-card .timeline.timeline-infinito {
+      max-height: none;
+      overflow-y: visible;
+    }
+
     .os-card .timeline div {
       margin-top: 3px;
+      padding: 2px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.02);
+    }
+
+    .os-card .timeline div:last-child {
+      border-bottom: none;
     }
 
     .os-card .timeline .time {
       color: rgba(255, 204, 0, 0.3);
+      font-weight: 600;
     }
 
-    /* ==================== FORMULÁRIOS ==================== */
-    .form-group {
-      margin-bottom: 12px;
-    }
-
-    .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 12px 16px;
-      background: rgba(0,0,0,0.4);
-      border: 1px solid rgba(255, 204, 0, 0.08);
-      border-radius: 12px;
-      color: #ffcc00;
-      font-size: 1rem;
-      outline: none;
-      transition: all 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: rgba(255, 204, 0, 0.2);
-      box-shadow: 0 0 20px rgba(255, 204, 0, 0.02);
-    }
-
-    .form-group textarea {
-      resize: vertical;
-      min-height: 70px;
-    }
-
-    /* ==================== BARRA DE NAVEGAÇÃO INFERIOR - MAIOR ==================== */
     .bottom-nav {
       display: flex;
       justify-content: space-around;
@@ -744,14 +697,6 @@
       transform: translateX(-50%) scaleX(1);
     }
 
-    .nav-item:hover {
-      color: rgba(255, 204, 0, 0.6);
-    }
-
-    .nav-item.active:hover {
-      color: #ffcc00;
-    }
-
     .nav-item .nav-icon {
       font-size: 1.6rem;
       transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -797,7 +742,6 @@
       50% { transform: scale(1.1); }
     }
 
-    /* ==================== EMPTY STATE ==================== */
     .empty-state {
       text-align: center;
       padding: 40px 20px;
@@ -815,7 +759,6 @@
       font-size: 1rem;
     }
 
-    /* ==================== LOADING ==================== */
     .loading {
       text-align: center;
       padding: 30px;
@@ -831,12 +774,10 @@
       to { transform: rotate(360deg); }
     }
 
-    /* ==================== HIDDEN ==================== */
     .hidden {
       display: none !important;
     }
 
-    /* ==================== CHECKBOX ==================== */
     .os-check {
       width: 18px;
       height: 18px;
@@ -845,7 +786,115 @@
       margin-right: 6px;
     }
 
-    /* ==================== RESPONSIVIDADE ==================== */
+    .form-group {
+      margin-bottom: 12px;
+    }
+
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 12px 16px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255, 204, 0, 0.08);
+      border-radius: 12px;
+      color: #ffcc00;
+      font-size: 1rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: rgba(255, 204, 0, 0.2);
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.02);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 70px;
+    }
+
+    /* ===== NOVA O.S. FORM - VISÍVEL E AJUSTADA ===== */
+    #novaOsForm {
+      flex-shrink: 0;
+      margin-bottom: 10px;
+    }
+
+    #novaOsForm .form-card {
+      background: rgba(255, 204, 0, 0.03);
+      border: 1px solid rgba(255, 204, 0, 0.08);
+      border-radius: 14px;
+      padding: 16px 18px;
+    }
+
+    #novaOsForm .form-card h4 {
+      color: #ffcc00;
+      font-size: 1.1rem;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    #novaOsForm .form-card .form-group {
+      margin-bottom: 10px;
+    }
+
+    #novaOsForm .form-card .form-group input,
+    #novaOsForm .form-card .form-group textarea {
+      width: 100%;
+      padding: 10px 14px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid rgba(255, 204, 0, 0.08);
+      border-radius: 10px;
+      color: #ffcc00;
+      font-size: 0.95rem;
+      outline: none;
+      transition: all 0.3s;
+    }
+
+    #novaOsForm .form-card .form-group input:focus,
+    #novaOsForm .form-card .form-group textarea:focus {
+      border-color: rgba(255, 204, 0, 0.2);
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.02);
+    }
+
+    #novaOsForm .form-card .form-group textarea {
+      resize: vertical;
+      min-height: 50px;
+    }
+
+    #novaOsForm .form-card .btn-salvar-os {
+      width: 100%;
+      padding: 12px;
+      margin-top: 4px;
+      background: linear-gradient(135deg, #ffcc00, #e6b800);
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      transition: all 0.3s;
+    }
+
+    #novaOsForm .form-card .btn-salvar-os:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(255, 204, 0, 0.2);
+    }
+
+    #novaOsForm .form-card .btn-salvar-os:active {
+      transform: scale(0.98);
+    }
+
+    /* ===== FIM NOVA O.S. FORM ===== */
+
     @media (max-width: 768px) {
       #app { padding: 8px 8px 0 8px; }
       html, body { font-size: 16px; }
@@ -899,12 +948,19 @@
         padding-left: 8px; 
         padding-right: 8px;
         min-height: 68px;
+        border-radius: 20px 20px 0 0;
       }
       .nav-item { padding: 4px 8px; min-width: 45px; }
       .nav-item .nav-icon { font-size: 1.3rem; }
       .nav-item .nav-label { font-size: 0.55rem; }
       .nav-item .nav-badge { font-size: 0.45rem; min-width: 16px; top: -4px; right: 0; padding: 1px 6px; }
       .nav-item::after { width: 22px; height: 3px; }
+
+      #novaOsForm .form-card { padding: 14px 14px; }
+      #novaOsForm .form-card h4 { font-size: 1rem; }
+      #novaOsForm .form-card .form-group input,
+      #novaOsForm .form-card .form-group textarea { font-size: 0.9rem; padding: 8px 12px; }
+      #novaOsForm .form-card .btn-salvar-os { font-size: 0.9rem; padding: 10px; }
     }
 
     @media (max-width: 480px) {
@@ -982,10 +1038,11 @@
         padding-left: 4px; 
         padding-right: 4px;
         min-height: 58px;
+        border-radius: 16px 16px 0 0;
       }
       .nav-item { padding: 2px 4px; min-width: 35px; }
       .nav-item .nav-icon { font-size: 1.1rem; }
-      .nav-item .nav-label { font-size: 0.45rem; }
+      .nav-item .nav-label { font-size: 0.45rem; letter-spacing: 0.3px; }
       .nav-item .nav-badge { font-size: 0.4rem; min-width: 14px; top: -6px; right: -2px; padding: 1px 5px; }
       .nav-item::after { width: 16px; height: 3px; bottom: -1px; }
       
@@ -994,6 +1051,12 @@
       .loading { font-size: 0.9rem; padding: 20px; }
       
       .os-check { width: 14px; height: 14px; }
+
+      #novaOsForm .form-card { padding: 10px 10px; }
+      #novaOsForm .form-card h4 { font-size: 0.9rem; }
+      #novaOsForm .form-card .form-group input,
+      #novaOsForm .form-card .form-group textarea { font-size: 0.8rem; padding: 6px 10px; }
+      #novaOsForm .form-card .btn-salvar-os { font-size: 0.8rem; padding: 8px; }
     }
 
     @media (min-width: 1024px) {
@@ -1002,7 +1065,6 @@
       }
     }
 
-    /* ==================== SCROLLBAR GLOBAL ==================== */
     ::-webkit-scrollbar {
       width: 5px;
       height: 5px;
@@ -1024,7 +1086,6 @@
 </head>
 <body>
   <div id="app">
-    <!-- ==================== TELA DE LOGIN CENTRALIZADA ==================== -->
     <div id="homeScreen" class="screen active">
       <div class="login-container">
         <div class="login-logo">
@@ -1041,7 +1102,6 @@
           </button>
         </div>
 
-        <!-- ==================== RODAPÉ DA TELA DE LOGIN ==================== -->
         <div class="login-footer">
           <span class="footer-text">
             Desenvolvido por <strong>Manuel Francisco</strong>
@@ -1051,9 +1111,7 @@
       </div>
     </div>
 
-    <!-- ==================== PAINEL PRINCIPAL ==================== -->
     <div id="panelScreen" class="screen">
-      <!-- HEADER -->
       <div class="panel-header">
         <div class="panel-brand">
           <img src="logo.png" alt="TOTAL" onerror="this.style.display='none';">
@@ -1074,7 +1132,6 @@
         </div>
       </div>
 
-      <!-- DASHBOARD -->
       <div class="dashboard-grid" id="dashboardArea">
         <div class="stat-card"><div class="icon"><i class="fas fa-folder-open"></i></div><div class="info"><div class="label">Abertas</div><div class="value">0</div></div></div>
         <div class="stat-card"><div class="icon"><i class="fas fa-play-circle"></i></div><div class="info"><div class="label">Em Andamento</div><div class="value">0</div></div></div>
@@ -1084,14 +1141,12 @@
         <div class="stat-card highlight"><div class="icon"><i class="fas fa-star"></i></div><div class="info"><div class="label">Minhas O.S.</div><div class="value">0</div></div></div>
       </div>
 
-      <!-- CONTEÚDO -->
       <div class="main-content">
         <div class="content-card" id="profileContent">
           <div class="loading"><i class="fas fa-spinner"></i> Carregando dados...</div>
         </div>
       </div>
 
-      <!-- ==================== BARRA DE NAVEGAÇÃO INFERIOR - MAIOR ==================== -->
       <nav class="bottom-nav" id="bottomNav">
         <button class="nav-item active" data-tab="minhas">
           <span class="nav-icon"><i class="fas fa-star"></i></span>
@@ -1178,7 +1233,6 @@
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
     import { getDatabase, ref, set, get, update, push, onValue, off, remove } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-database.js";
 
-    // ==================== FIREBASE ====================
     const firebaseConfig = {
       apiKey: "AIzaSyDbHbOk08Q_8sVlYFNmqrMjl29ssT4KyqM",
       authDomain: "totalpainel-760ba.firebaseapp.com",
@@ -1502,11 +1556,23 @@
       });
     }
 
+    // ==================== FUNÇÃO ADD TIMELINE - INFINITA ====================
     async function addTimeline(ordemId, texto) {
       const ordemRef = ref(database, `ordens/${ordemId}/timeline`);
       const snapshot = await get(ordemRef);
-      const timeline = snapshot.val() || [];
-      timeline.push({ hora: getNow().hora, texto });
+      let timeline = snapshot.val() || [];
+      
+      if (!Array.isArray(timeline)) {
+        timeline = [];
+      }
+      
+      timeline.push({ 
+        hora: getNow().hora, 
+        texto: texto,
+        data: getNow().data,
+        timestamp: Date.now()
+      });
+      
       await set(ordemRef, timeline);
     }
 
@@ -1539,6 +1605,7 @@
               <span class="codmoni">${o.codMoni}</span>
               <span class="cliente">${o.cliente}</span>
               ${o.operador === currentUser.usuario ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
+              ${o.dataReabertura ? '<span style="font-size:0.6rem;color:#ffcc00;margin-left:4px;">🔄 Reaberta</span>' : ''}
             </div>
             <div class="os-status">
               ${o.prioridade ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
@@ -1558,8 +1625,8 @@
             </div>
           ` : ''}
           ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline">
-              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
+            <div class="timeline timeline-infinito">
+              ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
             </div>
           ` : ''}
         </div>
@@ -1594,6 +1661,7 @@
               <span class="protocolo">#${o.protocolo}</span>
               <span class="codmoni">${o.codMoni}</span>
               <span class="cliente">${o.cliente}</span>
+              ${o.dataReabertura ? '<span style="font-size:0.6rem;color:#ffcc00;margin-left:4px;">🔄 Reaberta</span>' : ''}
             </div>
             <div class="os-status">
               ${o.prioridade ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
@@ -1615,8 +1683,8 @@
             ${isMaster() ? `<button class="btn-xs danger" onclick="window.removerOS('${o.id}')"><i class="fas fa-trash"></i></button>` : ''}
           </div>
           ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline">
-              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
+            <div class="timeline timeline-infinito">
+              ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
             </div>
           ` : ''}
         </div>
@@ -1654,6 +1722,7 @@
               <span class="codmoni">${o.codMoni}</span>
               <span class="cliente">${o.cliente}</span>
               ${o.tecnico === user ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
+              ${o.dataReabertura ? '<span style="font-size:0.6rem;color:#ffcc00;margin-left:4px;">🔄 Reaberta</span>' : ''}
             </div>
             <div class="os-status">
               <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
@@ -1675,8 +1744,8 @@
             ` : ''}
           </div>
           ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline">
-              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
+            <div class="timeline timeline-infinito">
+              ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
             </div>
           ` : ''}
         </div>
@@ -1796,25 +1865,21 @@
         msgDiv.classList.add('hidden');
         novaDiv.classList.remove('hidden');
         novaDiv.innerHTML = `
-          <div style="background:rgba(255,204,0,0.03);border:1px solid rgba(255,204,0,0.08);border-radius:14px;padding:18px;margin-bottom:16px;">
-            <h4 style="color:#ffcc00;font-size:1.15rem;margin-bottom:14px;"><i class="fas fa-plus-circle"></i> Nova Ordem de Serviço</h4>
+          <div class="form-card">
+            <h4><i class="fas fa-plus-circle"></i> Nova Ordem de Serviço</h4>
             <div class="form-group">
               <input type="text" id="nomeCliente" placeholder="Nome do Cliente">
             </div>
             <div class="form-group">
-              <input type="text" id="enderecoCliente" placeholder="Endereço">
-            </div>
-            <div class="form-group">
               <textarea id="obsAbertura" placeholder="Observação" rows="2"></textarea>
             </div>
-            <button class="btn-sm btn-primary" id="btnSalvarOS">
+            <button class="btn-salvar-os" id="btnSalvarOS">
               <i class="fas fa-save"></i> Salvar O.S.
             </button>
           </div>`;
         
         document.getElementById('btnSalvarOS').addEventListener('click', async () => {
           const cliente = document.getElementById('nomeCliente').value.trim();
-          const endereco = document.getElementById('enderecoCliente').value.trim();
           const obs = document.getElementById('obsAbertura').value.trim();
           
           if (!cliente) {
@@ -1830,8 +1895,8 @@
               protocolo,
               codMoni: cod,
               cliente,
-              endereco: endereco || 'Não informado',
-              observacao: obs,
+              endereco: 'Não informado',
+              observacao: obs || '',
               operador: currentUser.usuario,
               dataAbertura: data,
               horaAbertura: hora,
@@ -1841,7 +1906,7 @@
               statusPagamento: null,
               tecnicoInicio: null,
               tecnicoFinalizacao: null,
-              timeline: [{ hora, texto: `Operador ${currentUser.usuario} abriu a O.S.` }]
+              timeline: [{ hora, texto: `📋 Operador ${currentUser.usuario} abriu a O.S.` }]
             };
             
             await push(ordensRef, novaOS);
@@ -1859,76 +1924,38 @@
 
     // ==================== FUNÇÕES GLOBAIS ====================
     window.reabrirOS = async function(osId) {
-      if (!confirm('⚠️ Reabrir esta O.S. finalizada?')) return;
+      if (!confirm('⚠️ Deseja reabrir esta O.S. finalizada?\n\n📌 Todo o histórico anterior será mantido.')) return;
+      
       try {
         const { data, hora } = getNow();
-        await update(ref(database, `ordens/${osId}`), { status: 'ABERTA', dataReabertura: data, horaReabertura: hora });
-        await addTimeline(osId, `Operador ${currentUser.usuario} reabriu a O.S.`);
-        alert('✅ O.S. reaberta!');
-      } catch (error) {
-        alert('❌ Erro ao reabrir.');
-        console.error(error);
-      }
-    };
-
-    window.transferirOS = async function(osId) {
-      const novo = prompt('Nome do novo técnico:');
-      if (!novo) return;
-      try {
-        await update(ref(database, `ordens/${osId}`), { tecnico: novo });
-        await addTimeline(osId, `Gestor transferiu para ${novo}`);
-        alert('✅ Transferida!');
-      } catch (error) {
-        alert('❌ Erro ao transferir.');
-        console.error(error);
-      }
-    };
-
-    window.alterarStatusOS = async function(osId) {
-      const status = prompt('Novo status (ABERTA, EM ANDAMENTO, PENDENTE, FINALIZADA):');
-      if (!status) return;
-      const validos = ['ABERTA', 'EM ANDAMENTO', 'PENDENTE', 'FINALIZADA'];
-      if (!validos.includes(status.toUpperCase())) {
-        alert('Status inválido!');
-        return;
-      }
-      try {
-        await update(ref(database, `ordens/${osId}`), { status: status.toUpperCase() });
-        await addTimeline(osId, `Gestor alterou status para ${status.toUpperCase()}`);
-        alert('✅ Status alterado!');
-      } catch (error) {
-        alert('❌ Erro ao alterar.');
-        console.error(error);
-      }
-    };
-
-    window.editarOS = async function(osId) {
-      try {
+        
         const snapshot = await get(ref(database, `ordens/${osId}`));
-        const os = snapshot.val();
-        if (!os) { alert('O.S. não encontrada!'); return; }
+        const osAtual = snapshot.val();
         
-        const cliente = prompt('Cliente:', os.cliente) || os.cliente;
-        const endereco = prompt('Endereço:', os.endereco || '') || os.endereco || 'Não informado';
-        const obs = prompt('Observação:', os.observacao || '') || os.observacao || '';
+        if (!osAtual) {
+          alert('❌ O.S. não encontrada!');
+          return;
+        }
         
-        await update(ref(database, `ordens/${osId}`), { cliente, endereco, observacao: obs });
-        await addTimeline(osId, 'Gestor editou informações');
-        alert('✅ Editada!');
+        await update(ref(database, `ordens/${osId}`), {
+          status: 'ABERTA',
+          dataReabertura: data,
+          horaReabertura: hora,
+          tecnico: osAtual.tecnico || null,
+          tecnicoInicio: osAtual.tecnicoInicio || null,
+          tecnicoFinalizacao: osAtual.tecnicoFinalizacao || null,
+          statusPagamento: osAtual.statusPagamento || null,
+          materiaisUtilizados: osAtual.materiaisUtilizados || null,
+          observacoesFinais: osAtual.observacoesFinais || null,
+          prioridade: osAtual.prioridade || null
+        });
+        
+        await addTimeline(osId, `🔄 O.S. reaberta por ${currentUser.usuario} em ${data} às ${hora}`);
+        
+        alert('✅ O.S. reaberta com sucesso!\n\n📌 Todos os registros anteriores foram mantidos!');
+        
       } catch (error) {
-        alert('❌ Erro ao editar.');
-        console.error(error);
-      }
-    };
-
-    window.removerOS = async function(osId) {
-      if (!isMaster()) { alert('Apenas Master pode excluir!'); return; }
-      if (!confirm('⚠️ Excluir permanentemente?')) return;
-      try {
-        await remove(ref(database, `ordens/${osId}`));
-        alert('✅ Excluída!');
-      } catch (error) {
-        alert('❌ Erro ao excluir.');
+        alert('❌ Erro ao reabrir O.S.');
         console.error(error);
       }
     };
@@ -1937,36 +1964,29 @@
       try {
         const snapshot = await get(ref(database, `ordens/${osId}`));
         const os = snapshot.val();
+        
         if (os.tecnico && os.tecnico !== currentUser.usuario) {
-          alert('⚠️ Já está com outro técnico!');
+          alert('⚠️ Esta O.S. já está com outro técnico!');
           return;
         }
-        const tecnicoInicio = prompt('Nome do técnico/auxiliar iniciando:');
+        
+        const tecnicoInicio = prompt('Qual o nome do técnico ou auxiliar técnico que está iniciando o serviço?');
         if (!tecnicoInicio) return;
         
         await update(ref(database, `ordens/${osId}`), {
           tecnico: currentUser.usuario,
           status: 'EM ANDAMENTO',
-          tecnicoInicio
+          tecnicoInicio: tecnicoInicio
         });
-        await addTimeline(osId, `Técnico ${currentUser.usuario} assumiu`);
-        await addTimeline(osId, `Iniciando: ${tecnicoInicio}`);
-        alert('✅ Assumida!');
+        
+        await addTimeline(osId, `👨‍🔧 Técnico ${currentUser.usuario} assumiu o atendimento`);
+        await addTimeline(osId, `🔧 Técnico/Auxiliar iniciando serviço: ${tecnicoInicio}`);
+        await addTimeline(osId, '▶️ Atendimento iniciado');
+        
+        alert('✅ O.S. assumida com sucesso!\n\n📌 Todo o histórico anterior foi mantido.');
+        
       } catch (error) {
-        alert('❌ Erro ao assumir.');
-        console.error(error);
-      }
-    };
-
-    window.pendenteOS = async function(osId) {
-      const motivo = prompt('Motivo da pendência:');
-      if (!motivo) return;
-      try {
-        await update(ref(database, `ordens/${osId}`), { status: 'PENDENTE' });
-        await addTimeline(osId, `PENDENTE - Motivo: ${motivo}`);
-        alert('✅ Pendente!');
-      } catch (error) {
-        alert('❌ Erro ao pausar.');
+        alert('❌ Erro ao assumir O.S.');
         console.error(error);
       }
     };
@@ -2003,18 +2023,98 @@
           materiaisUtilizados: materiais || 'Não informado',
           observacoesFinais: obsFinais || 'Não informado',
           tecnicoFinalizacao: tecnicoFinal,
-          statusPagamento
+          statusPagamento: statusPagamento
         });
-        await addTimeline(osId, `Finalizando: ${tecnicoFinal}`);
-        await addTimeline(osId, `Materiais: ${materiais || 'N/A'}`);
-        await addTimeline(osId, `Pagamento: ${statusPagamento}`);
-        alert('✅ Finalizada!');
+        
+        await addTimeline(osId, `✅ Técnico/Auxiliar finalizando serviço: ${tecnicoFinal}`);
+        await addTimeline(osId, `📦 Materiais utilizados: ${materiais || 'N/A'}`);
+        await addTimeline(osId, `💰 Status de pagamento: ${statusPagamento}`);
+        await addTimeline(osId, '🏁 O.S. Finalizada');
+        
+        alert('✅ O.S. finalizada com sucesso!\n\n📌 Todo o histórico anterior foi mantido.');
+        
       } catch (error) {
-        alert('❌ Erro ao finalizar.');
+        alert('❌ Erro ao finalizar O.S.');
         console.error(error);
       }
     };
 
+    window.transferirOS = async function(osId) {
+      const novo = prompt('Nome do novo técnico:');
+      if (!novo) return;
+      try {
+        await update(ref(database, `ordens/${osId}`), { tecnico: novo });
+        await addTimeline(osId, `🔄 Gestor transferiu O.S. para ${novo}`);
+        alert('✅ Transferida!');
+      } catch (error) {
+        alert('❌ Erro ao transferir.');
+        console.error(error);
+      }
+    };
+
+    window.alterarStatusOS = async function(osId) {
+      const status = prompt('Novo status (ABERTA, EM ANDAMENTO, PENDENTE, FINALIZADA):');
+      if (!status) return;
+      const validos = ['ABERTA', 'EM ANDAMENTO', 'PENDENTE', 'FINALIZADA'];
+      if (!validos.includes(status.toUpperCase())) {
+        alert('Status inválido!');
+        return;
+      }
+      try {
+        await update(ref(database, `ordens/${osId}`), { status: status.toUpperCase() });
+        await addTimeline(osId, `📌 Gestor alterou status para ${status.toUpperCase()}`);
+        alert('✅ Status alterado!');
+      } catch (error) {
+        alert('❌ Erro ao alterar.');
+        console.error(error);
+      }
+    };
+
+    window.editarOS = async function(osId) {
+      try {
+        const snapshot = await get(ref(database, `ordens/${osId}`));
+        const os = snapshot.val();
+        if (!os) { alert('O.S. não encontrada!'); return; }
+        
+        const cliente = prompt('Cliente:', os.cliente) || os.cliente;
+        const endereco = prompt('Endereço:', os.endereco || '') || os.endereco || 'Não informado';
+        const obs = prompt('Observação:', os.observacao || '') || os.observacao || '';
+        
+        await update(ref(database, `ordens/${osId}`), { cliente, endereco, observacao: obs });
+        await addTimeline(osId, '✏️ Gestor editou informações da O.S.');
+        alert('✅ Editada!');
+      } catch (error) {
+        alert('❌ Erro ao editar.');
+        console.error(error);
+      }
+    };
+
+    window.removerOS = async function(osId) {
+      if (!isMaster()) { alert('Apenas Master pode excluir!'); return; }
+      if (!confirm('⚠️ Excluir permanentemente esta O.S.?')) return;
+      try {
+        await remove(ref(database, `ordens/${osId}`));
+        alert('✅ Excluída!');
+      } catch (error) {
+        alert('❌ Erro ao excluir.');
+        console.error(error);
+      }
+    };
+
+    window.pendenteOS = async function(osId) {
+      const motivo = prompt('Motivo da pendência:');
+      if (!motivo) return;
+      try {
+        await update(ref(database, `ordens/${osId}`), { status: 'PENDENTE' });
+        await addTimeline(osId, `⏸️ Status alterado para PENDENTE - Motivo: ${motivo}`);
+        alert('✅ Pendente!');
+      } catch (error) {
+        alert('❌ Erro ao pausar.');
+        console.error(error);
+      }
+    };
+
+    // ==================== DEMAIS FUNÇÕES ====================
     async function definirPrioridade(ordens) {
       const checks = [...document.querySelectorAll('.os-check:checked')].map(c => c.value);
       if (!checks.length) return alert('Selecione pelo menos uma O.S.');
@@ -2027,7 +2127,7 @@
       try {
         for (const osId of checks) {
           await update(ref(database, `ordens/${osId}`), { prioridade: priorMap[prior] });
-          await addTimeline(osId, `Prioridade definida: ${priorMap[prior]}`);
+          await addTimeline(osId, `🏷️ Prioridade definida: ${priorMap[prior]}`);
         }
         alert('✅ Prioridades definidas!');
       } catch (error) {
@@ -2042,7 +2142,7 @@
       
       try {
         for (const osId of checks) {
-          await addTimeline(osId, 'Enviada para fila dos técnicos');
+          await addTimeline(osId, '📨 Enviada para fila dos técnicos');
         }
         alert('✅ Enviadas!');
       } catch (error) {
@@ -2193,6 +2293,7 @@
 
     console.log('✅ TOTAL - Sistema de Monitoramento');
     console.log('👨‍💻 Desenvolvido por Manuel Francisco');
+    console.log('📌 LINHA DO TEMPO INFINITA - Todos os registros são salvos permanentemente!');
   </script>
 </body>
 </html>
