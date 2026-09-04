@@ -90,10 +90,16 @@
     }
 
     .login-logo img {
-      max-width: 280px;
+      max-width: 350px;
       width: 100%;
       height: auto;
-      filter: drop-shadow(0 4px 20px rgba(255, 204, 0, 0.15));
+      filter: drop-shadow(0 4px 30px rgba(255, 204, 0, 0.2));
+      transition: all 0.3s ease;
+    }
+
+    .login-logo img:hover {
+      filter: drop-shadow(0 4px 40px rgba(255, 204, 0, 0.35));
+      transform: scale(1.02);
     }
 
     .login-logo .logo-text {
@@ -210,16 +216,14 @@
     }
 
     .panel-brand img {
-      height: 50px;
+      height: 60px;
       width: auto;
       border-radius: 8px;
+      transition: all 0.3s ease;
     }
 
-    .panel-brand .brand-name {
-      font-size: 2rem;
-      font-weight: 800;
-      color: #ffcc00;
-      letter-spacing: 2px;
+    .panel-brand img:hover {
+      filter: drop-shadow(0 0 20px rgba(255, 204, 0, 0.2));
     }
 
     .panel-brand .status {
@@ -846,7 +850,7 @@
       #app { padding: 12px; }
       html, body { font-size: 16px; }
       
-      .login-logo img { max-width: 180px; }
+      .login-logo img { max-width: 220px; }
       .login-logo .logo-text { font-size: 2.2rem; }
       .login-logo .logo-sub { font-size: 0.9rem; }
       .login-card { padding: 28px 20px; }
@@ -865,8 +869,7 @@
       .stat-card .info .value { font-size: 1.4rem; }
       .stat-card .info .label { font-size: 0.7rem; }
       
-      .panel-brand .brand-name { font-size: 1.5rem; }
-      .panel-brand img { height: 38px; }
+      .panel-brand img { height: 45px; }
       .panel-brand .status { font-size: 0.8rem; }
       
       .content-card { padding: 16px; min-height: 280px; }
@@ -895,7 +898,7 @@
       #app { padding: 8px; }
       html, body { font-size: 15px; }
       
-      .login-logo img { max-width: 140px; }
+      .login-logo img { max-width: 170px; }
       .login-logo .logo-text { font-size: 1.8rem; }
       .login-logo .logo-sub { font-size: 0.7rem; letter-spacing: 3px; }
       .login-card { padding: 20px 16px; border-radius: 20px; }
@@ -928,8 +931,7 @@
       .stat-card .info .label { font-size: 0.55rem; letter-spacing: 0.3px; }
       
       .panel-header { padding: 6px 0 12px 0; gap: 8px; }
-      .panel-brand .brand-name { font-size: 1.2rem; }
-      .panel-brand img { height: 30px; }
+      .panel-brand img { height: 35px; }
       .panel-brand .status { font-size: 0.65rem; }
       .panel-brand .status .dot { width: 7px; height: 7px; }
       
@@ -1033,7 +1035,6 @@
       <div class="panel-header">
         <div class="panel-brand">
           <img src="logo.png" alt="TOTAL" onerror="this.style.display='none';">
-          <span class="brand-name">TOTAL</span>
           <span class="status">
             <span class="dot"></span> Online
           </span>
@@ -1073,7 +1074,7 @@
   <!-- ==================== RODAPÉ ==================== -->
   <div class="footer">
     <span class="footer-text">
-      Desenvolvido <span class="heart"></span> por 
+      Desenvolvido com <span class="heart">❤</span> por 
       <strong>Manuel Francisco</strong>
       <span class="code-icon"><i class="fas fa-code"></i></span>
     </span>
