@@ -44,7 +44,7 @@
       height: 100vh;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 16px;
+      padding: 12px 12px 0 12px;
       display: flex;
       flex-direction: column;
       background: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 100%);
@@ -55,12 +55,10 @@
     .screen {
       display: none;
       flex-direction: column;
-      align-items: center;
-      justify-content: center;
       width: 100%;
       height: 100%;
-      padding: 24px;
       animation: fadeIn 0.4s ease;
+      overflow: hidden;
     }
 
     .screen.active {
@@ -72,21 +70,28 @@
       to { opacity: 1; transform: translateY(0); }
     }
 
-    /* ==================== TELA DE LOGIN ==================== */
+    /* ==================== TELA DE LOGIN CENTRALIZADA ==================== */
+    #homeScreen {
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
     .login-container {
       width: 100%;
       max-width: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 32px;
+      gap: 24px;
+      padding: 10px 0;
     }
 
     .login-logo {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 12px;
+      gap: 10px;
     }
 
     .login-logo img {
@@ -100,20 +105,6 @@
     .login-logo img:hover {
       filter: drop-shadow(0 4px 40px rgba(255, 204, 0, 0.35));
       transform: scale(1.02);
-    }
-
-    .login-logo .logo-text {
-      font-size: 3.2rem;
-      font-weight: 900;
-      color: #ffcc00;
-      letter-spacing: 4px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .login-logo .logo-text i {
-      font-size: 2.8rem;
     }
 
     .login-logo .logo-sub {
@@ -141,10 +132,6 @@
       display: flex;
       align-items: center;
       gap: 12px;
-    }
-
-    .login-card h3 i {
-      font-size: 1.4rem;
     }
 
     .login-card input {
@@ -198,25 +185,57 @@
       transform: scale(0.98);
     }
 
+    /* ==================== RODAPÉ DA TELA DE LOGIN ==================== */
+    .login-footer {
+      text-align: center;
+      padding: 8px 0 4px 0;
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    .login-footer .footer-text {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.35);
+      letter-spacing: 1px;
+      font-weight: 500;
+    }
+
+    .login-footer .footer-text strong {
+      color: #ffcc00 !important;
+      font-weight: 700;
+      font-size: 1.05rem;
+    }
+
+    .login-footer .footer-text .code-icon {
+      color: rgba(255, 204, 0, 0.2);
+      font-size: 0.75rem;
+      margin-left: 4px;
+    }
+
     /* ==================== PAINEL PRINCIPAL ==================== */
+    #panelScreen {
+      padding: 0;
+    }
+
     .panel-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 12px 8px 24px 8px;
+      padding: 6px 4px 12px 4px;
       flex-wrap: wrap;
-      gap: 14px;
+      gap: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
+      flex-shrink: 0;
     }
 
     .panel-brand {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 14px;
     }
 
     .panel-brand img {
-      height: 60px;
+      height: 50px;
       width: auto;
       border-radius: 8px;
       transition: all 0.3s ease;
@@ -228,15 +247,15 @@
 
     .panel-brand .status {
       color: rgba(255,255,255,0.3);
-      font-size: 0.95rem;
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .panel-brand .status .dot {
-      width: 10px;
-      height: 10px;
+      width: 8px;
+      height: 8px;
       background: #00ff44;
       border-radius: 50%;
       display: inline-block;
@@ -251,27 +270,27 @@
     .panel-user {
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .panel-user .user-info {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       color: #ffcc00;
-      font-size: 1.1rem;
+      font-size: 0.95rem;
     }
 
     .panel-user .user-info i {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
     }
 
     .panel-user .user-info .badge {
       background: rgba(255, 204, 0, 0.12);
-      padding: 5px 16px;
+      padding: 4px 14px;
       border-radius: 24px;
-      font-size: 0.85rem;
+      font-size: 0.75rem;
       font-weight: 600;
       color: #ffcc00;
       border: 1px solid rgba(255, 204, 0, 0.08);
@@ -280,9 +299,9 @@
     .panel-user .user-info .master-badge {
       background: rgba(255, 0, 0, 0.15);
       color: #ff4444;
-      padding: 5px 12px;
+      padding: 4px 10px;
       border-radius: 24px;
-      font-size: 0.75rem;
+      font-size: 0.65rem;
       font-weight: 700;
       border: 1px solid rgba(255, 0, 0, 0.1);
     }
@@ -291,14 +310,14 @@
       background: transparent;
       color: rgba(255,255,255,0.4);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 10px 20px;
-      border-radius: 28px;
-      font-size: 1rem;
+      padding: 8px 16px;
+      border-radius: 24px;
+      font-size: 0.85rem;
       cursor: pointer;
       transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
     }
 
     .btn-logout:hover {
@@ -310,20 +329,21 @@
     /* ==================== DASHBOARD ==================== */
     .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 10px;
       width: 100%;
-      padding: 24px 0;
+      padding: 14px 0 16px 0;
+      flex-shrink: 0;
     }
 
     .stat-card {
       background: rgba(255,255,255,0.03);
-      border-radius: 18px;
-      padding: 18px 22px;
+      border-radius: 16px;
+      padding: 14px 16px;
       border: 1px solid rgba(255,255,255,0.04);
       display: flex;
       align-items: center;
-      gap: 16px;
+      gap: 12px;
       transition: all 0.3s;
     }
 
@@ -333,15 +353,15 @@
     }
 
     .stat-card .icon {
-      font-size: 1.8rem;
+      font-size: 1.4rem;
       color: #ffcc00;
-      width: 50px;
-      height: 50px;
+      width: 42px;
+      height: 42px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(255, 204, 0, 0.06);
-      border-radius: 14px;
+      border-radius: 12px;
     }
 
     .stat-card .info {
@@ -350,7 +370,7 @@
     }
 
     .stat-card .info .label {
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       color: rgba(255,255,255,0.4);
       text-transform: uppercase;
       letter-spacing: 0.5px;
@@ -358,7 +378,7 @@
     }
 
     .stat-card .info .value {
-      font-size: 1.8rem;
+      font-size: 1.5rem;
       font-weight: 700;
       color: #ffcc00;
       line-height: 1.2;
@@ -380,50 +400,50 @@
 
     .content-card {
       background: rgba(255,255,255,0.03);
-      border-radius: 20px;
-      padding: 24px;
+      border-radius: 18px;
+      padding: 16px 16px 0 16px;
       border: 1px solid rgba(255,255,255,0.04);
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      min-height: 380px;
     }
 
     .content-card .card-header {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 18px;
+      gap: 12px;
+      margin-bottom: 12px;
       flex-wrap: wrap;
+      flex-shrink: 0;
     }
 
     .content-card .card-header h3 {
       color: #ffcc00;
-      font-size: 1.4rem;
+      font-size: 1.2rem;
       font-weight: 600;
     }
 
     .content-card .card-header h3 i {
-      font-size: 1.3rem;
+      font-size: 1.1rem;
     }
 
     .content-card .card-header .actions {
       display: flex;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
       margin-left: auto;
     }
 
     .btn-sm {
-      padding: 10px 20px;
-      font-size: 0.95rem;
-      border-radius: 26px;
+      padding: 8px 16px;
+      font-size: 0.85rem;
+      border-radius: 22px;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 6px;
       transition: all 0.3s;
       font-weight: 600;
     }
@@ -449,58 +469,16 @@
       border-color: rgba(255, 204, 0, 0.3);
     }
 
-    .btn-danger {
-      background: transparent;
-      color: #ff4444;
-      border: 1px solid rgba(255, 68, 68, 0.15);
-    }
-
-    .btn-danger:hover {
-      background: rgba(255, 68, 68, 0.05);
-      border-color: rgba(255, 68, 68, 0.3);
-    }
-
-    /* ==================== TABS ==================== */
-    .tabs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 16px;
-    }
-
-    .tab {
-      padding: 10px 22px;
-      border-radius: 26px;
-      cursor: pointer;
-      background: transparent;
-      color: rgba(255,255,255,0.35);
-      border: 1px solid transparent;
-      font-size: 0.95rem;
-      transition: all 0.3s;
-      font-weight: 500;
-    }
-
-    .tab:hover {
-      color: rgba(255,255,255,0.6);
-      border-color: rgba(255,255,255,0.04);
-    }
-
-    .tab.active {
-      color: #ffcc00;
-      background: rgba(255, 204, 0, 0.06);
-      border-color: rgba(255, 204, 0, 0.12);
-      font-weight: 600;
-    }
-
     /* ==================== LISTA DE O.S. ==================== */
     .os-list {
       flex: 1;
       overflow-y: auto;
-      padding-right: 8px;
+      padding-right: 4px;
+      padding-bottom: 8px;
     }
 
     .os-list::-webkit-scrollbar {
-      width: 6px;
+      width: 5px;
     }
 
     .os-list::-webkit-scrollbar-track {
@@ -515,9 +493,9 @@
 
     .os-card {
       background: rgba(255,255,255,0.03);
-      border-radius: 16px;
-      padding: 18px 22px;
-      margin-bottom: 12px;
+      border-radius: 14px;
+      padding: 14px 16px;
+      margin-bottom: 8px;
       border: 1px solid rgba(255,255,255,0.04);
       transition: all 0.3s;
     }
@@ -527,65 +505,65 @@
       border-color: rgba(255, 204, 0, 0.06);
     }
 
-    .os-card.prioridade-urgente { border-left: 5px solid #ff0040; }
-    .os-card.prioridade-alta { border-left: 5px solid #ff6600; }
-    .os-card.prioridade-normal { border-left: 5px solid #ffcc00; }
-    .os-card.prioridade-baixa { border-left: 5px solid #0066ff; }
+    .os-card.prioridade-urgente { border-left: 4px solid #ff0040; }
+    .os-card.prioridade-alta { border-left: 4px solid #ff6600; }
+    .os-card.prioridade-normal { border-left: 4px solid #ffcc00; }
+    .os-card.prioridade-baixa { border-left: 4px solid #0066ff; }
     .os-card.minha-os { border-color: rgba(255, 204, 0, 0.25); }
 
     .os-card .os-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 12px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
     .os-card .os-title {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .os-card .os-title .protocolo {
       background: rgba(255, 204, 0, 0.08);
       color: #ffcc00;
-      padding: 4px 14px;
-      border-radius: 16px;
-      font-size: 1.05rem;
+      padding: 3px 12px;
+      border-radius: 14px;
+      font-size: 0.9rem;
       font-weight: 700;
       border: 1px solid rgba(255, 204, 0, 0.06);
     }
 
     .os-card .os-title .codmoni {
       color: rgba(255,255,255,0.5);
-      font-size: 1.05rem;
+      font-size: 0.9rem;
       font-weight: 500;
     }
 
     .os-card .os-title .cliente {
       color: #fff;
       font-weight: 600;
-      font-size: 1.15rem;
+      font-size: 1rem;
     }
 
     .os-card .os-title .star {
       color: #ffcc00;
-      font-size: 1rem;
+      font-size: 0.9rem;
     }
 
     .os-card .os-status {
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
       align-items: center;
     }
 
     .badge-status {
-      padding: 5px 16px;
-      border-radius: 16px;
-      font-size: 0.9rem;
+      padding: 4px 12px;
+      border-radius: 14px;
+      font-size: 0.75rem;
       font-weight: 600;
     }
 
@@ -595,9 +573,9 @@
     .badge-finalizada { background: rgba(0, 204, 102, 0.15); color: #00cc66; }
 
     .badge-pagamento {
-      padding: 4px 14px;
-      border-radius: 16px;
-      font-size: 0.85rem;
+      padding: 3px 12px;
+      border-radius: 14px;
+      font-size: 0.7rem;
       font-weight: 600;
     }
 
@@ -606,40 +584,36 @@
     .badge-falta-pagar { background: rgba(255, 102, 0, 0.12); color: #ff6600; }
 
     .os-card .os-body {
-      margin-top: 10px;
+      margin-top: 8px;
       display: flex;
       flex-wrap: wrap;
-      gap: 8px 20px;
-      font-size: 0.95rem;
+      gap: 6px 16px;
+      font-size: 0.8rem;
       color: rgba(255,255,255,0.35);
     }
 
     .os-card .os-body span {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 4px;
     }
 
     .os-card .os-body span i {
-      font-size: 0.9rem;
-      width: 18px;
-    }
-
-    .os-card .os-body .prioridade {
-      color: rgba(255,255,255,0.5);
+      font-size: 0.75rem;
+      width: 16px;
     }
 
     .os-card .os-actions {
-      margin-top: 12px;
+      margin-top: 10px;
       display: flex;
-      gap: 8px;
+      gap: 6px;
       flex-wrap: wrap;
     }
 
     .os-card .os-actions .btn-xs {
-      padding: 6px 16px;
-      font-size: 0.85rem;
-      border-radius: 16px;
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      border-radius: 14px;
       border: 1px solid rgba(255, 204, 0, 0.08);
       background: transparent;
       color: rgba(255,255,255,0.5);
@@ -660,19 +634,19 @@
     }
 
     .os-card .timeline {
-      margin-top: 12px;
-      padding: 12px 16px;
+      margin-top: 10px;
+      padding: 10px 12px;
       background: rgba(0,0,0,0.2);
-      border-radius: 12px;
-      font-size: 0.9rem;
+      border-radius: 10px;
+      font-size: 0.75rem;
       color: rgba(255,255,255,0.35);
-      max-height: 120px;
+      max-height: 100px;
       overflow-y: auto;
       border-left: 2px solid rgba(255, 204, 0, 0.1);
     }
 
     .os-card .timeline div {
-      margin-top: 4px;
+      margin-top: 3px;
     }
 
     .os-card .timeline .time {
@@ -681,27 +655,19 @@
 
     /* ==================== FORMULÁRIOS ==================== */
     .form-group {
-      margin-bottom: 14px;
-    }
-
-    .form-group label {
-      font-size: 1rem;
-      color: rgba(255,255,255,0.4);
-      display: block;
-      margin-bottom: 6px;
-      font-weight: 500;
+      margin-bottom: 12px;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 14px 18px;
+      padding: 12px 16px;
       background: rgba(0,0,0,0.4);
       border: 1px solid rgba(255, 204, 0, 0.08);
-      border-radius: 14px;
+      border-radius: 12px;
       color: #ffcc00;
-      font-size: 1.1rem;
+      font-size: 1rem;
       outline: none;
       transition: all 0.3s;
     }
@@ -715,70 +681,146 @@
 
     .form-group textarea {
       resize: vertical;
+      min-height: 70px;
+    }
+
+    /* ==================== BARRA DE NAVEGAÇÃO INFERIOR - MAIOR ==================== */
+    .bottom-nav {
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+      background: rgba(20, 20, 30, 0.95);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-top: 1px solid rgba(255, 204, 0, 0.1);
+      padding: 10px 0 16px 0;
+      flex-shrink: 0;
+      margin: 0 -12px;
+      padding-left: 12px;
+      padding-right: 12px;
+      border-radius: 24px 24px 0 0;
+      position: relative;
+      z-index: 10;
       min-height: 80px;
     }
 
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: rgba(255,255,255,0.2);
-      font-size: 1rem;
-    }
-
-    /* ==================== GERENCIAR USUÁRIOS ==================== */
-    .user-list {
-      margin-top: 12px;
-    }
-
-    .user-item {
+    .nav-item {
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.04);
-    }
-
-    .user-item:last-child {
-      border-bottom: none;
-    }
-
-    .user-item .user-name {
-      color: #fff;
-      font-weight: 500;
-      font-size: 1.1rem;
-    }
-
-    .user-item .user-role {
-      font-size: 0.9rem;
-      color: rgba(255,255,255,0.3);
-      background: rgba(255,255,255,0.04);
-      padding: 4px 14px;
+      justify-content: center;
+      gap: 4px;
+      padding: 6px 12px;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.25);
+      position: relative;
+      min-width: 60px;
+      flex: 1;
       border-radius: 16px;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .nav-item::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 50%;
+      transform: translateX(-50%) scaleX(0);
+      width: 28px;
+      height: 4px;
+      background: #ffcc00;
+      border-radius: 6px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .nav-item.active {
+      color: #ffcc00;
+    }
+
+    .nav-item.active::after {
+      transform: translateX(-50%) scaleX(1);
+    }
+
+    .nav-item:hover {
+      color: rgba(255, 204, 0, 0.6);
+    }
+
+    .nav-item.active:hover {
+      color: #ffcc00;
+    }
+
+    .nav-item .nav-icon {
+      font-size: 1.6rem;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      line-height: 1;
+    }
+
+    .nav-item.active .nav-icon {
+      transform: translateY(-3px) scale(1.15);
+    }
+
+    .nav-item .nav-label {
+      font-size: 0.65rem;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      transition: all 0.3s;
+      line-height: 1.2;
+    }
+
+    .nav-item.active .nav-label {
+      color: #ffcc00;
+      font-weight: 700;
+    }
+
+    .nav-item .nav-badge {
+      position: absolute;
+      top: -2px;
+      right: 2px;
+      background: #ff0040;
+      color: #fff;
+      font-size: 0.55rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 14px;
+      min-width: 20px;
+      text-align: center;
+      box-shadow: 0 2px 12px rgba(255, 0, 64, 0.4);
+      animation: badgePulse 2s ease-in-out infinite;
+    }
+
+    @keyframes badgePulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
     }
 
     /* ==================== EMPTY STATE ==================== */
     .empty-state {
       text-align: center;
-      padding: 50px 20px;
+      padding: 40px 20px;
       color: rgba(255,255,255,0.15);
     }
 
     .empty-state i {
-      font-size: 3rem;
+      font-size: 2.5rem;
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
       color: rgba(255, 204, 0, 0.08);
     }
 
     .empty-state p {
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     /* ==================== LOADING ==================== */
     .loading {
       text-align: center;
-      padding: 40px;
+      padding: 30px;
       color: #ffcc00;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
     }
 
     .loading i {
@@ -796,187 +838,162 @@
 
     /* ==================== CHECKBOX ==================== */
     .os-check {
-      width: 20px;
-      height: 20px;
+      width: 18px;
+      height: 18px;
       accent-color: #ffcc00;
       cursor: pointer;
-      margin-right: 8px;
-    }
-
-    /* ==================== RODAPÉ ==================== */
-    .footer {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      text-align: center;
-      padding: 12px;
-      background: rgba(0,0,0,0.5);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
-      border-top: 1px solid rgba(255,255,255,0.03);
-      z-index: 100;
-    }
-
-    .footer-text {
-      font-size: 0.85rem;
-      color: rgba(255,255,255,0.2);
-      letter-spacing: 0.5px;
-    }
-
-    .footer-text strong {
-      color: #ffcc00 !important;
-      font-weight: 600;
-    }
-
-    .footer-text .heart {
-      color: #ff0040;
-      display: inline-block;
-      animation: heartPulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes heartPulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.15); }
-    }
-
-    .footer-text .code-icon {
-      color: rgba(255, 204, 0, 0.15);
-      font-size: 0.7rem;
+      margin-right: 6px;
     }
 
     /* ==================== RESPONSIVIDADE ==================== */
     @media (max-width: 768px) {
-      #app { padding: 12px; }
+      #app { padding: 8px 8px 0 8px; }
       html, body { font-size: 16px; }
       
       .login-logo img { max-width: 220px; }
-      .login-logo .logo-text { font-size: 2.2rem; }
       .login-logo .logo-sub { font-size: 0.9rem; }
-      .login-card { padding: 28px 20px; }
+      .login-card { padding: 24px 20px; }
       .login-card h3 { font-size: 1.3rem; }
-      .login-card input { font-size: 1.05rem; padding: 14px 16px; }
+      .login-card input { font-size: 1rem; padding: 14px 16px; }
       .login-card .btn { font-size: 1.1rem; padding: 14px; }
       
+      .login-footer .footer-text { font-size: 0.85rem; }
+      .login-footer .footer-text strong { font-size: 0.95rem; }
+      
       .dashboard-grid {
-        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-        gap: 10px;
-        padding: 16px 0;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 8px;
+        padding: 10px 0 12px 0;
       }
       
-      .stat-card { padding: 14px 16px; }
-      .stat-card .icon { width: 40px; height: 40px; font-size: 1.4rem; }
-      .stat-card .info .value { font-size: 1.4rem; }
-      .stat-card .info .label { font-size: 0.7rem; }
+      .stat-card { padding: 12px 14px; }
+      .stat-card .icon { width: 36px; height: 36px; font-size: 1.2rem; }
+      .stat-card .info .value { font-size: 1.3rem; }
+      .stat-card .info .label { font-size: 0.6rem; }
       
-      .panel-brand img { height: 45px; }
-      .panel-brand .status { font-size: 0.8rem; }
+      .panel-brand img { height: 40px; }
+      .panel-brand .status { font-size: 0.75rem; }
       
-      .content-card { padding: 16px; min-height: 280px; }
-      .content-card .card-header h3 { font-size: 1.1rem; }
+      .content-card { padding: 12px 12px 0 12px; min-height: 200px; }
+      .content-card .card-header h3 { font-size: 1rem; }
       
-      .os-card { padding: 14px 16px; }
-      .os-card .os-title .cliente { font-size: 1rem; }
-      .os-card .os-title .protocolo { font-size: 0.9rem; padding: 3px 12px; }
-      .os-card .os-title .codmoni { font-size: 0.9rem; }
-      .os-card .os-body { font-size: 0.85rem; gap: 6px 14px; }
+      .os-card { padding: 12px 14px; }
+      .os-card .os-title .cliente { font-size: 0.9rem; }
+      .os-card .os-title .protocolo { font-size: 0.8rem; padding: 2px 10px; }
+      .os-card .os-title .codmoni { font-size: 0.8rem; }
+      .os-card .os-body { font-size: 0.7rem; gap: 4px 12px; }
       
-      .badge-status { font-size: 0.75rem; padding: 4px 12px; }
-      .badge-pagamento { font-size: 0.7rem; padding: 3px 12px; }
+      .badge-status { font-size: 0.65rem; padding: 3px 10px; }
+      .badge-pagamento { font-size: 0.6rem; padding: 2px 10px; }
       
-      .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
-      .tab { padding: 8px 16px; font-size: 0.85rem; }
+      .btn-sm { padding: 6px 14px; font-size: 0.75rem; }
       
-      .os-card .os-actions .btn-xs { font-size: 0.75rem; padding: 5px 12px; }
+      .os-card .os-actions .btn-xs { font-size: 0.65rem; padding: 4px 10px; }
       
-      .footer-text { font-size: 0.7rem; }
-      .panel-user .user-info { font-size: 0.95rem; }
-      .btn-logout { font-size: 0.85rem; padding: 8px 16px; }
+      .panel-user .user-info { font-size: 0.85rem; }
+      .btn-logout { font-size: 0.75rem; padding: 6px 14px; }
+      
+      .bottom-nav { 
+        padding: 8px 0 12px 0; 
+        margin: 0 -8px; 
+        padding-left: 8px; 
+        padding-right: 8px;
+        min-height: 68px;
+      }
+      .nav-item { padding: 4px 8px; min-width: 45px; }
+      .nav-item .nav-icon { font-size: 1.3rem; }
+      .nav-item .nav-label { font-size: 0.55rem; }
+      .nav-item .nav-badge { font-size: 0.45rem; min-width: 16px; top: -4px; right: 0; padding: 1px 6px; }
+      .nav-item::after { width: 22px; height: 3px; }
     }
 
     @media (max-width: 480px) {
-      #app { padding: 8px; }
+      #app { padding: 4px 4px 0 4px; }
       html, body { font-size: 15px; }
       
-      .login-logo img { max-width: 170px; }
-      .login-logo .logo-text { font-size: 1.8rem; }
+      .login-logo img { max-width: 160px; }
       .login-logo .logo-sub { font-size: 0.7rem; letter-spacing: 3px; }
-      .login-card { padding: 20px 16px; border-radius: 20px; }
-      .login-card h3 { font-size: 1.1rem; margin-bottom: 16px; }
-      .login-card input { font-size: 0.95rem; padding: 12px 14px; border-radius: 12px; }
-      .login-card .btn { font-size: 1rem; padding: 12px; border-radius: 12px; }
+      .login-card { padding: 18px 14px; border-radius: 20px; }
+      .login-card h3 { font-size: 1rem; margin-bottom: 16px; }
+      .login-card input { font-size: 0.9rem; padding: 12px 14px; border-radius: 12px; }
+      .login-card .btn { font-size: 0.95rem; padding: 12px; border-radius: 12px; }
+      
+      .login-footer .footer-text { font-size: 0.75rem; }
+      .login-footer .footer-text strong { font-size: 0.85rem; }
       
       .dashboard-grid {
         grid-template-columns: repeat(3, 1fr);
-        gap: 6px;
-        padding: 10px 0;
+        gap: 5px;
+        padding: 8px 0 10px 0;
       }
       
       .stat-card { 
-        padding: 10px 12px;
+        padding: 8px 10px;
         flex-direction: column;
         text-align: center;
         gap: 4px;
-        border-radius: 14px;
+        border-radius: 12px;
       }
       
       .stat-card .icon {
-        width: 32px;
-        height: 32px;
-        font-size: 1rem;
-        border-radius: 10px;
+        width: 28px;
+        height: 28px;
+        font-size: 0.9rem;
+        border-radius: 8px;
       }
       
-      .stat-card .info .value { font-size: 1.1rem; }
-      .stat-card .info .label { font-size: 0.55rem; letter-spacing: 0.3px; }
+      .stat-card .info .value { font-size: 1rem; }
+      .stat-card .info .label { font-size: 0.5rem; letter-spacing: 0.3px; }
       
-      .panel-header { padding: 6px 0 12px 0; gap: 8px; }
-      .panel-brand img { height: 35px; }
-      .panel-brand .status { font-size: 0.65rem; }
-      .panel-brand .status .dot { width: 7px; height: 7px; }
+      .panel-header { padding: 4px 0 8px 0; gap: 6px; }
+      .panel-brand img { height: 32px; }
+      .panel-brand .status { font-size: 0.6rem; }
+      .panel-brand .status .dot { width: 6px; height: 6px; }
       
-      .panel-user .user-info { font-size: 0.8rem; gap: 5px; }
-      .panel-user .user-info i { font-size: 1rem; }
-      .panel-user .user-info .badge { font-size: 0.6rem; padding: 3px 10px; }
-      .panel-user .user-info .master-badge { font-size: 0.55rem; padding: 2px 8px; }
-      .btn-logout { font-size: 0.7rem; padding: 5px 12px; border-radius: 20px; }
+      .panel-user .user-info { font-size: 0.7rem; gap: 4px; }
+      .panel-user .user-info i { font-size: 0.9rem; }
+      .panel-user .user-info .badge { font-size: 0.55rem; padding: 2px 8px; }
+      .panel-user .user-info .master-badge { font-size: 0.5rem; padding: 2px 6px; }
+      .btn-logout { font-size: 0.65rem; padding: 4px 10px; border-radius: 20px; }
       
-      .content-card { padding: 12px; min-height: 200px; border-radius: 16px; }
-      .content-card .card-header { margin-bottom: 12px; gap: 8px; }
-      .content-card .card-header h3 { font-size: 0.95rem; }
-      .content-card .card-header h3 i { font-size: 0.9rem; }
+      .content-card { padding: 8px 8px 0 8px; min-height: 150px; border-radius: 14px; }
+      .content-card .card-header { margin-bottom: 8px; gap: 6px; }
+      .content-card .card-header h3 { font-size: 0.85rem; }
+      .content-card .card-header h3 i { font-size: 0.8rem; }
       
-      .os-card { padding: 12px 14px; margin-bottom: 8px; border-radius: 14px; }
-      .os-card .os-title .cliente { font-size: 0.9rem; }
-      .os-card .os-title .protocolo { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; }
-      .os-card .os-title .codmoni { font-size: 0.8rem; }
-      .os-card .os-body { font-size: 0.7rem; gap: 4px 10px; }
-      .os-card .os-body span i { font-size: 0.65rem; width: 14px; }
+      .os-card { padding: 10px 12px; margin-bottom: 6px; border-radius: 12px; }
+      .os-card .os-title .cliente { font-size: 0.8rem; }
+      .os-card .os-title .protocolo { font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; }
+      .os-card .os-title .codmoni { font-size: 0.7rem; }
+      .os-card .os-body { font-size: 0.6rem; gap: 3px 8px; }
+      .os-card .os-body span i { font-size: 0.6rem; width: 14px; }
       
-      .badge-status { font-size: 0.65rem; padding: 3px 10px; border-radius: 12px; }
-      .badge-pagamento { font-size: 0.6rem; padding: 2px 10px; border-radius: 12px; }
+      .badge-status { font-size: 0.55rem; padding: 2px 8px; border-radius: 10px; }
+      .badge-pagamento { font-size: 0.5rem; padding: 2px 8px; border-radius: 10px; }
       
-      .btn-sm { padding: 5px 12px; font-size: 0.7rem; border-radius: 20px; gap: 4px; }
-      .tab { padding: 5px 12px; font-size: 0.7rem; border-radius: 20px; }
+      .btn-sm { padding: 4px 10px; font-size: 0.6rem; border-radius: 18px; gap: 4px; }
       
-      .os-card .os-actions .btn-xs { font-size: 0.65rem; padding: 4px 10px; border-radius: 12px; }
-      .os-card .timeline { font-size: 0.7rem; padding: 8px 12px; }
+      .os-card .os-actions .btn-xs { font-size: 0.55rem; padding: 3px 8px; border-radius: 10px; }
+      .os-card .timeline { font-size: 0.6rem; padding: 6px 10px; }
       
-      .footer-text { font-size: 0.6rem; }
-      .footer { padding: 8px; }
-      
-      .form-group input, .form-group textarea, .form-group select { 
-        font-size: 0.9rem; 
-        padding: 10px 14px; 
-        border-radius: 12px;
+      .bottom-nav { 
+        padding: 6px 0 10px 0; 
+        margin: 0 -4px; 
+        padding-left: 4px; 
+        padding-right: 4px;
+        min-height: 58px;
       }
-      .form-group label { font-size: 0.85rem; }
+      .nav-item { padding: 2px 4px; min-width: 35px; }
+      .nav-item .nav-icon { font-size: 1.1rem; }
+      .nav-item .nav-label { font-size: 0.45rem; }
+      .nav-item .nav-badge { font-size: 0.4rem; min-width: 14px; top: -6px; right: -2px; padding: 1px 5px; }
+      .nav-item::after { width: 16px; height: 3px; bottom: -1px; }
       
       .empty-state i { font-size: 2rem; }
-      .empty-state p { font-size: 0.9rem; }
-      .loading { font-size: 1rem; padding: 20px; }
+      .empty-state p { font-size: 0.85rem; }
+      .loading { font-size: 0.9rem; padding: 20px; }
       
-      .os-check { width: 16px; height: 16px; }
+      .os-check { width: 14px; height: 14px; }
     }
 
     @media (min-width: 1024px) {
@@ -987,8 +1004,8 @@
 
     /* ==================== SCROLLBAR GLOBAL ==================== */
     ::-webkit-scrollbar {
-      width: 6px;
-      height: 6px;
+      width: 5px;
+      height: 5px;
     }
 
     ::-webkit-scrollbar-track {
@@ -1007,14 +1024,11 @@
 </head>
 <body>
   <div id="app">
-    <!-- ==================== TELA DE LOGIN ==================== -->
+    <!-- ==================== TELA DE LOGIN CENTRALIZADA ==================== -->
     <div id="homeScreen" class="screen active">
       <div class="login-container">
         <div class="login-logo">
-          <img src="logo.png" alt="TOTAL" onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-          <div class="logo-text" style="display:none;">
-            <i class="fas fa-shield-alt"></i> TOTAL
-          </div>
+          <img src="logo.png" alt="TOTAL" onerror="this.style.display='none';">
           <div class="logo-sub">Sistema de Monitoramento</div>
         </div>
         
@@ -1025,6 +1039,14 @@
           <button class="btn" id="btnLoginExec">
             <i class="fas fa-sign-in-alt"></i> Entrar
           </button>
+        </div>
+
+        <!-- ==================== RODAPÉ DA TELA DE LOGIN ==================== -->
+        <div class="login-footer">
+          <span class="footer-text">
+            Desenvolvido por <strong>Manuel Francisco</strong>
+            <span class="code-icon"><i class="fas fa-code"></i></span>
+          </span>
         </div>
       </div>
     </div>
@@ -1068,16 +1090,41 @@
           <div class="loading"><i class="fas fa-spinner"></i> Carregando dados...</div>
         </div>
       </div>
-    </div>
-  </div>
 
-  <!-- ==================== RODAPÉ ==================== -->
-  <div class="footer">
-    <span class="footer-text">
-      Desenvolvido com <span class="heart">❤</span> por 
-      <strong>Manuel Francisco</strong>
-      <span class="code-icon"><i class="fas fa-code"></i></span>
-    </span>
+      <!-- ==================== BARRA DE NAVEGAÇÃO INFERIOR - MAIOR ==================== -->
+      <nav class="bottom-nav" id="bottomNav">
+        <button class="nav-item active" data-tab="minhas">
+          <span class="nav-icon"><i class="fas fa-star"></i></span>
+          <span class="nav-label">Minhas</span>
+          <span class="nav-badge" id="badgeMinhas">0</span>
+        </button>
+        <button class="nav-item" data-tab="abertas">
+          <span class="nav-icon"><i class="fas fa-folder-open"></i></span>
+          <span class="nav-label">Abertas</span>
+          <span class="nav-badge" id="badgeAbertas">0</span>
+        </button>
+        <button class="nav-item" data-tab="andamento">
+          <span class="nav-icon"><i class="fas fa-play-circle"></i></span>
+          <span class="nav-label">Andamento</span>
+          <span class="nav-badge" id="badgeAndamento">0</span>
+        </button>
+        <button class="nav-item" data-tab="pendentes">
+          <span class="nav-icon"><i class="fas fa-pause-circle"></i></span>
+          <span class="nav-label">Pendentes</span>
+          <span class="nav-badge" id="badgePendentes">0</span>
+        </button>
+        <button class="nav-item" data-tab="finalizadas">
+          <span class="nav-icon"><i class="fas fa-check-circle"></i></span>
+          <span class="nav-label">Finalizadas</span>
+          <span class="nav-badge" id="badgeFinalizadas">0</span>
+        </button>
+        <button class="nav-item" data-tab="todas">
+          <span class="nav-icon"><i class="fas fa-list"></i></span>
+          <span class="nav-label">Todas</span>
+          <span class="nav-badge" id="badgeTodas">0</span>
+        </button>
+      </nav>
+    </div>
   </div>
 
   <script>
@@ -1094,28 +1141,15 @@
         "orientation": "portrait",
         "scope": ".",
         "icons": [
-          {
-            "src": "logo.png",
-            "sizes": "192x192",
-            "type": "image/png",
-            "purpose": "any maskable"
-          },
-          {
-            "src": "logo.png",
-            "sizes": "512x512",
-            "type": "image/png",
-            "purpose": "any maskable"
-          }
+          { "src": "logo.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable" },
+          { "src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
         ]
       };
 
       const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
-      
       const link = document.querySelector('link[rel="manifest"]');
-      if (link) {
-        link.href = url;
-      }
+      if (link) link.href = url;
     })();
 
     // ==================== SERVICE WORKER ====================
@@ -1123,36 +1157,19 @@
       window.addEventListener('load', () => {
         const swCode = `
           self.addEventListener('install', function(e) {
-            e.waitUntil(
-              caches.open('total-v1').then(function(cache) {
-                return cache.addAll([
-                  '/',
-                  '/index.html',
-                  '/logo.png'
-                ]);
-              })
-            );
+            e.waitUntil(caches.open('total-v1').then(function(cache) {
+              return cache.addAll(['/', '/index.html', '/logo.png']);
+            }));
           });
-
           self.addEventListener('fetch', function(e) {
-            e.respondWith(
-              caches.match(e.request).then(function(response) {
-                return response || fetch(e.request);
-              })
-            );
+            e.respondWith(caches.match(e.request).then(function(response) {
+              return response || fetch(e.request);
+            }));
           });
         `;
-        
         const blob = new Blob([swCode], { type: 'application/javascript' });
         const swUrl = URL.createObjectURL(blob);
-        
-        navigator.serviceWorker.register(swUrl)
-          .then(registration => {
-            console.log('✅ Service Worker registrado com sucesso!');
-          })
-          .catch(error => {
-            console.log('ℹ️ Service Worker não registrado');
-          });
+        navigator.serviceWorker.register(swUrl).catch(() => {});
       });
     }
   </script>
@@ -1181,7 +1198,7 @@
 
     let currentUser = null;
     let ordensListener = null;
-    let abaAtual = 'todas';
+    let abaAtual = 'minhas';
 
     const homeScreen = document.getElementById('homeScreen');
     const panelScreen = document.getElementById('panelScreen');
@@ -1190,6 +1207,7 @@
     const userName = document.getElementById('userName');
     const userRole = document.getElementById('userRole');
     const masterBadge = document.getElementById('masterBadge');
+    const bottomNav = document.getElementById('bottomNav');
 
     // ==================== UTILITÁRIOS ====================
     function getNow() {
@@ -1251,6 +1269,65 @@
       return null;
     }
 
+    // ==================== NAVEGAÇÃO INFERIOR ====================
+    function setupBottomNav(ordens) {
+      const navItems = bottomNav.querySelectorAll('.nav-item');
+      
+      const total = ordens.length;
+      const abertas = ordens.filter(o => o.status === 'ABERTA').length;
+      const andamento = ordens.filter(o => o.status === 'EM ANDAMENTO').length;
+      const pendentes = ordens.filter(o => o.status === 'PENDENTE').length;
+      const finalizadas = ordens.filter(o => o.status === 'FINALIZADA').length;
+      
+      let minhas = 0;
+      if (currentUser) {
+        if (currentUser.funcao === 'Operador') {
+          minhas = ordens.filter(o => o.operador === currentUser.usuario && o.status !== 'FINALIZADA').length;
+        } else if (currentUser.funcao === 'Tecnico') {
+          minhas = ordens.filter(o => o.tecnico === currentUser.usuario && o.status !== 'FINALIZADA').length;
+        } else if (currentUser.funcao === 'Gestor' || isMaster()) {
+          minhas = ordens.filter(o => o.status !== 'FINALIZADA').length;
+        }
+      }
+      
+      document.getElementById('badgeMinhas').textContent = minhas;
+      document.getElementById('badgeAbertas').textContent = abertas;
+      document.getElementById('badgeAndamento').textContent = andamento;
+      document.getElementById('badgePendentes').textContent = pendentes;
+      document.getElementById('badgeFinalizadas').textContent = finalizadas;
+      document.getElementById('badgeTodas').textContent = total;
+      
+      document.querySelectorAll('.nav-badge').forEach(badge => {
+        if (badge.textContent === '0') {
+          badge.style.display = 'none';
+        } else {
+          badge.style.display = 'block';
+        }
+      });
+
+      navItems.forEach(item => {
+        item.addEventListener('click', function() {
+          const tab = this.dataset.tab;
+          navItems.forEach(n => n.classList.remove('active'));
+          this.classList.add('active');
+          abaAtual = tab;
+          
+          if (currentUser) {
+            if (isMaster()) {
+              const ordensAtuais = window.ordensLista || [];
+              listarOrdensGestor(ordensAtuais);
+            } else if (currentUser.funcao === 'Operador') {
+              const ordensAtuais = window.ordensLista || [];
+              listarOrdensOperador(ordensAtuais);
+            } else if (currentUser.funcao === 'Tecnico') {
+              const ordensAtuais = window.ordensLista || [];
+              listarOrdensTecnico(ordensAtuais);
+            }
+          }
+        });
+      });
+    }
+
     // ==================== LOGIN ====================
     document.getElementById('btnLoginExec').addEventListener('click', async () => {
       const usuario = document.getElementById('loginUser').value.trim().toUpperCase();
@@ -1298,7 +1375,7 @@
     // ==================== SISTEMA ====================
     async function entrarNoSistema(user) {
       currentUser = user;
-      abaAtual = 'todas';
+      abaAtual = 'minhas';
       
       userName.textContent = user.usuario;
       userRole.textContent = user.funcao;
@@ -1324,7 +1401,7 @@
         ordensListener = null;
       }
       currentUser = null;
-      abaAtual = 'todas';
+      abaAtual = 'minhas';
       removerSessao();
       panelScreen.classList.remove('active');
       homeScreen.classList.add('active');
@@ -1376,12 +1453,52 @@
           ...value
         }));
         
-        atualizarDashboard(ordensList);
+        window.ordensLista = ordensList;
         
-        if (isMaster()) renderGestor(ordensList, true);
-        else if (currentUser.funcao === 'Operador') renderOperador(ordensList);
-        else if (currentUser.funcao === 'Gestor') renderGestor(ordensList, false);
-        else if (currentUser.funcao === 'Tecnico') renderTecnico(ordensList);
+        atualizarDashboard(ordensList);
+        setupBottomNav(ordensList);
+        
+        if (isMaster()) {
+          renderGestor(ordensList, true);
+          setTimeout(() => {
+            const navItems = bottomNav.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+              if (item.dataset.tab === abaAtual) {
+                item.click();
+              }
+            });
+          }, 100);
+        } else if (currentUser.funcao === 'Operador') {
+          renderOperador(ordensList);
+          setTimeout(() => {
+            const navItems = bottomNav.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+              if (item.dataset.tab === abaAtual) {
+                item.click();
+              }
+            });
+          }, 100);
+        } else if (currentUser.funcao === 'Gestor') {
+          renderGestor(ordensList, false);
+          setTimeout(() => {
+            const navItems = bottomNav.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+              if (item.dataset.tab === abaAtual) {
+                item.click();
+              }
+            });
+          }, 100);
+        } else if (currentUser.funcao === 'Tecnico') {
+          renderTecnico(ordensList);
+          setTimeout(() => {
+            const navItems = bottomNav.querySelectorAll('.nav-item');
+            navItems.forEach(item => {
+              if (item.dataset.tab === abaAtual) {
+                item.click();
+              }
+            });
+          }, 100);
+        }
       });
     }
 
@@ -1393,23 +1510,195 @@
       await set(ordemRef, timeline);
     }
 
-    // ==================== OPERADOR ====================
+    // ==================== FUNÇÕES DE LISTAGEM ====================
+    function listarOrdensOperador(ordens) {
+      let lista = [];
+      
+      switch(abaAtual) {
+        case 'minhas': lista = ordens.filter(o => o.operador === currentUser.usuario && o.status !== 'FINALIZADA'); break;
+        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+        default: lista = ordens;
+      }
+      
+      const div = document.getElementById('listaOperador');
+      if (!div) return;
+      
+      if (lista.length === 0) {
+        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
+        return;
+      }
+      
+      div.innerHTML = lista.map(o => `
+        <div class="os-card ${o.operador === currentUser.usuario ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
+          <div class="os-header">
+            <div class="os-title">
+              <span class="protocolo">#${o.protocolo}</span>
+              <span class="codmoni">${o.codMoni}</span>
+              <span class="cliente">${o.cliente}</span>
+              ${o.operador === currentUser.usuario ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
+            </div>
+            <div class="os-status">
+              ${o.prioridade ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
+              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
+            </div>
+          </div>
+          <div class="os-body">
+            <span><i class="fas fa-user"></i> ${o.operador}</span>
+            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
+            ${o.tecnico ? `<span><i class="fas fa-tools"></i> ${o.tecnico}</span>` : ''}
+            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
+            ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
+          </div>
+          ${o.status === 'FINALIZADA' && currentUser.funcao === 'Operador' ? `
+            <div class="os-actions">
+              <button class="btn-xs" onclick="window.reabrirOS('${o.id}')"><i class="fas fa-redo"></i> Reabrir</button>
+            </div>
+          ` : ''}
+          ${o.timeline && o.timeline.length > 0 ? `
+            <div class="timeline">
+              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    function listarOrdensGestor(ordens) {
+      let lista = [];
+      
+      switch(abaAtual) {
+        case 'minhas': lista = ordens.filter(o => o.status !== 'FINALIZADA'); break;
+        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+        default: lista = ordens;
+      }
+      
+      const div = document.getElementById('listaGestor');
+      if (!div) return;
+      
+      if (lista.length === 0) {
+        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
+        return;
+      }
+      
+      div.innerHTML = lista.map(o => `
+        <div class="os-card ${getPrioridadeClass(o.prioridade)}">
+          <div class="os-header">
+            <div class="os-title">
+              <input type="checkbox" class="os-check" value="${o.id}">
+              <span class="protocolo">#${o.protocolo}</span>
+              <span class="codmoni">${o.codMoni}</span>
+              <span class="cliente">${o.cliente}</span>
+            </div>
+            <div class="os-status">
+              ${o.prioridade ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
+              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
+            </div>
+          </div>
+          <div class="os-body">
+            <span><i class="fas fa-user"></i> ${o.operador}</span>
+            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
+            ${o.tecnico ? `<span><i class="fas fa-tools"></i> ${o.tecnico}</span>` : ''}
+            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
+            ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
+          </div>
+          <div class="os-actions">
+            <button class="btn-xs" onclick="window.transferirOS('${o.id}')"><i class="fas fa-exchange-alt"></i> Transferir</button>
+            <button class="btn-xs" onclick="window.alterarStatusOS('${o.id}')"><i class="fas fa-edit"></i> Status</button>
+            <button class="btn-xs" onclick="window.editarOS('${o.id}')"><i class="fas fa-pen"></i> Editar</button>
+            ${o.status === 'FINALIZADA' ? `<button class="btn-xs" onclick="window.reabrirOS('${o.id}')"><i class="fas fa-redo"></i> Reabrir</button>` : ''}
+            ${isMaster() ? `<button class="btn-xs danger" onclick="window.removerOS('${o.id}')"><i class="fas fa-trash"></i></button>` : ''}
+          </div>
+          ${o.timeline && o.timeline.length > 0 ? `
+            <div class="timeline">
+              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    function listarOrdensTecnico(ordens) {
+      const user = currentUser.usuario;
+      let lista = [];
+      
+      switch(abaAtual) {
+        case 'minhas': lista = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA'); break;
+        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+        default: lista = ordens;
+      }
+      
+      lista.sort((a, b) => (a.prioridade || '').localeCompare(b.prioridade || ''));
+      
+      const div = document.getElementById('listaTecnico');
+      if (!div) return;
+      
+      if (lista.length === 0) {
+        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
+        return;
+      }
+      
+      div.innerHTML = lista.map(o => `
+        <div class="os-card ${o.tecnico === user ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
+          <div class="os-header">
+            <div class="os-title">
+              <span class="protocolo">#${o.protocolo}</span>
+              <span class="codmoni">${o.codMoni}</span>
+              <span class="cliente">${o.cliente}</span>
+              ${o.tecnico === user ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
+            </div>
+            <div class="os-status">
+              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
+            </div>
+          </div>
+          <div class="os-body">
+            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
+            ${o.prioridade ? `<span style="color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
+            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
+            ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
+          </div>
+          <div class="os-actions">
+            ${!o.tecnico || o.tecnico === '' || o.tecnico === user ? `
+              <button class="btn-xs" onclick="window.assumirOS('${o.id}')"><i class="fas fa-play"></i> ${o.tecnico === user ? 'Retomar' : 'Assumir'}</button>
+            ` : ''}
+            ${o.tecnico === user ? `
+              <button class="btn-xs" onclick="window.pendenteOS('${o.id}')"><i class="fas fa-pause"></i> Pendente</button>
+              <button class="btn-xs" onclick="window.finalizarOS('${o.id}')"><i class="fas fa-check"></i> Finalizar</button>
+            ` : ''}
+          </div>
+          ${o.timeline && o.timeline.length > 0 ? `
+            <div class="timeline">
+              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
+            </div>
+          ` : ''}
+        </div>
+      `).join('');
+    }
+
+    // ==================== FUNÇÕES DE RENDERIZAÇÃO ====================
     function renderOperador(ordens) {
       const user = currentUser;
-      const minhasOS = ordens.filter(o => o.operador === user.usuario && o.status !== 'FINALIZADA');
       
       profileContent.innerHTML = `
         <div class="card-header">
           <h3><i class="fas fa-user-shield"></i> Painel Operador</h3>
           <div class="actions">
-            <span class="badge" style="background:rgba(255,204,0,0.08);color:#ffcc00;font-size:0.9rem;padding:5px 16px;border-radius:20px;">
+            <span class="badge" style="background:rgba(255,204,0,0.08);color:#ffcc00;font-size:0.8rem;padding:4px 14px;border-radius:20px;">
               <i class="fas fa-clock"></i> ${user.turno || 'Diurno'}
             </span>
           </div>
         </div>
         
-        <div class="flex-row" style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
-          <input type="text" id="codMoniInput" placeholder="Digite o Código MONI" style="flex:2;min-width:200px;padding:12px 18px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:14px;color:#ffcc00;font-size:1.1rem;outline:none;">
+        <div class="flex-row" style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;flex-shrink:0;">
+          <input type="text" id="codMoniInput" placeholder="Digite o Código MONI" style="flex:2;min-width:180px;padding:10px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#ffcc00;font-size:1rem;outline:none;">
           <button class="btn-sm btn-primary" id="btnBuscarMoni">
             <i class="fas fa-search"></i> Verificar
           </button>
@@ -1418,31 +1707,63 @@
         <div id="novaOsForm" class="hidden"></div>
         <div id="osExistenteMsg" class="hidden"></div>
         
-        <div class="tabs">
-          <div class="tab ${abaAtual === 'minhas' ? 'active' : ''}" data-tab="minhas">⭐ Minhas (${minhasOS.length})</div>
-          <div class="tab ${abaAtual === 'abertas' ? 'active' : ''}" data-tab="abertas">📂 Abertas</div>
-          <div class="tab ${abaAtual === 'andamento' ? 'active' : ''}" data-tab="andamento">▶️ Andamento</div>
-          <div class="tab ${abaAtual === 'pendentes' ? 'active' : ''}" data-tab="pendentes">⏸️ Pendentes</div>
-          <div class="tab ${abaAtual === 'finalizadas' ? 'active' : ''}" data-tab="finalizadas">✅ Finalizadas</div>
-          <div class="tab ${abaAtual === 'todas' ? 'active' : ''}" data-tab="todas">📋 Todas</div>
-        </div>
-        
         <div class="os-list" id="listaOperador"></div>
       `;
 
-      document.querySelectorAll('.tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-          abaAtual = this.dataset.tab;
-          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-          listarOrdensOperador(ordens);
-        });
-      });
-
       document.getElementById('btnBuscarMoni').addEventListener('click', () => buscarOuAbrirOS(ordens));
-      listarOrdensOperador(ordens);
+      
+      setTimeout(() => {
+        listarOrdensOperador(ordens);
+      }, 50);
     }
 
+    function renderGestor(ordens, isMasterUser = false) {
+      profileContent.innerHTML = `
+        <div class="card-header">
+          <h3><i class="fas fa-crown"></i> Painel ${isMasterUser ? 'Master' : 'Gestor'}</h3>
+          <div class="actions">
+            ${isMasterUser ? `<button class="btn-sm btn-primary" id="btnGerenciarUsuarios"><i class="fas fa-users-cog"></i> Usuários</button>` : ''}
+            <button class="btn-sm btn-outline" id="btnDefinirPrioridade"><i class="fas fa-flag"></i> Prioridade</button>
+            <button class="btn-sm btn-outline" id="btnEnviarTecnicos"><i class="fas fa-paper-plane"></i> Enviar</button>
+          </div>
+        </div>
+        
+        ${isMasterUser ? '<div id="gerenciarUsuariosArea" class="hidden"></div>' : ''}
+        
+        <div class="os-list" id="listaGestor"></div>
+      `;
+
+      document.getElementById('btnDefinirPrioridade').addEventListener('click', () => definirPrioridade(ordens));
+      document.getElementById('btnEnviarTecnicos').addEventListener('click', () => enviarParaTecnicos(ordens));
+      
+      if (isMasterUser) {
+        document.getElementById('btnGerenciarUsuarios').addEventListener('click', () => {
+          const area = document.getElementById('gerenciarUsuariosArea');
+          area.classList.toggle('hidden');
+          if (!area.classList.contains('hidden')) carregarGerenciamentoUsuarios();
+        });
+      }
+      
+      setTimeout(() => {
+        listarOrdensGestor(ordens);
+      }, 50);
+    }
+
+    function renderTecnico(ordens) {
+      profileContent.innerHTML = `
+        <div class="card-header">
+          <h3><i class="fas fa-tools"></i> Painel Técnico</h3>
+        </div>
+        
+        <div class="os-list" id="listaTecnico"></div>
+      `;
+
+      setTimeout(() => {
+        listarOrdensTecnico(ordens);
+      }, 50);
+    }
+
+    // ==================== FUNÇÕES DE OPERADOR ====================
     async function buscarOuAbrirOS(ordens) {
       const cod = document.getElementById('codMoniInput').value.trim();
       if (!cod) return alert('Informe o código MONI');
@@ -1534,352 +1855,6 @@
           }
         });
       }
-    }
-
-    function listarOrdensOperador(ordens) {
-      let lista = [];
-      
-      switch(abaAtual) {
-        case 'minhas': lista = ordens.filter(o => o.operador === currentUser.usuario && o.status !== 'FINALIZADA'); break;
-        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
-        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
-        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
-        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
-        default: lista = ordens.filter(o => o.status !== 'FINALIZADA');
-      }
-      
-      const div = document.getElementById('listaOperador');
-      
-      if (lista.length === 0) {
-        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
-        return;
-      }
-      
-      div.innerHTML = lista.map(o => `
-        <div class="os-card ${o.operador === currentUser.usuario ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
-          <div class="os-header">
-            <div class="os-title">
-              <span class="protocolo">#${o.protocolo}</span>
-              <span class="codmoni">${o.codMoni}</span>
-              <span class="cliente">${o.cliente}</span>
-              ${o.operador === currentUser.usuario ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
-            </div>
-            <div class="os-status">
-              ${o.prioridade ? `<span style="font-size:0.8rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
-              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
-            </div>
-          </div>
-          <div class="os-body">
-            <span><i class="fas fa-user"></i> ${o.operador}</span>
-            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
-            ${o.tecnico ? `<span><i class="fas fa-tools"></i> ${o.tecnico}</span>` : ''}
-            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
-            ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
-          </div>
-          ${o.status === 'FINALIZADA' && currentUser.funcao === 'Operador' ? `
-            <div class="os-actions">
-              <button class="btn-xs" onclick="window.reabrirOS('${o.id}')"><i class="fas fa-redo"></i> Reabrir</button>
-            </div>
-          ` : ''}
-          ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline">
-              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
-            </div>
-          ` : ''}
-        </div>
-      `).join('');
-    }
-
-    // ==================== GESTOR ====================
-    function renderGestor(ordens, isMasterUser = false) {
-      profileContent.innerHTML = `
-        <div class="card-header">
-          <h3><i class="fas fa-crown"></i> Painel ${isMasterUser ? 'Master' : 'Gestor'}</h3>
-          <div class="actions">
-            ${isMasterUser ? `<button class="btn-sm btn-primary" id="btnGerenciarUsuarios"><i class="fas fa-users-cog"></i> Usuários</button>` : ''}
-            <button class="btn-sm btn-outline" id="btnDefinirPrioridade"><i class="fas fa-flag"></i> Prioridade</button>
-            <button class="btn-sm btn-outline" id="btnEnviarTecnicos"><i class="fas fa-paper-plane"></i> Enviar</button>
-          </div>
-        </div>
-        
-        ${isMasterUser ? '<div id="gerenciarUsuariosArea" class="hidden"></div>' : ''}
-        
-        <div class="tabs">
-          <div class="tab ${abaAtual === 'todas' ? 'active' : ''}" data-tab="todas">📋 Todas</div>
-          <div class="tab ${abaAtual === 'abertas' ? 'active' : ''}" data-tab="abertas">📂 Abertas</div>
-          <div class="tab ${abaAtual === 'andamento' ? 'active' : ''}" data-tab="andamento">▶️ Andamento</div>
-          <div class="tab ${abaAtual === 'pendentes' ? 'active' : ''}" data-tab="pendentes">⏸️ Pendentes</div>
-          <div class="tab ${abaAtual === 'finalizadas' ? 'active' : ''}" data-tab="finalizadas">✅ Finalizadas</div>
-        </div>
-        
-        <div class="os-list" id="listaGestor"></div>
-      `;
-
-      document.querySelectorAll('.tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-          abaAtual = this.dataset.tab;
-          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-          listarOrdensGestor(ordens);
-        });
-      });
-
-      document.getElementById('btnDefinirPrioridade').addEventListener('click', () => definirPrioridade(ordens));
-      document.getElementById('btnEnviarTecnicos').addEventListener('click', () => enviarParaTecnicos(ordens));
-      
-      if (isMasterUser) {
-        document.getElementById('btnGerenciarUsuarios').addEventListener('click', () => {
-          const area = document.getElementById('gerenciarUsuariosArea');
-          area.classList.toggle('hidden');
-          if (!area.classList.contains('hidden')) carregarGerenciamentoUsuarios();
-        });
-      }
-      
-      listarOrdensGestor(ordens);
-    }
-
-    async function carregarGerenciamentoUsuarios() {
-      const area = document.getElementById('gerenciarUsuariosArea');
-      if (!area) return;
-      
-      try {
-        const snapshot = await get(usersRef);
-        const users = snapshot.val() || {};
-        const userList = Object.entries(users).map(([key, value]) => ({ id: key, ...value }));
-        
-        area.innerHTML = `
-          <div style="background:rgba(255,204,0,0.03);border:1px solid rgba(255,204,0,0.08);border-radius:14px;padding:18px;margin-bottom:16px;">
-            <h4 style="color:#ffcc00;font-size:1.15rem;margin-bottom:14px;"><i class="fas fa-users"></i> Gerenciar Usuários</h4>
-            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
-              <input type="text" id="novoUsuarioNome" placeholder="Nome" style="flex:1;min-width:140px;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#fff;font-size:1rem;outline:none;">
-              <input type="password" id="novoUsuarioSenha" placeholder="Senha" style="flex:1;min-width:120px;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#fff;font-size:1rem;outline:none;">
-              <select id="novoUsuarioFuncao" style="padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#ffcc00;font-size:1rem;outline:none;">
-                <option value="Operador">Operador</option>
-                <option value="Tecnico">Técnico</option>
-                <option value="Gestor">Gestor</option>
-              </select>
-              <button class="btn-sm btn-primary" id="btnAdicionarUsuario"><i class="fas fa-plus"></i> Adicionar</button>
-            </div>
-            <div id="addUserMsg" style="font-size:1rem;margin-bottom:12px;"></div>
-            <div class="user-list">
-              ${userList.length === 0 ? '<p style="color:rgba(255,255,255,0.2);font-size:1rem;">Nenhum usuário cadastrado.</p>' : 
-                userList.map(u => `
-                  <div class="user-item">
-                    <div>
-                      <span class="user-name">${u.usuario}</span>
-                      <span class="user-role">${u.funcao}</span>
-                      ${u.turno ? `<span style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Turno: ${u.turno}</span>` : ''}
-                    </div>
-                    <button class="btn-xs danger" onclick="window.removerUsuario('${u.id}')" style="color:#ff4444;border-color:rgba(255,68,68,0.1);">
-                      <i class="fas fa-trash"></i>
-                    </button>
-                  </div>
-                `).join('')
-              }
-            </div>
-          </div>
-        `;
-        
-        document.getElementById('btnAdicionarUsuario').addEventListener('click', async () => {
-          const nome = document.getElementById('novoUsuarioNome').value.trim().toUpperCase();
-          const senha = document.getElementById('novoUsuarioSenha').value.trim();
-          const funcao = document.getElementById('novoUsuarioFuncao').value;
-          const msg = document.getElementById('addUserMsg');
-          
-          if (!nome || !senha) {
-            msg.innerHTML = '⚠️ Preencha nome e senha!';
-            return;
-          }
-          
-          try {
-            const snapshot = await get(usersRef);
-            const users = snapshot.val() || {};
-            const exists = Object.values(users).some(u => u.usuario === nome);
-            
-            if (exists) {
-              msg.innerHTML = '⚠️ Usuário já existe!';
-              return;
-            }
-            
-            const newUser = { usuario: nome, senha, funcao };
-            if (funcao === 'Operador') {
-              const turno = prompt('Turno (Diurno/Noturno):') || 'Diurno';
-              newUser.turno = turno;
-            }
-            
-            await push(usersRef, newUser);
-            msg.innerHTML = '✅ Usuário adicionado!';
-            setTimeout(() => carregarGerenciamentoUsuarios(), 500);
-            
-          } catch (error) {
-            msg.innerHTML = '❌ Erro ao adicionar usuário.';
-            console.error(error);
-          }
-        });
-        
-      } catch (error) {
-        area.innerHTML = '<p style="color:#ff4444;">❌ Erro ao carregar usuários.</p>';
-        console.error(error);
-      }
-    }
-
-    window.removerUsuario = async function(userId) {
-      if (!isMaster()) {
-        alert('Apenas o Master pode remover usuários!');
-        return;
-      }
-      if (!confirm('Remover este usuário?')) return;
-      
-      try {
-        await remove(ref(database, `users/${userId}`));
-        alert('✅ Usuário removido!');
-        carregarGerenciamentoUsuarios();
-      } catch (error) {
-        alert('❌ Erro ao remover usuário.');
-        console.error(error);
-      }
-    };
-
-    function listarOrdensGestor(ordens) {
-      let lista = [];
-      
-      switch(abaAtual) {
-        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
-        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
-        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
-        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
-        default: lista = ordens;
-      }
-      
-      const div = document.getElementById('listaGestor');
-      
-      if (lista.length === 0) {
-        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
-        return;
-      }
-      
-      div.innerHTML = lista.map(o => `
-        <div class="os-card ${getPrioridadeClass(o.prioridade)}">
-          <div class="os-header">
-            <div class="os-title">
-              <input type="checkbox" class="os-check" value="${o.id}">
-              <span class="protocolo">#${o.protocolo}</span>
-              <span class="codmoni">${o.codMoni}</span>
-              <span class="cliente">${o.cliente}</span>
-            </div>
-            <div class="os-status">
-              ${o.prioridade ? `<span style="font-size:0.8rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
-              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
-            </div>
-          </div>
-          <div class="os-body">
-            <span><i class="fas fa-user"></i> ${o.operador}</span>
-            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
-            ${o.tecnico ? `<span><i class="fas fa-tools"></i> ${o.tecnico}</span>` : ''}
-            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
-            ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
-          </div>
-          <div class="os-actions">
-            <button class="btn-xs" onclick="window.transferirOS('${o.id}')"><i class="fas fa-exchange-alt"></i> Transferir</button>
-            <button class="btn-xs" onclick="window.alterarStatusOS('${o.id}')"><i class="fas fa-edit"></i> Status</button>
-            <button class="btn-xs" onclick="window.editarOS('${o.id}')"><i class="fas fa-pen"></i> Editar</button>
-            ${o.status === 'FINALIZADA' ? `<button class="btn-xs" onclick="window.reabrirOS('${o.id}')"><i class="fas fa-redo"></i> Reabrir</button>` : ''}
-            ${isMaster() ? `<button class="btn-xs danger" onclick="window.removerOS('${o.id}')"><i class="fas fa-trash"></i></button>` : ''}
-          </div>
-          ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline">
-              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
-            </div>
-          ` : ''}
-        </div>
-      `).join('');
-    }
-
-    // ==================== TÉCNICO ====================
-    function renderTecnico(ordens) {
-      const user = currentUser.usuario;
-      const minhasOS = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA');
-      
-      profileContent.innerHTML = `
-        <div class="card-header">
-          <h3><i class="fas fa-tools"></i> Painel Técnico</h3>
-        </div>
-        
-        <div class="tabs">
-          <div class="tab ${abaAtual === 'todas' ? 'active' : ''}" data-tab="todas">📋 Fila</div>
-          <div class="tab ${abaAtual === 'minhas' ? 'active' : ''}" data-tab="minhas">⭐ Minhas (${minhasOS.length})</div>
-          <div class="tab ${abaAtual === 'disponiveis' ? 'active' : ''}" data-tab="disponiveis">📥 Disponíveis</div>
-        </div>
-        
-        <div class="os-list" id="listaTecnico"></div>
-      `;
-
-      document.querySelectorAll('.tab').forEach(tab => {
-        tab.addEventListener('click', function() {
-          abaAtual = this.dataset.tab;
-          document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-          this.classList.add('active');
-          listarOrdensTecnico(ordens);
-        });
-      });
-
-      listarOrdensTecnico(ordens);
-    }
-
-    function listarOrdensTecnico(ordens) {
-      const user = currentUser.usuario;
-      let lista = [];
-      
-      switch(abaAtual) {
-        case 'minhas': lista = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA'); break;
-        case 'disponiveis': lista = ordens.filter(o => (!o.tecnico || o.tecnico === '') && o.status !== 'FINALIZADA'); break;
-        default: lista = ordens.filter(o => (!o.tecnico || o.tecnico === user || o.tecnico === '') && o.status !== 'FINALIZADA');
-      }
-      
-      lista.sort((a, b) => (a.prioridade || '').localeCompare(b.prioridade || ''));
-      
-      const div = document.getElementById('listaTecnico');
-      
-      if (lista.length === 0) {
-        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. na fila</p></div>`;
-        return;
-      }
-      
-      div.innerHTML = lista.map(o => `
-        <div class="os-card ${o.tecnico === user ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
-          <div class="os-header">
-            <div class="os-title">
-              <span class="protocolo">#${o.protocolo}</span>
-              <span class="codmoni">${o.codMoni}</span>
-              <span class="cliente">${o.cliente}</span>
-              ${o.tecnico === user ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
-            </div>
-            <div class="os-status">
-              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
-            </div>
-          </div>
-          <div class="os-body">
-            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
-            ${o.prioridade ? `<span style="color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
-            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
-            ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
-          </div>
-          <div class="os-actions">
-            ${!o.tecnico || o.tecnico === '' || o.tecnico === user ? `
-              <button class="btn-xs" onclick="window.assumirOS('${o.id}')"><i class="fas fa-play"></i> ${o.tecnico === user ? 'Retomar' : 'Assumir'}</button>
-            ` : ''}
-            ${o.tecnico === user ? `
-              <button class="btn-xs" onclick="window.pendenteOS('${o.id}')"><i class="fas fa-pause"></i> Pendente</button>
-              <button class="btn-xs" onclick="window.finalizarOS('${o.id}')"><i class="fas fa-check"></i> Finalizar</button>
-            ` : ''}
-          </div>
-          ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline">
-              ${o.timeline.slice(-5).map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
-            </div>
-          ` : ''}
-        </div>
-      `).join('');
     }
 
     // ==================== FUNÇÕES GLOBAIS ====================
@@ -2075,6 +2050,108 @@
         console.error(error);
       }
     }
+
+    async function carregarGerenciamentoUsuarios() {
+      const area = document.getElementById('gerenciarUsuariosArea');
+      if (!area) return;
+      
+      try {
+        const snapshot = await get(usersRef);
+        const users = snapshot.val() || {};
+        const userList = Object.entries(users).map(([key, value]) => ({ id: key, ...value }));
+        
+        area.innerHTML = `
+          <div style="background:rgba(255,204,0,0.03);border:1px solid rgba(255,204,0,0.08);border-radius:14px;padding:18px;margin-bottom:16px;">
+            <h4 style="color:#ffcc00;font-size:1.15rem;margin-bottom:14px;"><i class="fas fa-users"></i> Gerenciar Usuários</h4>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+              <input type="text" id="novoUsuarioNome" placeholder="Nome" style="flex:1;min-width:140px;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#fff;font-size:1rem;outline:none;">
+              <input type="password" id="novoUsuarioSenha" placeholder="Senha" style="flex:1;min-width:120px;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#fff;font-size:1rem;outline:none;">
+              <select id="novoUsuarioFuncao" style="padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#ffcc00;font-size:1rem;outline:none;">
+                <option value="Operador">Operador</option>
+                <option value="Tecnico">Técnico</option>
+                <option value="Gestor">Gestor</option>
+              </select>
+              <button class="btn-sm btn-primary" id="btnAdicionarUsuario"><i class="fas fa-plus"></i> Adicionar</button>
+            </div>
+            <div id="addUserMsg" style="font-size:1rem;margin-bottom:12px;"></div>
+            <div class="user-list">
+              ${userList.length === 0 ? '<p style="color:rgba(255,255,255,0.2);font-size:1rem;">Nenhum usuário cadastrado.</p>' : 
+                userList.map(u => `
+                  <div class="user-item">
+                    <div>
+                      <span class="user-name">${u.usuario}</span>
+                      <span class="user-role">${u.funcao}</span>
+                      ${u.turno ? `<span style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Turno: ${u.turno}</span>` : ''}
+                    </div>
+                    <button class="btn-xs danger" onclick="window.removerUsuario('${u.id}')" style="color:#ff4444;border-color:rgba(255,68,68,0.1);">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </div>
+                `).join('')
+              }
+            </div>
+          </div>
+        `;
+        
+        document.getElementById('btnAdicionarUsuario').addEventListener('click', async () => {
+          const nome = document.getElementById('novoUsuarioNome').value.trim().toUpperCase();
+          const senha = document.getElementById('novoUsuarioSenha').value.trim();
+          const funcao = document.getElementById('novoUsuarioFuncao').value;
+          const msg = document.getElementById('addUserMsg');
+          
+          if (!nome || !senha) {
+            msg.innerHTML = '⚠️ Preencha nome e senha!';
+            return;
+          }
+          
+          try {
+            const snapshot = await get(usersRef);
+            const users = snapshot.val() || {};
+            const exists = Object.values(users).some(u => u.usuario === nome);
+            
+            if (exists) {
+              msg.innerHTML = '⚠️ Usuário já existe!';
+              return;
+            }
+            
+            const newUser = { usuario: nome, senha, funcao };
+            if (funcao === 'Operador') {
+              const turno = prompt('Turno (Diurno/Noturno):') || 'Diurno';
+              newUser.turno = turno;
+            }
+            
+            await push(usersRef, newUser);
+            msg.innerHTML = '✅ Usuário adicionado!';
+            setTimeout(() => carregarGerenciamentoUsuarios(), 500);
+            
+          } catch (error) {
+            msg.innerHTML = '❌ Erro ao adicionar usuário.';
+            console.error(error);
+          }
+        });
+        
+      } catch (error) {
+        area.innerHTML = '<p style="color:#ff4444;">❌ Erro ao carregar usuários.</p>';
+        console.error(error);
+      }
+    }
+
+    window.removerUsuario = async function(userId) {
+      if (!isMaster()) {
+        alert('Apenas o Master pode remover usuários!');
+        return;
+      }
+      if (!confirm('Remover este usuário?')) return;
+      
+      try {
+        await remove(ref(database, `users/${userId}`));
+        alert('✅ Usuário removido!');
+        carregarGerenciamentoUsuarios();
+      } catch (error) {
+        alert('❌ Erro ao remover usuário.');
+        console.error(error);
+      }
+    };
 
     // ==================== RESTAURAR SESSÃO ====================
     async function restaurarSessao() {
