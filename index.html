@@ -8,7 +8,7 @@
   <meta name="description" content="Sistema de monitoramento e ordens de serviço TOTAL">
   <meta name="theme-color" content="#ffcc00">
   
-  <!-- PWA - Manifest via JavaScript (mais confiável) -->
+  <!-- PWA - Manifest via JavaScript -->
   <link rel="manifest" href="manifest.json">
   
   <!-- Ícones -->
@@ -35,6 +35,7 @@
       background: #0d0d0d;
       color: #fff;
       overflow: hidden;
+      font-size: 18px;
     }
 
     /* ==================== APP CONTAINER ==================== */
@@ -43,7 +44,7 @@
       height: 100vh;
       max-width: 1400px;
       margin: 0 auto;
-      padding: 12px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
       background: linear-gradient(145deg, #0d0d0d 0%, #1a1a1a 100%);
@@ -58,7 +59,7 @@
       justify-content: center;
       width: 100%;
       height: 100%;
-      padding: 16px;
+      padding: 24px;
       animation: fadeIn 0.4s ease;
     }
 
@@ -74,45 +75,45 @@
     /* ==================== TELA DE LOGIN ==================== */
     .login-container {
       width: 100%;
-      max-width: 400px;
+      max-width: 500px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 24px;
+      gap: 32px;
     }
 
     .login-logo {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
     }
 
     .login-logo img {
-      max-width: 200px;
+      max-width: 280px;
       width: 100%;
       height: auto;
       filter: drop-shadow(0 4px 20px rgba(255, 204, 0, 0.15));
     }
 
     .login-logo .logo-text {
-      font-size: 2.2rem;
+      font-size: 3.2rem;
       font-weight: 900;
       color: #ffcc00;
-      letter-spacing: 3px;
+      letter-spacing: 4px;
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 14px;
     }
 
     .login-logo .logo-text i {
-      font-size: 2rem;
+      font-size: 2.8rem;
     }
 
     .login-logo .logo-sub {
-      color: rgba(255,255,255,0.25);
-      font-size: 0.75rem;
-      letter-spacing: 4px;
+      color: rgba(255,255,255,0.3);
+      font-size: 1.1rem;
+      letter-spacing: 6px;
       text-transform: uppercase;
     }
 
@@ -121,30 +122,34 @@
       background: rgba(255,255,255,0.04);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
-      border-radius: 20px;
-      padding: 28px 24px;
+      border-radius: 28px;
+      padding: 36px 32px;
       border: 1px solid rgba(255, 204, 0, 0.12);
       box-shadow: 0 8px 40px rgba(0,0,0,0.5);
     }
 
     .login-card h3 {
       color: #ffcc00;
-      font-size: 1.1rem;
-      margin-bottom: 16px;
+      font-size: 1.6rem;
+      margin-bottom: 24px;
       display: flex;
       align-items: center;
-      gap: 8px;
+      gap: 12px;
+    }
+
+    .login-card h3 i {
+      font-size: 1.4rem;
     }
 
     .login-card input {
       width: 100%;
-      padding: 12px 16px;
-      margin-bottom: 12px;
+      padding: 16px 20px;
+      margin-bottom: 16px;
       background: rgba(0,0,0,0.5);
       border: 1px solid rgba(255, 204, 0, 0.15);
-      border-radius: 12px;
+      border-radius: 16px;
       color: #ffcc00;
-      font-size: 0.95rem;
+      font-size: 1.2rem;
       outline: none;
       transition: all 0.3s;
     }
@@ -155,24 +160,25 @@
     }
 
     .login-card input::placeholder {
-      color: rgba(255,255,255,0.25);
+      color: rgba(255,255,255,0.3);
+      font-size: 1.1rem;
     }
 
     .login-card .btn {
       width: 100%;
-      padding: 12px;
-      margin-top: 8px;
+      padding: 16px;
+      margin-top: 12px;
       background: linear-gradient(135deg, #ffcc00, #e6b800);
       color: #000;
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.3rem;
       border: none;
-      border-radius: 12px;
+      border-radius: 16px;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 8px;
+      gap: 12px;
       transition: all 0.3s;
       box-shadow: 0 4px 20px rgba(255, 204, 0, 0.15);
     }
@@ -191,42 +197,42 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 4px 16px 4px;
+      padding: 12px 8px 24px 8px;
       flex-wrap: wrap;
-      gap: 8px;
+      gap: 14px;
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
 
     .panel-brand {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
     }
 
     .panel-brand img {
-      height: 36px;
+      height: 50px;
       width: auto;
-      border-radius: 4px;
+      border-radius: 8px;
     }
 
     .panel-brand .brand-name {
-      font-size: 1.4rem;
+      font-size: 2rem;
       font-weight: 800;
       color: #ffcc00;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
     }
 
     .panel-brand .status {
-      color: rgba(255,255,255,0.25);
-      font-size: 0.7rem;
+      color: rgba(255,255,255,0.3);
+      font-size: 0.95rem;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
     }
 
     .panel-brand .status .dot {
-      width: 6px;
-      height: 6px;
+      width: 10px;
+      height: 10px;
       background: #00ff44;
       border-radius: 50%;
       display: inline-block;
@@ -241,23 +247,27 @@
     .panel-user {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 16px;
       flex-wrap: wrap;
     }
 
     .panel-user .user-info {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
       color: #ffcc00;
-      font-size: 0.85rem;
+      font-size: 1.1rem;
+    }
+
+    .panel-user .user-info i {
+      font-size: 1.5rem;
     }
 
     .panel-user .user-info .badge {
       background: rgba(255, 204, 0, 0.12);
-      padding: 2px 10px;
-      border-radius: 20px;
-      font-size: 0.65rem;
+      padding: 5px 16px;
+      border-radius: 24px;
+      font-size: 0.85rem;
       font-weight: 600;
       color: #ffcc00;
       border: 1px solid rgba(255, 204, 0, 0.08);
@@ -266,9 +276,9 @@
     .panel-user .user-info .master-badge {
       background: rgba(255, 0, 0, 0.15);
       color: #ff4444;
-      padding: 2px 8px;
-      border-radius: 20px;
-      font-size: 0.6rem;
+      padding: 5px 12px;
+      border-radius: 24px;
+      font-size: 0.75rem;
       font-weight: 700;
       border: 1px solid rgba(255, 0, 0, 0.1);
     }
@@ -277,14 +287,14 @@
       background: transparent;
       color: rgba(255,255,255,0.4);
       border: 1px solid rgba(255,255,255,0.08);
-      padding: 6px 14px;
-      border-radius: 20px;
-      font-size: 0.75rem;
+      padding: 10px 20px;
+      border-radius: 28px;
+      font-size: 1rem;
       cursor: pointer;
       transition: all 0.3s;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
     }
 
     .btn-logout:hover {
@@ -296,20 +306,20 @@
     /* ==================== DASHBOARD ==================== */
     .dashboard-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
-      gap: 10px;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 14px;
       width: 100%;
-      padding: 16px 0;
+      padding: 24px 0;
     }
 
     .stat-card {
       background: rgba(255,255,255,0.03);
-      border-radius: 14px;
-      padding: 14px 16px;
+      border-radius: 18px;
+      padding: 18px 22px;
       border: 1px solid rgba(255,255,255,0.04);
       display: flex;
       align-items: center;
-      gap: 12px;
+      gap: 16px;
       transition: all 0.3s;
     }
 
@@ -319,15 +329,15 @@
     }
 
     .stat-card .icon {
-      font-size: 1.2rem;
+      font-size: 1.8rem;
       color: #ffcc00;
-      width: 36px;
-      height: 36px;
+      width: 50px;
+      height: 50px;
       display: flex;
       align-items: center;
       justify-content: center;
       background: rgba(255, 204, 0, 0.06);
-      border-radius: 10px;
+      border-radius: 14px;
     }
 
     .stat-card .info {
@@ -336,14 +346,15 @@
     }
 
     .stat-card .info .label {
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.35);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.4);
       text-transform: uppercase;
       letter-spacing: 0.5px;
+      font-weight: 600;
     }
 
     .stat-card .info .value {
-      font-size: 1.3rem;
+      font-size: 1.8rem;
       font-weight: 700;
       color: #ffcc00;
       line-height: 1.2;
@@ -365,46 +376,50 @@
 
     .content-card {
       background: rgba(255,255,255,0.03);
-      border-radius: 16px;
-      padding: 16px;
+      border-radius: 20px;
+      padding: 24px;
       border: 1px solid rgba(255,255,255,0.04);
       flex: 1;
       display: flex;
       flex-direction: column;
       overflow: hidden;
-      min-height: 300px;
+      min-height: 380px;
     }
 
     .content-card .card-header {
       display: flex;
       align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
+      gap: 14px;
+      margin-bottom: 18px;
       flex-wrap: wrap;
     }
 
     .content-card .card-header h3 {
       color: #ffcc00;
-      font-size: 1rem;
+      font-size: 1.4rem;
       font-weight: 600;
+    }
+
+    .content-card .card-header h3 i {
+      font-size: 1.3rem;
     }
 
     .content-card .card-header .actions {
       display: flex;
-      gap: 6px;
+      gap: 10px;
       flex-wrap: wrap;
       margin-left: auto;
     }
 
     .btn-sm {
-      padding: 6px 14px;
-      font-size: 0.75rem;
-      border-radius: 20px;
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      border-radius: 26px;
       border: none;
       cursor: pointer;
       display: flex;
       align-items: center;
-      gap: 4px;
+      gap: 8px;
       transition: all 0.3s;
       font-weight: 600;
     }
@@ -415,7 +430,7 @@
     }
 
     .btn-primary:hover {
-      transform: translateY(-1px);
+      transform: translateY(-2px);
       box-shadow: 0 4px 20px rgba(255, 204, 0, 0.2);
     }
 
@@ -444,19 +459,19 @@
     /* ==================== TABS ==================== */
     .tabs {
       display: flex;
-      gap: 4px;
+      gap: 8px;
       flex-wrap: wrap;
-      margin-bottom: 12px;
+      margin-bottom: 16px;
     }
 
     .tab {
-      padding: 6px 14px;
-      border-radius: 20px;
+      padding: 10px 22px;
+      border-radius: 26px;
       cursor: pointer;
       background: transparent;
-      color: rgba(255,255,255,0.3);
+      color: rgba(255,255,255,0.35);
       border: 1px solid transparent;
-      font-size: 0.75rem;
+      font-size: 0.95rem;
       transition: all 0.3s;
       font-weight: 500;
     }
@@ -470,17 +485,18 @@
       color: #ffcc00;
       background: rgba(255, 204, 0, 0.06);
       border-color: rgba(255, 204, 0, 0.12);
+      font-weight: 600;
     }
 
     /* ==================== LISTA DE O.S. ==================== */
     .os-list {
       flex: 1;
       overflow-y: auto;
-      padding-right: 4px;
+      padding-right: 8px;
     }
 
     .os-list::-webkit-scrollbar {
-      width: 4px;
+      width: 6px;
     }
 
     .os-list::-webkit-scrollbar-track {
@@ -495,9 +511,9 @@
 
     .os-card {
       background: rgba(255,255,255,0.03);
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 8px;
+      border-radius: 16px;
+      padding: 18px 22px;
+      margin-bottom: 12px;
       border: 1px solid rgba(255,255,255,0.04);
       transition: all 0.3s;
     }
@@ -507,64 +523,65 @@
       border-color: rgba(255, 204, 0, 0.06);
     }
 
-    .os-card.prioridade-urgente { border-left: 3px solid #ff0040; }
-    .os-card.prioridade-alta { border-left: 3px solid #ff6600; }
-    .os-card.prioridade-normal { border-left: 3px solid #ffcc00; }
-    .os-card.prioridade-baixa { border-left: 3px solid #0066ff; }
-    .os-card.minha-os { border-color: rgba(255, 204, 0, 0.2); }
+    .os-card.prioridade-urgente { border-left: 5px solid #ff0040; }
+    .os-card.prioridade-alta { border-left: 5px solid #ff6600; }
+    .os-card.prioridade-normal { border-left: 5px solid #ffcc00; }
+    .os-card.prioridade-baixa { border-left: 5px solid #0066ff; }
+    .os-card.minha-os { border-color: rgba(255, 204, 0, 0.25); }
 
     .os-card .os-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
-      gap: 8px;
+      gap: 12px;
       flex-wrap: wrap;
     }
 
     .os-card .os-title {
       display: flex;
       align-items: center;
-      gap: 6px;
+      gap: 10px;
       flex-wrap: wrap;
     }
 
     .os-card .os-title .protocolo {
       background: rgba(255, 204, 0, 0.08);
       color: #ffcc00;
-      padding: 2px 10px;
-      border-radius: 12px;
-      font-size: 0.8rem;
+      padding: 4px 14px;
+      border-radius: 16px;
+      font-size: 1.05rem;
       font-weight: 700;
       border: 1px solid rgba(255, 204, 0, 0.06);
     }
 
     .os-card .os-title .codmoni {
-      color: rgba(255,255,255,0.4);
-      font-size: 0.8rem;
+      color: rgba(255,255,255,0.5);
+      font-size: 1.05rem;
+      font-weight: 500;
     }
 
     .os-card .os-title .cliente {
       color: #fff;
-      font-weight: 500;
-      font-size: 0.9rem;
+      font-weight: 600;
+      font-size: 1.15rem;
     }
 
     .os-card .os-title .star {
       color: #ffcc00;
-      font-size: 0.7rem;
+      font-size: 1rem;
     }
 
     .os-card .os-status {
       display: flex;
-      gap: 4px;
+      gap: 8px;
       flex-wrap: wrap;
       align-items: center;
     }
 
     .badge-status {
-      padding: 2px 10px;
-      border-radius: 12px;
-      font-size: 0.65rem;
+      padding: 5px 16px;
+      border-radius: 16px;
+      font-size: 0.9rem;
       font-weight: 600;
     }
 
@@ -574,9 +591,9 @@
     .badge-finalizada { background: rgba(0, 204, 102, 0.15); color: #00cc66; }
 
     .badge-pagamento {
-      padding: 2px 10px;
-      border-radius: 12px;
-      font-size: 0.6rem;
+      padding: 4px 14px;
+      border-radius: 16px;
+      font-size: 0.85rem;
       font-weight: 600;
     }
 
@@ -585,40 +602,46 @@
     .badge-falta-pagar { background: rgba(255, 102, 0, 0.12); color: #ff6600; }
 
     .os-card .os-body {
-      margin-top: 6px;
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
-      gap: 4px 12px;
-      font-size: 0.7rem;
-      color: rgba(255,255,255,0.3);
+      gap: 8px 20px;
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.35);
     }
 
     .os-card .os-body span {
       display: flex;
       align-items: center;
-      gap: 3px;
+      gap: 6px;
+    }
+
+    .os-card .os-body span i {
+      font-size: 0.9rem;
+      width: 18px;
     }
 
     .os-card .os-body .prioridade {
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.5);
     }
 
     .os-card .os-actions {
-      margin-top: 8px;
+      margin-top: 12px;
       display: flex;
-      gap: 4px;
+      gap: 8px;
       flex-wrap: wrap;
     }
 
     .os-card .os-actions .btn-xs {
-      padding: 3px 10px;
-      font-size: 0.65rem;
-      border-radius: 12px;
+      padding: 6px 16px;
+      font-size: 0.85rem;
+      border-radius: 16px;
       border: 1px solid rgba(255, 204, 0, 0.08);
       background: transparent;
-      color: rgba(255,255,255,0.4);
+      color: rgba(255,255,255,0.5);
       cursor: pointer;
       transition: all 0.3s;
+      font-weight: 500;
     }
 
     .os-card .os-actions .btn-xs:hover {
@@ -633,19 +656,19 @@
     }
 
     .os-card .timeline {
-      margin-top: 8px;
-      padding: 8px 10px;
+      margin-top: 12px;
+      padding: 12px 16px;
       background: rgba(0,0,0,0.2);
-      border-radius: 8px;
-      font-size: 0.65rem;
-      color: rgba(255,255,255,0.3);
-      max-height: 80px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.35);
+      max-height: 120px;
       overflow-y: auto;
       border-left: 2px solid rgba(255, 204, 0, 0.1);
     }
 
     .os-card .timeline div {
-      margin-top: 2px;
+      margin-top: 4px;
     }
 
     .os-card .timeline .time {
@@ -654,26 +677,27 @@
 
     /* ==================== FORMULÁRIOS ==================== */
     .form-group {
-      margin-bottom: 10px;
+      margin-bottom: 14px;
     }
 
     .form-group label {
-      font-size: 0.75rem;
+      font-size: 1rem;
       color: rgba(255,255,255,0.4);
       display: block;
-      margin-bottom: 4px;
+      margin-bottom: 6px;
+      font-weight: 500;
     }
 
     .form-group input,
     .form-group textarea,
     .form-group select {
       width: 100%;
-      padding: 10px 14px;
+      padding: 14px 18px;
       background: rgba(0,0,0,0.4);
       border: 1px solid rgba(255, 204, 0, 0.08);
-      border-radius: 10px;
+      border-radius: 14px;
       color: #ffcc00;
-      font-size: 0.9rem;
+      font-size: 1.1rem;
       outline: none;
       transition: all 0.3s;
     }
@@ -687,19 +711,25 @@
 
     .form-group textarea {
       resize: vertical;
-      min-height: 60px;
+      min-height: 80px;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.2);
+      font-size: 1rem;
     }
 
     /* ==================== GERENCIAR USUÁRIOS ==================== */
     .user-list {
-      margin-top: 8px;
+      margin-top: 12px;
     }
 
     .user-item {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 8px 0;
+      padding: 12px 0;
       border-bottom: 1px solid rgba(255,255,255,0.04);
     }
 
@@ -710,40 +740,41 @@
     .user-item .user-name {
       color: #fff;
       font-weight: 500;
-      font-size: 0.85rem;
+      font-size: 1.1rem;
     }
 
     .user-item .user-role {
-      font-size: 0.65rem;
+      font-size: 0.9rem;
       color: rgba(255,255,255,0.3);
       background: rgba(255,255,255,0.04);
-      padding: 2px 10px;
-      border-radius: 12px;
+      padding: 4px 14px;
+      border-radius: 16px;
     }
 
     /* ==================== EMPTY STATE ==================== */
     .empty-state {
       text-align: center;
-      padding: 30px 20px;
+      padding: 50px 20px;
       color: rgba(255,255,255,0.15);
     }
 
     .empty-state i {
-      font-size: 2rem;
+      font-size: 3rem;
       display: block;
-      margin-bottom: 8px;
+      margin-bottom: 16px;
       color: rgba(255, 204, 0, 0.08);
     }
 
     .empty-state p {
-      font-size: 0.85rem;
+      font-size: 1.1rem;
     }
 
     /* ==================== LOADING ==================== */
     .loading {
       text-align: center;
-      padding: 20px;
+      padding: 40px;
       color: #ffcc00;
+      font-size: 1.2rem;
     }
 
     .loading i {
@@ -761,11 +792,11 @@
 
     /* ==================== CHECKBOX ==================== */
     .os-check {
-      width: 16px;
-      height: 16px;
+      width: 20px;
+      height: 20px;
       accent-color: #ffcc00;
       cursor: pointer;
-      margin-right: 4px;
+      margin-right: 8px;
     }
 
     /* ==================== RODAPÉ ==================== */
@@ -775,7 +806,7 @@
       left: 0;
       right: 0;
       text-align: center;
-      padding: 8px;
+      padding: 12px;
       background: rgba(0,0,0,0.5);
       backdrop-filter: blur(8px);
       -webkit-backdrop-filter: blur(8px);
@@ -784,8 +815,8 @@
     }
 
     .footer-text {
-      font-size: 0.6rem;
-      color: rgba(255,255,255,0.15);
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.2);
       letter-spacing: 0.5px;
     }
 
@@ -802,95 +833,148 @@
 
     @keyframes heartPulse {
       0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
+      50% { transform: scale(1.15); }
     }
 
     .footer-text .code-icon {
       color: rgba(255, 204, 0, 0.15);
-      font-size: 0.5rem;
+      font-size: 0.7rem;
     }
 
     /* ==================== RESPONSIVIDADE ==================== */
     @media (max-width: 768px) {
-      #app { padding: 8px; }
+      #app { padding: 12px; }
+      html, body { font-size: 16px; }
       
-      .login-logo img { max-width: 140px; }
-      .login-logo .logo-text { font-size: 1.6rem; }
-      .login-card { padding: 20px 16px; }
+      .login-logo img { max-width: 180px; }
+      .login-logo .logo-text { font-size: 2.2rem; }
+      .login-logo .logo-sub { font-size: 0.9rem; }
+      .login-card { padding: 28px 20px; }
+      .login-card h3 { font-size: 1.3rem; }
+      .login-card input { font-size: 1.05rem; padding: 14px 16px; }
+      .login-card .btn { font-size: 1.1rem; padding: 14px; }
       
       .dashboard-grid {
-        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+        gap: 10px;
+        padding: 16px 0;
+      }
+      
+      .stat-card { padding: 14px 16px; }
+      .stat-card .icon { width: 40px; height: 40px; font-size: 1.4rem; }
+      .stat-card .info .value { font-size: 1.4rem; }
+      .stat-card .info .label { font-size: 0.7rem; }
+      
+      .panel-brand .brand-name { font-size: 1.5rem; }
+      .panel-brand img { height: 38px; }
+      .panel-brand .status { font-size: 0.8rem; }
+      
+      .content-card { padding: 16px; min-height: 280px; }
+      .content-card .card-header h3 { font-size: 1.1rem; }
+      
+      .os-card { padding: 14px 16px; }
+      .os-card .os-title .cliente { font-size: 1rem; }
+      .os-card .os-title .protocolo { font-size: 0.9rem; padding: 3px 12px; }
+      .os-card .os-title .codmoni { font-size: 0.9rem; }
+      .os-card .os-body { font-size: 0.85rem; gap: 6px 14px; }
+      
+      .badge-status { font-size: 0.75rem; padding: 4px 12px; }
+      .badge-pagamento { font-size: 0.7rem; padding: 3px 12px; }
+      
+      .btn-sm { padding: 8px 16px; font-size: 0.85rem; }
+      .tab { padding: 8px 16px; font-size: 0.85rem; }
+      
+      .os-card .os-actions .btn-xs { font-size: 0.75rem; padding: 5px 12px; }
+      
+      .footer-text { font-size: 0.7rem; }
+      .panel-user .user-info { font-size: 0.95rem; }
+      .btn-logout { font-size: 0.85rem; padding: 8px 16px; }
+    }
+
+    @media (max-width: 480px) {
+      #app { padding: 8px; }
+      html, body { font-size: 15px; }
+      
+      .login-logo img { max-width: 140px; }
+      .login-logo .logo-text { font-size: 1.8rem; }
+      .login-logo .logo-sub { font-size: 0.7rem; letter-spacing: 3px; }
+      .login-card { padding: 20px 16px; border-radius: 20px; }
+      .login-card h3 { font-size: 1.1rem; margin-bottom: 16px; }
+      .login-card input { font-size: 0.95rem; padding: 12px 14px; border-radius: 12px; }
+      .login-card .btn { font-size: 1rem; padding: 12px; border-radius: 12px; }
+      
+      .dashboard-grid {
+        grid-template-columns: repeat(3, 1fr);
         gap: 6px;
         padding: 10px 0;
       }
       
-      .stat-card { padding: 10px 12px; }
-      .stat-card .icon { width: 28px; height: 28px; font-size: 1rem; }
-      .stat-card .info .value { font-size: 1.1rem; }
-      
-      .panel-brand .brand-name { font-size: 1.1rem; }
-      .panel-brand img { height: 28px; }
-      
-      .content-card { padding: 12px; min-height: 200px; }
-      .content-card .card-header h3 { font-size: 0.85rem; }
-      
-      .os-card { padding: 10px 12px; }
-      .os-card .os-title .cliente { font-size: 0.8rem; }
-      .os-card .os-title .protocolo { font-size: 0.7rem; }
-      
-      .btn-sm { padding: 4px 10px; font-size: 0.65rem; }
-      .tab { padding: 4px 10px; font-size: 0.65rem; }
-    }
-
-    @media (max-width: 480px) {
-      #app { padding: 4px; }
-      
-      .dashboard-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 4px;
-        padding: 6px 0;
-      }
-      
       .stat-card { 
-        padding: 8px 10px;
+        padding: 10px 12px;
         flex-direction: column;
         text-align: center;
         gap: 4px;
+        border-radius: 14px;
       }
       
       .stat-card .icon {
-        width: 24px;
-        height: 24px;
-        font-size: 0.8rem;
+        width: 32px;
+        height: 32px;
+        font-size: 1rem;
+        border-radius: 10px;
       }
       
-      .stat-card .info .value { font-size: 0.9rem; }
-      .stat-card .info .label { font-size: 0.5rem; }
+      .stat-card .info .value { font-size: 1.1rem; }
+      .stat-card .info .label { font-size: 0.55rem; letter-spacing: 0.3px; }
       
-      .panel-header { padding: 4px 0 8px 0; }
-      .panel-brand .brand-name { font-size: 0.9rem; }
-      .panel-brand img { height: 22px; }
-      .panel-user .user-info { font-size: 0.7rem; }
-      .btn-logout { font-size: 0.65rem; padding: 4px 10px; }
+      .panel-header { padding: 6px 0 12px 0; gap: 8px; }
+      .panel-brand .brand-name { font-size: 1.2rem; }
+      .panel-brand img { height: 30px; }
+      .panel-brand .status { font-size: 0.65rem; }
+      .panel-brand .status .dot { width: 7px; height: 7px; }
       
-      .content-card { padding: 8px; min-height: 150px; }
-      .content-card .card-header { margin-bottom: 8px; }
-      .content-card .card-header h3 { font-size: 0.75rem; }
+      .panel-user .user-info { font-size: 0.8rem; gap: 5px; }
+      .panel-user .user-info i { font-size: 1rem; }
+      .panel-user .user-info .badge { font-size: 0.6rem; padding: 3px 10px; }
+      .panel-user .user-info .master-badge { font-size: 0.55rem; padding: 2px 8px; }
+      .btn-logout { font-size: 0.7rem; padding: 5px 12px; border-radius: 20px; }
       
-      .os-card { padding: 8px 10px; margin-bottom: 4px; }
-      .os-card .os-title .cliente { font-size: 0.7rem; }
-      .os-card .os-title .protocolo { font-size: 0.6rem; padding: 1px 6px; }
-      .os-card .os-body { font-size: 0.6rem; gap: 2px 8px; }
+      .content-card { padding: 12px; min-height: 200px; border-radius: 16px; }
+      .content-card .card-header { margin-bottom: 12px; gap: 8px; }
+      .content-card .card-header h3 { font-size: 0.95rem; }
+      .content-card .card-header h3 i { font-size: 0.9rem; }
       
-      .badge-status { font-size: 0.55rem; padding: 1px 6px; }
-      .badge-pagamento { font-size: 0.5rem; padding: 1px 6px; }
+      .os-card { padding: 12px 14px; margin-bottom: 8px; border-radius: 14px; }
+      .os-card .os-title .cliente { font-size: 0.9rem; }
+      .os-card .os-title .protocolo { font-size: 0.75rem; padding: 2px 10px; border-radius: 12px; }
+      .os-card .os-title .codmoni { font-size: 0.8rem; }
+      .os-card .os-body { font-size: 0.7rem; gap: 4px 10px; }
+      .os-card .os-body span i { font-size: 0.65rem; width: 14px; }
       
-      .btn-sm { padding: 3px 8px; font-size: 0.6rem; }
-      .tab { padding: 3px 8px; font-size: 0.6rem; }
+      .badge-status { font-size: 0.65rem; padding: 3px 10px; border-radius: 12px; }
+      .badge-pagamento { font-size: 0.6rem; padding: 2px 10px; border-radius: 12px; }
       
-      .os-card .os-actions .btn-xs { font-size: 0.55rem; padding: 2px 6px; }
+      .btn-sm { padding: 5px 12px; font-size: 0.7rem; border-radius: 20px; gap: 4px; }
+      .tab { padding: 5px 12px; font-size: 0.7rem; border-radius: 20px; }
       
-      .footer-text { font-size: 0.5rem; }
+      .os-card .os-actions .btn-xs { font-size: 0.65rem; padding: 4px 10px; border-radius: 12px; }
+      .os-card .timeline { font-size: 0.7rem; padding: 8px 12px; }
+      
+      .footer-text { font-size: 0.6rem; }
+      .footer { padding: 8px; }
+      
+      .form-group input, .form-group textarea, .form-group select { 
+        font-size: 0.9rem; 
+        padding: 10px 14px; 
+        border-radius: 12px;
+      }
+      .form-group label { font-size: 0.85rem; }
+      
+      .empty-state i { font-size: 2rem; }
+      .empty-state p { font-size: 0.9rem; }
+      .loading { font-size: 1rem; padding: 20px; }
+      
+      .os-check { width: 16px; height: 16px; }
     }
 
     @media (min-width: 1024px) {
@@ -901,8 +985,8 @@
 
     /* ==================== SCROLLBAR GLOBAL ==================== */
     ::-webkit-scrollbar {
-      width: 4px;
-      height: 4px;
+      width: 6px;
+      height: 6px;
     }
 
     ::-webkit-scrollbar-track {
@@ -1024,11 +1108,9 @@
         ]
       };
 
-      // Criar o manifest.json dinamicamente
       const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       
-      // Substituir o link do manifest
       const link = document.querySelector('link[rel="manifest"]');
       if (link) {
         link.href = url;
@@ -1038,7 +1120,6 @@
     // ==================== SERVICE WORKER ====================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        // Criar um service worker básico inline
         const swCode = `
           self.addEventListener('install', function(e) {
             e.waitUntil(
@@ -1069,7 +1150,7 @@
             console.log('✅ Service Worker registrado com sucesso!');
           })
           .catch(error => {
-            console.log('ℹ️ Service Worker não registrado (modo offline não disponível)');
+            console.log('ℹ️ Service Worker não registrado');
           });
       });
     }
@@ -1281,7 +1362,7 @@
     async function renderPanel() {
       if (!currentUser) return;
       
-      profileContent.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i> Carregando...</div>';
+      profileContent.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i> Carregando dados...</div>';
       
       if (ordensListener) {
         off(ordensRef, 'value', ordensListener);
@@ -1320,14 +1401,14 @@
         <div class="card-header">
           <h3><i class="fas fa-user-shield"></i> Painel Operador</h3>
           <div class="actions">
-            <span class="badge" style="background:rgba(255,204,0,0.08);color:#ffcc00;font-size:0.7rem;">
+            <span class="badge" style="background:rgba(255,204,0,0.08);color:#ffcc00;font-size:0.9rem;padding:5px 16px;border-radius:20px;">
               <i class="fas fa-clock"></i> ${user.turno || 'Diurno'}
             </span>
           </div>
         </div>
         
-        <div class="flex-row" style="display:flex;gap:8px;margin-bottom:12px;flex-wrap:wrap;">
-          <input type="text" id="codMoniInput" placeholder="Digite o Código MONI" style="flex:2;min-width:150px;padding:8px 12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:10px;color:#ffcc00;outline:none;">
+        <div class="flex-row" style="display:flex;gap:12px;margin-bottom:16px;flex-wrap:wrap;">
+          <input type="text" id="codMoniInput" placeholder="Digite o Código MONI" style="flex:2;min-width:200px;padding:12px 18px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:14px;color:#ffcc00;font-size:1.1rem;outline:none;">
           <button class="btn-sm btn-primary" id="btnBuscarMoni">
             <i class="fas fa-search"></i> Verificar
           </button>
@@ -1372,17 +1453,17 @@
       if (existente) {
         msgDiv.classList.remove('hidden');
         msgDiv.innerHTML = `
-          <div style="background:rgba(255,204,0,0.04);border:1px solid rgba(255,204,0,0.08);border-radius:10px;padding:12px;margin-bottom:12px;">
-            <i class="fas fa-exclamation-triangle" style="color:#ffcc00;"></i>
-            <strong style="color:#ffcc00;">Já existe O.S. aberta para este Código MONI</strong><br>
-            <span style="color:rgba(255,255,255,0.4);font-size:0.8rem;">
+          <div style="background:rgba(255,204,0,0.04);border:1px solid rgba(255,204,0,0.08);border-radius:14px;padding:16px;margin-bottom:16px;">
+            <i class="fas fa-exclamation-triangle" style="color:#ffcc00;font-size:1.2rem;"></i>
+            <strong style="color:#ffcc00;font-size:1.1rem;">Já existe O.S. aberta para este Código MONI</strong><br>
+            <span style="color:rgba(255,255,255,0.5);font-size:1rem;">
               Protocolo: <strong style="color:#ffcc00;">${existente.protocolo}</strong> | 
               Operador: ${existente.operador}<br>
               Data: ${existente.dataAbertura} | Hora: ${existente.horaAbertura}<br>
               Status: <span class="badge-status ${getStatusBadgeClass(existente.status)}">${existente.status}</span>
             </span>
             <br>
-            <button class="btn-sm btn-outline" id="btnCancelarExistente" style="margin-top:6px;">Cancelar</button>
+            <button class="btn-sm btn-outline" id="btnCancelarExistente" style="margin-top:10px;">Cancelar</button>
           </div>`;
         
         document.getElementById('btnCancelarExistente').addEventListener('click', () => {
@@ -1393,8 +1474,8 @@
         msgDiv.classList.add('hidden');
         novaDiv.classList.remove('hidden');
         novaDiv.innerHTML = `
-          <div style="background:rgba(255,204,0,0.03);border:1px solid rgba(255,204,0,0.08);border-radius:10px;padding:14px;margin-bottom:12px;">
-            <h4 style="color:#ffcc00;font-size:0.9rem;margin-bottom:8px;"><i class="fas fa-plus-circle"></i> Nova Ordem de Serviço</h4>
+          <div style="background:rgba(255,204,0,0.03);border:1px solid rgba(255,204,0,0.08);border-radius:14px;padding:18px;margin-bottom:16px;">
+            <h4 style="color:#ffcc00;font-size:1.15rem;margin-bottom:14px;"><i class="fas fa-plus-circle"></i> Nova Ordem de Serviço</h4>
             <div class="form-group">
               <input type="text" id="nomeCliente" placeholder="Nome do Cliente">
             </div>
@@ -1483,7 +1564,7 @@
               ${o.operador === currentUser.usuario ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
             </div>
             <div class="os-status">
-              ${o.prioridade ? `<span style="font-size:0.6rem;color:rgba(255,255,255,0.2);">${o.prioridade}</span>` : ''}
+              ${o.prioridade ? `<span style="font-size:0.8rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
               <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
             </div>
           </div>
@@ -1566,27 +1647,27 @@
         const userList = Object.entries(users).map(([key, value]) => ({ id: key, ...value }));
         
         area.innerHTML = `
-          <div style="background:rgba(255,204,0,0.03);border:1px solid rgba(255,204,0,0.08);border-radius:10px;padding:14px;margin-bottom:12px;">
-            <h4 style="color:#ffcc00;font-size:0.9rem;margin-bottom:8px;"><i class="fas fa-users"></i> Gerenciar Usuários</h4>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px;">
-              <input type="text" id="novoUsuarioNome" placeholder="Nome" style="flex:1;min-width:100px;padding:8px 12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:8px;color:#fff;outline:none;">
-              <input type="password" id="novoUsuarioSenha" placeholder="Senha" style="flex:1;min-width:80px;padding:8px 12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:8px;color:#fff;outline:none;">
-              <select id="novoUsuarioFuncao" style="padding:8px 12px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:8px;color:#ffcc00;outline:none;">
+          <div style="background:rgba(255,204,0,0.03);border:1px solid rgba(255,204,0,0.08);border-radius:14px;padding:18px;margin-bottom:16px;">
+            <h4 style="color:#ffcc00;font-size:1.15rem;margin-bottom:14px;"><i class="fas fa-users"></i> Gerenciar Usuários</h4>
+            <div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:14px;">
+              <input type="text" id="novoUsuarioNome" placeholder="Nome" style="flex:1;min-width:140px;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#fff;font-size:1rem;outline:none;">
+              <input type="password" id="novoUsuarioSenha" placeholder="Senha" style="flex:1;min-width:120px;padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#fff;font-size:1rem;outline:none;">
+              <select id="novoUsuarioFuncao" style="padding:12px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#ffcc00;font-size:1rem;outline:none;">
                 <option value="Operador">Operador</option>
                 <option value="Tecnico">Técnico</option>
                 <option value="Gestor">Gestor</option>
               </select>
               <button class="btn-sm btn-primary" id="btnAdicionarUsuario"><i class="fas fa-plus"></i> Adicionar</button>
             </div>
-            <div id="addUserMsg" style="font-size:0.8rem;margin-bottom:8px;"></div>
+            <div id="addUserMsg" style="font-size:1rem;margin-bottom:12px;"></div>
             <div class="user-list">
-              ${userList.length === 0 ? '<p style="color:rgba(255,255,255,0.2);font-size:0.8rem;">Nenhum usuário cadastrado.</p>' : 
+              ${userList.length === 0 ? '<p style="color:rgba(255,255,255,0.2);font-size:1rem;">Nenhum usuário cadastrado.</p>' : 
                 userList.map(u => `
                   <div class="user-item">
                     <div>
                       <span class="user-name">${u.usuario}</span>
                       <span class="user-role">${u.funcao}</span>
-                      ${u.turno ? `<span style="font-size:0.6rem;color:rgba(255,255,255,0.2);">Turno: ${u.turno}</span>` : ''}
+                      ${u.turno ? `<span style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Turno: ${u.turno}</span>` : ''}
                     </div>
                     <button class="btn-xs danger" onclick="window.removerUsuario('${u.id}')" style="color:#ff4444;border-color:rgba(255,68,68,0.1);">
                       <i class="fas fa-trash"></i>
@@ -1686,7 +1767,7 @@
               <span class="cliente">${o.cliente}</span>
             </div>
             <div class="os-status">
-              ${o.prioridade ? `<span style="font-size:0.6rem;color:rgba(255,255,255,0.2);">${o.prioridade}</span>` : ''}
+              ${o.prioridade ? `<span style="font-size:0.8rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
               <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
             </div>
           </div>
@@ -1778,7 +1859,7 @@
           </div>
           <div class="os-body">
             <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
-            ${o.prioridade ? `<span style="color:rgba(255,255,255,0.2);">${o.prioridade}</span>` : ''}
+            ${o.prioridade ? `<span style="color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
             ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
             ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
           </div>
