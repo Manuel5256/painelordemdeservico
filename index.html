@@ -8,10 +8,10 @@
   <meta name="description" content="Sistema de monitoramento e ordens de serviço TOTAL">
   <meta name="theme-color" content="#ffcc00">
   
-  <!-- PWA - Configurações completas -->
-  <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIlRPVEFMIC0gQ2VudHJhbCBkZSBPLlMuIiwKICAic2hvcnRfbmFtZSI6ICJUT1RBTCIsCiAgImRlc2NyaXB0aW9uIjogIlNpc3RlbWEgZGUgbW9uaXRvcmFtZW50byBlIG9yZGVucyBkZSBzZXJ2acOnbyBURVRBTCIsCiAgInN0YXJ0X3VybCI6ICIuIiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiYmFja2dyb3VuZF9jb2xvciI6ICIjZmZjYzAwIiwKICAidGhlbWVfY29sb3IiOiAiI2ZmY2MwMCIsCiAgImljb25zIjogWwogICAgewogICAgICAic3JjIjogImxvZ28ucG5nIiwKICAgICAgInNpemVzIjogIjE5MngxOTIiLAogICAgICAidHlwZSI6ICJpbWFnZS9wbmciLAogICAgICAicHVycG9zZSI6ICJhbnkgbWFzayBhbnkgc2l6ZSIKICAgIH0sCiAgICB7CiAgICAgICJzcmMiOiAibG9nby5wbmciLAogICAgICAic2l6ZXMiOiAiNTEyeDUxMiIsCiAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICJwdXJwb3NlIjogImFueSBtYXNrIGFueSBzaXplIgogICAgfQogIF0sCiAgInN0YXJ0X3VybCI6ICIuIiwKICAic2NvcGUiOiAiZnVsbHNjcmVlbiIsCiAgIm9yaWVudGF0aW9uIjogInBvcnRyYWl0IiwKICAiZGlzcGxheSI6ICJzdGFuZGFsb25lIiwKICAiY2F0ZWdvcnkiOiAicHJvZHVjdGl2aXR5IiwKICAic2hvcnRfbmFtZSI6ICJUT1RBTCIsCiAgInByZWZlcl9yZWxhdGVkX2FwcGxpY2F0aW9ucyI6IFtdLAogICJpZCI6ICIvdG90YWwtb3MiLAogICJkaXJlY3Rpb25zIjogWwogICAgewogICAgICAibmFtZSI6ICJJbnN0YWxhciBBcHAiLAogICAgICAic3RhcnRfdXJsIjogIi4iLAogICAgICAiZGVzY3JpcHRpb24iOiAiSW5zdGFsYXIgbyBhcGxpY2F0aXZvIFRPVEFMIG5hIHRlbGEgaW5pY2lhbCIsCiAgICAgICJpY29ucyI6IFsKICAgICAgICB7CiAgICAgICAgICAic3JjIjogImxvZ28ucG5nIiwKICAgICAgICAgICJzaXplcyI6ICIxOTJ4MTkyIiwKICAgICAgICAgICJ0eXBlIjogImltYWdlL3BuZyIsCiAgICAgICAgICAicHVycG9zZSI6ICJhbnkgbWFzayBhbnkgc2l6ZSIKICAgICAgICB9CiAgICAgIF0KICAgIH0KICBdLAogICJzaGFyZV90YXJnZXQiOiAiX2JsYW5rIgp9">
+  <!-- PWA - Manifest via JavaScript (mais confiável) -->
+  <link rel="manifest" href="manifest.json">
   
-  <!-- Ícones para diferentes tamanhos -->
+  <!-- Ícones -->
   <link rel="icon" type="image/png" sizes="192x192" href="logo.png">
   <link rel="icon" type="image/png" sizes="512x512" href="logo.png">
   <link rel="apple-touch-icon" href="logo.png">
@@ -996,23 +996,90 @@
   </div>
 
   <script>
-    // ==================== SERVICE WORKER REGISTRATION ====================
+    // ==================== CRIAR MANIFEST.JSON DINAMICAMENTE ====================
+    (function() {
+      const manifest = {
+        "name": "TOTAL - Central de O.S.",
+        "short_name": "TOTAL",
+        "description": "Sistema de monitoramento e ordens de serviço TOTAL",
+        "start_url": ".",
+        "display": "standalone",
+        "background_color": "#ffcc00",
+        "theme_color": "#ffcc00",
+        "orientation": "portrait",
+        "scope": ".",
+        "icons": [
+          {
+            "src": "logo.png",
+            "sizes": "192x192",
+            "type": "image/png",
+            "purpose": "any maskable"
+          },
+          {
+            "src": "logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any maskable"
+          }
+        ]
+      };
+
+      // Criar o manifest.json dinamicamente
+      const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      
+      // Substituir o link do manifest
+      const link = document.querySelector('link[rel="manifest"]');
+      if (link) {
+        link.href = url;
+      }
+    })();
+
+    // ==================== SERVICE WORKER ====================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
+        // Criar um service worker básico inline
+        const swCode = `
+          self.addEventListener('install', function(e) {
+            e.waitUntil(
+              caches.open('total-v1').then(function(cache) {
+                return cache.addAll([
+                  '/',
+                  '/index.html',
+                  '/logo.png'
+                ]);
+              })
+            );
+          });
+
+          self.addEventListener('fetch', function(e) {
+            e.respondWith(
+              caches.match(e.request).then(function(response) {
+                return response || fetch(e.request);
+              })
+            );
+          });
+        `;
+        
+        const blob = new Blob([swCode], { type: 'application/javascript' });
+        const swUrl = URL.createObjectURL(blob);
+        
+        navigator.serviceWorker.register(swUrl)
           .then(registration => {
             console.log('✅ Service Worker registrado com sucesso!');
           })
           .catch(error => {
-            console.log('❌ Falha ao registrar Service Worker:', error);
+            console.log('ℹ️ Service Worker não registrado (modo offline não disponível)');
           });
       });
     }
+  </script>
 
-    // ==================== FIREBASE ====================
+  <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-app.js";
     import { getDatabase, ref, set, get, update, push, onValue, off, remove } from "https://www.gstatic.com/firebasejs/12.17.0/firebase-database.js";
 
+    // ==================== FIREBASE ====================
     const firebaseConfig = {
       apiKey: "AIzaSyDbHbOk08Q_8sVlYFNmqrMjl29ssT4KyqM",
       authDomain: "totalpainel-760ba.firebaseapp.com",
