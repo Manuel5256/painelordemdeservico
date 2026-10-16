@@ -438,6 +438,80 @@
       margin-left: auto;
     }
 
+    /* ===== BARRA DE PESQUISA ===== */
+    .search-bar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 204, 0, 0.12);
+      border-radius: 14px;
+      padding: 8px 14px;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+      transition: all 0.3s;
+    }
+
+    .search-bar:focus-within {
+      border-color: rgba(255, 204, 0, 0.4);
+      box-shadow: 0 0 20px rgba(255, 204, 0, 0.06);
+    }
+
+    .search-bar i.fa-search {
+      color: rgba(255, 204, 0, 0.5);
+      font-size: 0.95rem;
+    }
+
+    .search-bar input {
+      flex: 1;
+      background: transparent;
+      border: none;
+      outline: none;
+      color: #ffcc00;
+      font-size: 0.95rem;
+      font-weight: 500;
+      min-width: 0;
+    }
+
+    .search-bar input::placeholder {
+      color: rgba(255, 255, 255, 0.3);
+      font-weight: 400;
+    }
+
+    .search-bar .clear-search {
+      background: transparent;
+      border: none;
+      color: rgba(255, 255, 255, 0.3);
+      cursor: pointer;
+      font-size: 0.95rem;
+      padding: 2px 4px;
+      transition: all 0.25s;
+      display: none;
+    }
+
+    .search-bar .clear-search:hover {
+      color: #ff4444;
+    }
+
+    .search-bar .clear-search.visible {
+      display: block;
+    }
+
+    .search-bar .search-count {
+      color: rgba(255, 204, 0, 0.6);
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      background: rgba(255, 204, 0, 0.08);
+      border-radius: 12px;
+      white-space: nowrap;
+      display: none;
+    }
+
+    .search-bar .search-count.visible {
+      display: block;
+    }
+
     .btn-sm {
       padding: 8px 16px;
       font-size: 0.85rem;
@@ -531,6 +605,16 @@
       padding: 3px 8px;
       border-radius: 10px;
       letter-spacing: 0.5px;
+    }
+
+    .os-card.highlight-search {
+      animation: highlightSearch 1.5s ease;
+      border-color: rgba(255, 204, 0, 0.5) !important;
+    }
+
+    @keyframes highlightSearch {
+      0%, 100% { background: rgba(255,255,255,0.03); }
+      50% { background: rgba(255, 204, 0, 0.12); }
     }
 
     .os-card .os-header {
@@ -687,6 +771,16 @@
 
     .os-card .os-actions .btn-xs.btn-prioridade:hover {
       background: rgba(255, 204, 0, 0.08);
+    }
+
+    .os-card .os-actions .btn-xs.btn-editar {
+      border-color: rgba(0, 102, 255, 0.25);
+      color: #4d9aff;
+    }
+
+    .os-card .os-actions .btn-xs.btn-editar:hover {
+      background: rgba(0, 102, 255, 0.08);
+      border-color: rgba(0, 102, 255, 0.4);
     }
 
     .os-card .timeline {
@@ -1755,6 +1849,10 @@
       .panel-user .user-info { font-size: 0.85rem; }
       .btn-logout { font-size: 0.75rem; padding: 6px 14px; }
       
+      .search-bar { padding: 6px 12px; border-radius: 12px; }
+      .search-bar input { font-size: 0.85rem; }
+      .search-bar .search-count { font-size: 0.6rem; padding: 2px 8px; }
+      
       .bottom-nav { 
         padding: 8px 0 12px 0; 
         margin: 0 -8px; 
@@ -1850,6 +1948,12 @@
       
       .os-card .os-actions .btn-xs { font-size: 0.55rem; padding: 3px 8px; border-radius: 10px; }
       .os-card .timeline { font-size: 0.6rem; padding: 6px 10px; }
+      
+      .search-bar { padding: 6px 10px; border-radius: 10px; margin-bottom: 8px; gap: 6px; }
+      .search-bar input { font-size: 0.75rem; }
+      .search-bar i.fa-search { font-size: 0.8rem; }
+      .search-bar .clear-search { font-size: 0.8rem; }
+      .search-bar .search-count { font-size: 0.55rem; padding: 2px 6px; border-radius: 8px; }
       
       .bottom-nav { 
         padding: 6px 0 10px 0; 
@@ -2072,7 +2176,7 @@
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         const swCode = `
-          const CACHE_NAME = 'total-v3';
+          const CACHE_NAME = 'total-v4';
           const APP_SHELL = [
             './',
             './index.html',
@@ -2182,6 +2286,7 @@
     let isOnline = navigator.onLine;
     let ordensCacheLocal = [];
     let osDetalheAbertoId = null;
+    let termoBusca = '';
 
     // Refs DOM
     const homeScreen = document.getElementById('homeScreen');
@@ -2267,6 +2372,10 @@
 
     function isMaster() {
       return currentUser && currentUser.isMaster === true;
+    }
+
+    function isOperador() {
+      return currentUser && currentUser.funcao === 'Operador';
     }
 
     function salvarSessao(user) {
@@ -2624,6 +2733,7 @@
     async function entrarNoSistema(user) {
       currentUser = user;
       abaAtual = 'minhas';
+      termoBusca = '';
       
       userName.textContent = user.usuario;
       userRole.textContent = user.funcao;
@@ -2665,11 +2775,13 @@
       }
       currentUser = null;
       abaAtual = 'minhas';
+      termoBusca = '';
       removerSessao();
       panelScreen.classList.remove('active');
       homeScreen.classList.add('active');
       dashboardArea.style.display = '';
       osDetailScreen.classList.remove('active');
+      osDetalheAbertoId = null;
     });
 
     // ==================== DASHBOARD ====================
@@ -2748,13 +2860,11 @@
         controlarVisibilidadeDashboard();
         renderPanelView();
         
-        // Se a tela expandida estiver aberta, atualiza em tempo real
         if (osDetalheAbertoId) {
           const ainda = mescladas.find(o => o.id === osDetalheAbertoId);
           if (ainda) {
             renderDetalhesConteudo(ainda);
           } else {
-            // O.S. foi removida
             osDetailScreen.classList.remove('active');
             osDetalheAbertoId = null;
           }
@@ -2784,6 +2894,142 @@
       } else if (currentUser.funcao === 'Tecnico') {
         renderTecnico(ordens);
       }
+    }
+
+    // ==================== FILTRO DE BUSCA (SOMENTE OPERADOR) ====================
+    function filtrarPorBusca(lista) {
+      // Busca ativa apenas para Operadores
+      if (!isOperador()) return lista;
+      if (!termoBusca || !termoBusca.trim()) return lista;
+      const termo = termoBusca.trim().toLowerCase();
+      return lista.filter(o => {
+        const codMoni = (o.codMoni || '').toLowerCase();
+        const cliente = (o.cliente || '').toLowerCase();
+        const endereco = (o.endereco || '').toLowerCase();
+        const operador = (o.operador || '').toLowerCase();
+        const tecnico = (o.tecnico || '').toLowerCase();
+        return codMoni.includes(termo) || 
+               cliente.includes(termo) || 
+               endereco.includes(termo) ||
+               operador.includes(termo) ||
+               tecnico.includes(termo);
+      });
+    }
+
+    function renderSearchBar() {
+      // Barra de pesquisa visível apenas para Operadores
+      if (!isOperador()) return '';
+      return `
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" id="searchInput" placeholder="Pesquisar por Código MONI, cliente, endereço..." value="${escaparHTML(termoBusca)}" autocomplete="off">
+          <span class="search-count" id="searchCount"></span>
+          <button class="clear-search ${termoBusca ? 'visible' : ''}" id="clearSearch" title="Limpar">
+            <i class="fas fa-times-circle"></i>
+          </button>
+        </div>
+      `;
+    }
+
+    function bindSearchBar() {
+      if (!isOperador()) return;
+      
+      const input = document.getElementById('searchInput');
+      const clearBtn = document.getElementById('clearSearch');
+      
+      if (input) {
+        input.addEventListener('input', (e) => {
+          termoBusca = e.target.value;
+          if (clearBtn) clearBtn.classList.toggle('visible', !!termoBusca);
+          atualizarListaComBusca();
+        });
+        
+        input.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            termoBusca = '';
+            input.value = '';
+            if (clearBtn) clearBtn.classList.remove('visible');
+            atualizarListaComBusca();
+          }
+        });
+      }
+      
+      if (clearBtn) {
+        clearBtn.addEventListener('click', () => {
+          termoBusca = '';
+          if (input) input.value = '';
+          clearBtn.classList.remove('visible');
+          atualizarListaComBusca();
+          if (input) input.focus();
+        });
+      }
+    }
+
+    function atualizarListaComBusca() {
+      if (!currentUser) return;
+      if (!isOperador()) return; // Busca só para operadores
+      const ordens = window.ordensLista || [];
+      
+      const countEl = document.getElementById('searchCount');
+      if (countEl) {
+        if (termoBusca && termoBusca.trim()) {
+          const baseList = obterListaBase(ordens);
+          const filtrada = filtrarPorBusca(baseList);
+          countEl.textContent = `${filtrada.length} de ${baseList.length}`;
+          countEl.classList.add('visible');
+        } else {
+          countEl.classList.remove('visible');
+        }
+      }
+      
+      if (currentUser.funcao === 'Operador') {
+        if (abaAtual !== 'minhas') listarOrdensOperador(ordens);
+      }
+    }
+
+    function obterListaBase(ordens) {
+      let lista = [];
+      
+      if (isMaster()) {
+        switch(abaAtual) {
+          case 'minhas': lista = ordens.filter(o => o.status !== 'FINALIZADA'); break;
+          case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+          case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+          case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+          case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+          default: lista = ordens;
+        }
+      } else if (currentUser.funcao === 'Operador') {
+        switch(abaAtual) {
+          case 'minhas': lista = ordens.filter(o => o.operador === currentUser.usuario && o.status !== 'FINALIZADA'); break;
+          case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+          case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+          case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+          case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+          default: lista = ordens;
+        }
+      } else if (currentUser.funcao === 'Gestor') {
+        switch(abaAtual) {
+          case 'minhas': lista = ordens.filter(o => o.status !== 'FINALIZADA'); break;
+          case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+          case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+          case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+          case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+          default: lista = ordens;
+        }
+      } else if (currentUser.funcao === 'Tecnico') {
+        const user = currentUser.usuario;
+        switch(abaAtual) {
+          case 'minhas': lista = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA'); break;
+          case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+          case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+          case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+          case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+          default: lista = ordens;
+        }
+      }
+      
+      return lista;
     }
 
     // ==================== ADD TIMELINE ====================
@@ -2835,7 +3081,6 @@
       setupBottomNav(window.ordensLista);
       renderPanelView();
       
-      // Atualiza a tela expandida se estiver aberta
       if (osDetalheAbertoId === osId) {
         const atualizada = (window.ordensLista || []).find(o => o.id === osId);
         if (atualizada) renderDetalhesConteudo(atualizada);
@@ -2882,11 +3127,10 @@
       const isMinhaOS = isTecnico && os.tecnico === user.usuario;
       const podeAssumir = isTecnico && (!os.tecnico || os.tecnico === '' || isMinhaOS);
       const isGestorOrMaster = user && (user.funcao === 'Gestor' || isMaster());
-      const isOperador = user && user.funcao === 'Operador';
+      const isOperadorUser = user && user.funcao === 'Operador';
       
       let html = '';
       
-      // Badges
       html += '<div class="detail-badges">';
       if (os.prioridade) {
         html += `<span class="badge-prioridade ${getPrioridadeBadgeClass(os.prioridade)}">${escaparHTML(os.prioridade)}</span>`;
@@ -2901,7 +3145,6 @@
       }
       html += '</div>';
       
-      // Cliente
       html += `
         <div class="detail-cliente-destaque">
           <div class="label-cli">Cliente</div>
@@ -2909,7 +3152,6 @@
         </div>
       `;
       
-      // Observação completa
       if (os.observacao && os.observacao.trim()) {
         html += `
           <div class="detail-section">
@@ -2919,7 +3161,6 @@
         `;
       }
       
-      // Detalhes
       html += `
         <div class="detail-section">
           <h4><i class="fas fa-info-circle"></i> Detalhes</h4>
@@ -2967,7 +3208,6 @@
         </div>
       `;
       
-      // Timeline
       if (os.timeline && os.timeline.length > 0) {
         html += `
           <div class="detail-section">
@@ -2987,7 +3227,6 @@
       // ============ AÇÕES CONTEXTUAIS ============
       let acoesHTML = '';
       
-      // Ações do TÉCNICO
       if (isTecnico && podeAssumir) {
         acoesHTML += `
           <button class="detail-btn detail-btn-assumir" onclick="window.detailAssumir('${os.id}')">
@@ -3006,8 +3245,15 @@
         `;
       }
       
-      // Ações do OPERADOR (reabrir se finalizada)
-      if (isOperador && os.status === 'FINALIZADA') {
+      // Ações do OPERADOR — QUALQUER operador pode editar O.S. ABERTA
+      if (isOperadorUser && os.status === 'ABERTA') {
+        acoesHTML += `
+          <button class="detail-btn detail-btn-editar" onclick="window.detailEditarOperador('${os.id}')">
+            <i class="fas fa-pen"></i> Editar O.S.
+          </button>
+        `;
+      }
+      if (isOperadorUser && os.status === 'FINALIZADA') {
         acoesHTML += `
           <button class="detail-btn detail-btn-reabrir" onclick="window.detailReabrir('${os.id}')">
             <i class="fas fa-redo"></i> Reabrir O.S.
@@ -3015,7 +3261,6 @@
         `;
       }
       
-      // Ações do GESTOR/MASTER
       if (isGestorOrMaster) {
         acoesHTML += `
           <button class="detail-btn detail-btn-prioridade" onclick="window.detailDefinirPrioridade('${os.id}')">
@@ -3057,7 +3302,6 @@
       detailBody.innerHTML = html;
     }
 
-    // Fechar
     document.getElementById('btnVoltarDetalhes').addEventListener('click', () => {
       osDetailScreen.classList.remove('active');
       osDetalheAbertoId = null;
@@ -3071,56 +3315,29 @@
     });
 
     // ============ WRAPPERS DE AÇÃO NA TELA EXPANDIDA ============
-    window.detailAssumir = function(osId) {
-      window.assumirOS(osId);
-    };
-
-    window.detailPendente = function(osId) {
-      window.pendenteOS(osId);
-    };
-
-    window.detailFinalizar = function(osId) {
-      window.finalizarOS(osId);
-    };
-
-    window.detailReabrir = function(osId) {
-      window.reabrirOS(osId);
-    };
-
-    window.detailDefinirPrioridade = function(osId) {
-      window.definirPrioridadeOS(osId);
-    };
-
-    window.detailTransferir = function(osId) {
-      window.transferirOS(osId);
-    };
-
-    window.detailEditar = function(osId) {
-      window.editarOS(osId);
-    };
-
-    window.detailRemover = function(osId) {
-      window.removerOS(osId);
-    };
+    window.detailAssumir = function(osId) { window.assumirOS(osId); };
+    window.detailPendente = function(osId) { window.pendenteOS(osId); };
+    window.detailFinalizar = function(osId) { window.finalizarOS(osId); };
+    window.detailReabrir = function(osId) { window.reabrirOS(osId); };
+    window.detailDefinirPrioridade = function(osId) { window.definirPrioridadeOS(osId); };
+    window.detailTransferir = function(osId) { window.transferirOS(osId); };
+    window.detailEditar = function(osId) { window.editarOS(osId); };
+    window.detailEditarOperador = function(osId) { window.editarOSOperador(osId); };
+    window.detailRemover = function(osId) { window.removerOS(osId); };
 
     // ==================== LISTAGEM OPERADOR ====================
     function listarOrdensOperador(ordens) {
-      let lista = [];
-      
-      switch(abaAtual) {
-        case 'minhas': lista = ordens.filter(o => o.operador === currentUser.usuario && o.status !== 'FINALIZADA'); break;
-        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
-        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
-        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
-        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
-        default: lista = ordens;
-      }
+      let lista = obterListaBase(ordens);
+      lista = filtrarPorBusca(lista);
       
       const div = document.getElementById('listaOperador');
       if (!div) return;
       
       if (lista.length === 0) {
-        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
+        const msgVazia = termoBusca && termoBusca.trim()
+          ? `<div class="empty-state"><i class="fas fa-search"></i><p>Nenhum resultado para "${escaparHTML(termoBusca)}"</p></div>`
+          : `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
+        div.innerHTML = msgVazia;
         return;
       }
       
@@ -3151,11 +3368,14 @@
               <span>${escaparHTML(o.observacao)}</span>
             </div>
           ` : ''}
-          ${o.status === 'FINALIZADA' && currentUser.funcao === 'Operador' ? `
-            <div class="os-actions">
-              <button class="btn-xs" onclick="event.stopPropagation(); window.reabrirOS('${o.id}')"><i class="fas fa-redo"></i> Reabrir</button>
-            </div>
-          ` : ''}
+          <div class="os-actions" onclick="event.stopPropagation();">
+            ${o.status === 'ABERTA' ? `
+              <button class="btn-xs btn-editar" onclick="window.editarOSOperador('${o.id}')"><i class="fas fa-pen"></i> Editar</button>
+            ` : ''}
+            ${o.status === 'FINALIZADA' && currentUser.funcao === 'Operador' ? `
+              <button class="btn-xs" onclick="window.reabrirOS('${o.id}')"><i class="fas fa-redo"></i> Reabrir</button>
+            ` : ''}
+          </div>
           ${o.timeline && o.timeline.length > 0 ? `
             <div class="timeline timeline-infinito">
               ${o.timeline.map(t => `<div><span class="time">🕐 ${escaparHTML(t.hora)}</span> ${escaparHTML(t.texto)}</div>`).join('')}
@@ -3217,25 +3437,20 @@
           <div class="card-header">
             <h3><i class="${icone}"></i> ${titulo}</h3>
           </div>
+          ${renderSearchBar()}
           <div class="os-list" id="listaOperador"></div>
         `;
         
+        bindSearchBar();
         setTimeout(() => listarOrdensOperador(ordens), 30);
       }
     }
 
     // ==================== LISTAGEM GESTOR ====================
     function listarOrdensGestor(ordens) {
-      let lista = [];
+      let lista = obterListaBase(ordens);
       
-      switch(abaAtual) {
-        case 'minhas': lista = ordens.filter(o => o.status !== 'FINALIZADA'); break;
-        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
-        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
-        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
-        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
-        default: lista = ordens;
-      }
+      // Sem busca para gestores
       
       lista.sort((a, b) => getPrioridadeOrdenacao(a.prioridade) - getPrioridadeOrdenacao(b.prioridade));
       
@@ -3324,16 +3539,9 @@
     // ==================== LISTAGEM TÉCNICO ====================
     function listarOrdensTecnico(ordens) {
       const user = currentUser.usuario;
-      let lista = [];
+      let lista = obterListaBase(ordens);
       
-      switch(abaAtual) {
-        case 'minhas': lista = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA'); break;
-        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
-        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
-        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
-        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
-        default: lista = ordens;
-      }
+      // Sem busca para técnicos
       
       lista.sort((a, b) => getPrioridadeOrdenacao(a.prioridade) - getPrioridadeOrdenacao(b.prioridade));
       
@@ -3493,8 +3701,15 @@
               Status: <span class="badge-status ${getStatusBadgeClass(existente.status)}">${escaparHTML(existente.status)}</span>
             </span>
             <br>
+            <button class="btn-sm btn-outline" id="btnAbrirExistente" style="margin-top:10px;margin-right:6px;">
+              <i class="fas fa-eye"></i> Ver O.S.
+            </button>
             <button class="btn-sm btn-outline" id="btnCancelarExistente" style="margin-top:10px;">Cancelar</button>
           </div>`;
+        
+        document.getElementById('btnAbrirExistente').addEventListener('click', () => {
+          window.abrirDetalhesOS(existente.id);
+        });
         
         document.getElementById('btnCancelarExistente').addEventListener('click', () => {
           msgDiv.classList.add('hidden');
@@ -3723,6 +3938,57 @@
       const result = await executarUpdate(osId, dados, timelineTexto);
       
       showToast(result.offline ? '📴 Editado offline.' : '✅ Editada!', result.offline ? 'warn' : 'success');
+    };
+
+    // ==================== EDITAR O.S. (OPERADOR — QUALQUER UM PODE EDITAR ABERTA) ====================
+    window.editarOSOperador = async function(osId) {
+      const os = (window.ordensLista || []).find(o => o.id === osId);
+      if (!os) { 
+        showToast('❌ O.S. não encontrada!', 'error'); 
+        return; 
+      }
+
+      if (currentUser.funcao !== 'Operador') {
+        showToast('❌ Apenas operadores podem usar esta ação.', 'error');
+        return;
+      }
+      if (os.status !== 'ABERTA') {
+        showToast('❌ Só é possível editar O.S. com status ABERTA.', 'warn', 4000);
+        return;
+      }
+
+      const novoCliente = prompt('👤 Nome do Cliente:', os.cliente || '');
+      if (novoCliente === null) return;
+      if (!novoCliente.trim()) {
+        showToast('⚠️ Nome do cliente é obrigatório!', 'warn');
+        return;
+      }
+
+      const novoEndereco = prompt('📍 Endereço:', os.endereco || 'Não informado');
+      if (novoEndereco === null) return;
+
+      const novaObs = prompt('📝 Observação:', os.observacao || '');
+      if (novaObs === null) return;
+
+      const dados = {
+        cliente: novoCliente.trim(),
+        endereco: (novoEndereco || 'Não informado').trim(),
+        observacao: (novaObs || '').trim()
+      };
+
+      const { data, hora } = getNow();
+      const donoOriginal = os.operador && os.operador !== currentUser.usuario 
+        ? ` (O.S. original de ${os.operador})` 
+        : '';
+      const timelineTexto = `✏️ Operador ${currentUser.usuario} editou a O.S. em ${data} às ${hora}${donoOriginal}`;
+
+      const result = await executarUpdate(osId, dados, timelineTexto);
+
+      if (result.offline) {
+        showToast('📴 O.S. editada offline. Sincroniza quando conectar.', 'warn', 3500);
+      } else {
+        showToast('✅ O.S. editada com sucesso!', 'success');
+      }
     };
 
     window.removerOS = async function(osId) {
@@ -3983,6 +4249,8 @@
     console.log('✅ TOTAL - Sistema de Monitoramento');
     console.log('👨‍💻 Desenvolvido por Manuel Francisco');
     console.log('📌 TELA EXPANDIDA + MODO OFFLINE + ABAS TÉCNICAS');
+    console.log('✏️ QUALQUER OPERADOR PODE EDITAR O.S. ABERTAS');
+    console.log('🔎 PESQUISA POR CÓDIGO MONI — APENAS PARA OPERADORES');
     console.log('🎯 Clique em qualquer O.S. para abrir os detalhes completos');
   </script>
 </body>
