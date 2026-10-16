@@ -225,48 +225,19 @@
       transition: all 0.3s ease;
     }
 
-    /* ===== STATUS ONLINE/OFFLINE ===== */
-    .status-badge {
+    .panel-brand .status {
+      color: rgba(255,255,255,0.3);
+      font-size: 0.85rem;
       display: flex;
       align-items: center;
       gap: 6px;
-      padding: 5px 12px;
-      border-radius: 20px;
-      font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.5px;
-      transition: all 0.3s;
     }
 
-    .status-badge.online {
-      background: rgba(0, 204, 102, 0.12);
-      color: #00cc66;
-      border: 1px solid rgba(0, 204, 102, 0.2);
-    }
-
-    .status-badge.offline {
-      background: rgba(255, 68, 68, 0.12);
-      color: #ff4444;
-      border: 1px solid rgba(255, 68, 68, 0.25);
-      animation: pulseOffline 2s infinite;
-    }
-
-    .status-badge.pendente-sync {
-      background: rgba(255, 204, 0, 0.12);
-      color: #ffcc00;
-      border: 1px solid rgba(255, 204, 0, 0.25);
-    }
-
-    @keyframes pulseOffline {
-      0%, 100% { opacity: 1; }
-      50% { opacity: 0.6; }
-    }
-
-    .status-badge .dot {
+    .panel-brand .status .dot {
       width: 8px;
       height: 8px;
+      background: #00ff44;
       border-radius: 50%;
-      background: currentColor;
       display: inline-block;
       animation: pulse 2s infinite;
     }
@@ -512,27 +483,6 @@
     .os-card.prioridade-normal { border-left: 4px solid #ffcc00; }
     .os-card.prioridade-baixa { border-left: 4px solid #0066ff; }
     .os-card.minha-os { border-color: rgba(255, 204, 0, 0.25); }
-
-    /* Card aguardando sincronização */
-    .os-card.pendente-sync {
-      border-color: rgba(255, 204, 0, 0.5) !important;
-      background: rgba(255, 204, 0, 0.04);
-      position: relative;
-    }
-
-    .os-card.pendente-sync::after {
-      content: '⏳ Aguardando sync';
-      position: absolute;
-      top: 8px;
-      right: 8px;
-      background: rgba(255, 204, 0, 0.15);
-      color: #ffcc00;
-      font-size: 0.6rem;
-      font-weight: 700;
-      padding: 3px 8px;
-      border-radius: 10px;
-      letter-spacing: 0.5px;
-    }
 
     .os-card .os-header {
       display: flex;
@@ -972,6 +922,10 @@
       box-shadow: 0 4px 20px rgba(255, 204, 0, 0.2);
     }
 
+    #novaOsForm .form-card .btn-salvar-os:active {
+      transform: scale(0.98);
+    }
+
     .op-area {
       display: flex;
       flex-direction: column;
@@ -1080,308 +1034,6 @@
       box-shadow: 0 6px 25px rgba(255, 204, 0, 0.25);
     }
 
-    /* ===== PAINEL TÉCNICO MOBILE-FIRST ===== */
-    .tec-topbar {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 10px;
-      flex-wrap: wrap;
-      flex-shrink: 0;
-    }
-
-    .tec-filtro {
-      flex: 1;
-      min-width: 90px;
-      padding: 10px 8px;
-      border-radius: 12px;
-      border: 1px solid rgba(255, 204, 0, 0.12);
-      background: rgba(255, 255, 255, 0.03);
-      color: rgba(255, 255, 255, 0.6);
-      font-size: 0.75rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 4px;
-      transition: all 0.25s;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-
-    .tec-filtro i {
-      font-size: 1.1rem;
-    }
-
-    .tec-filtro.active {
-      background: rgba(255, 204, 0, 0.12);
-      border-color: rgba(255, 204, 0, 0.4);
-      color: #ffcc00;
-      box-shadow: 0 0 15px rgba(255, 204, 0, 0.1);
-    }
-
-    .tec-card {
-      background: rgba(255, 255, 255, 0.035);
-      border-radius: 14px;
-      padding: 12px 14px;
-      margin-bottom: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.05);
-      border-left: 4px solid rgba(255, 204, 0, 0.5);
-      transition: all 0.25s;
-    }
-
-    .tec-card:active {
-      transform: scale(0.99);
-      background: rgba(255, 255, 255, 0.06);
-    }
-
-    .tec-card.prioridade-urgente { border-left-color: #ff0040; }
-    .tec-card.prioridade-alta { border-left-color: #ff6600; }
-    .tec-card.prioridade-normal { border-left-color: #ffcc00; }
-    .tec-card.prioridade-baixa { border-left-color: #0066ff; }
-    .tec-card.minha-os {
-      border-color: rgba(255, 204, 0, 0.35);
-      background: rgba(255, 204, 0, 0.04);
-    }
-
-    .tec-card.pendente-sync {
-      border-color: rgba(255, 204, 0, 0.5) !important;
-      background: rgba(255, 204, 0, 0.04);
-    }
-
-    .tec-card .tec-linha1 {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 8px;
-      margin-bottom: 6px;
-      flex-wrap: wrap;
-    }
-
-    .tec-card .tec-cod {
-      background: rgba(255, 204, 0, 0.1);
-      color: #ffcc00;
-      padding: 4px 12px;
-      border-radius: 12px;
-      font-size: 0.85rem;
-      font-weight: 700;
-      border: 1px solid rgba(255, 204, 0, 0.15);
-      letter-spacing: 0.5px;
-    }
-
-    .tec-card .tec-cliente {
-      flex: 1;
-      min-width: 0;
-      color: #fff;
-      font-size: 0.95rem;
-      font-weight: 600;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
-
-    .tec-card .tec-badge-prioridade {
-      padding: 3px 10px;
-      border-radius: 12px;
-      font-size: 0.65rem;
-      font-weight: 700;
-      white-space: nowrap;
-    }
-
-    .tec-card .tec-linha2 {
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
-      font-size: 0.75rem;
-      color: rgba(255, 255, 255, 0.5);
-      margin-bottom: 8px;
-    }
-
-    .tec-card .tec-linha2 .tec-item {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-    }
-
-    .tec-card .tec-linha2 .tec-item i {
-      width: 14px;
-      font-size: 0.75rem;
-      color: rgba(255, 204, 0, 0.6);
-    }
-
-    .tec-card .tec-endereco {
-      color: #ffcc00;
-      cursor: pointer;
-      text-decoration: underline;
-      text-decoration-color: rgba(255, 204, 0, 0.3);
-      text-underline-offset: 3px;
-      transition: all 0.25s;
-    }
-
-    .tec-card .tec-endereco:active {
-      color: #fff;
-    }
-
-    .tec-card .tec-obs {
-      margin-bottom: 8px;
-      padding: 8px 10px;
-      background: rgba(255, 204, 0, 0.05);
-      border-left: 3px solid rgba(255, 204, 0, 0.4);
-      border-radius: 6px;
-      font-size: 0.78rem;
-      color: rgba(255, 255, 255, 0.75);
-      line-height: 1.35;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      overflow: hidden;
-    }
-
-    .tec-card .tec-obs i {
-      color: #ffcc00;
-      margin-right: 4px;
-    }
-
-    .tec-card .tec-status-row {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 8px;
-      flex-wrap: wrap;
-    }
-
-    .tec-card .tec-acoes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(90px, 1fr));
-      gap: 6px;
-      margin-top: 4px;
-    }
-
-    .tec-card .tec-btn {
-      padding: 12px 10px;
-      border-radius: 12px;
-      border: none;
-      font-size: 0.8rem;
-      font-weight: 700;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.2s;
-      text-transform: uppercase;
-      letter-spacing: 0.3px;
-      -webkit-tap-highlight-color: transparent;
-      min-height: 44px;
-    }
-
-    .tec-card .tec-btn:active {
-      transform: scale(0.96);
-    }
-
-    .tec-card .tec-btn-assumir {
-      background: linear-gradient(135deg, #ffcc00, #e6b800);
-      color: #000;
-      box-shadow: 0 3px 12px rgba(255, 204, 0, 0.25);
-    }
-
-    .tec-card .tec-btn-pendente {
-      background: rgba(255, 204, 0, 0.12);
-      color: #ffcc00;
-      border: 1px solid rgba(255, 204, 0, 0.3);
-    }
-
-    .tec-card .tec-btn-finalizar {
-      background: linear-gradient(135deg, #00cc66, #00a855);
-      color: #fff;
-      box-shadow: 0 3px 12px rgba(0, 204, 102, 0.25);
-    }
-
-    .tec-card .tec-ver-historico {
-      margin-top: 8px;
-      padding: 8px 10px;
-      background: transparent;
-      border: 1px solid rgba(255, 255, 255, 0.08);
-      border-radius: 10px;
-      color: rgba(255, 255, 255, 0.5);
-      font-size: 0.7rem;
-      font-weight: 600;
-      cursor: pointer;
-      width: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      transition: all 0.25s;
-    }
-
-    .tec-card .tec-ver-historico:active {
-      background: rgba(255, 255, 255, 0.04);
-      color: #ffcc00;
-    }
-
-    .tec-card .tec-timeline {
-      margin-top: 8px;
-      padding: 10px 12px;
-      background: rgba(0, 0, 0, 0.25);
-      border-radius: 10px;
-      font-size: 0.7rem;
-      color: rgba(255, 255, 255, 0.45);
-      border-left: 2px solid rgba(255, 204, 0, 0.15);
-      max-height: 220px;
-      overflow-y: auto;
-    }
-
-    .tec-card .tec-timeline div {
-      padding: 3px 0;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
-      line-height: 1.35;
-    }
-
-    .tec-card .tec-timeline div:last-child {
-      border-bottom: none;
-    }
-
-    .tec-card .tec-timeline .time {
-      color: rgba(255, 204, 0, 0.5);
-      font-weight: 700;
-      margin-right: 4px;
-    }
-
-    /* ===== TOAST DE NOTIFICAÇÃO ===== */
-    .toast {
-      position: fixed;
-      bottom: 100px;
-      left: 50%;
-      transform: translateX(-50%) translateY(100px);
-      background: rgba(20, 20, 30, 0.98);
-      border: 1px solid rgba(255, 204, 0, 0.3);
-      color: #fff;
-      padding: 12px 24px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      z-index: 9999;
-      opacity: 0;
-      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
-      max-width: 90%;
-      text-align: center;
-      pointer-events: none;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .toast.show {
-      opacity: 1;
-      transform: translateX(-50%) translateY(0);
-    }
-
-    .toast.success { border-color: rgba(0, 204, 102, 0.4); color: #00cc66; }
-    .toast.warn { border-color: rgba(255, 204, 0, 0.4); color: #ffcc00; }
-    .toast.error { border-color: rgba(255, 68, 68, 0.4); color: #ff4444; }
-
     @media (max-width: 768px) {
       #app { padding: 8px 8px 0 8px; }
       html, body { font-size: 16px; }
@@ -1408,6 +1060,7 @@
       .stat-card .info .label { font-size: 0.6rem; }
       
       .panel-brand img { height: 40px; }
+      .panel-brand .status { font-size: 0.75rem; }
       
       .content-card { padding: 12px 12px 0 12px; min-height: 200px; }
       .content-card .card-header h3 { font-size: 1rem; }
@@ -1454,8 +1107,6 @@
       .op-abrir-form { padding: 16px 14px; }
       .op-abrir-input-row input { font-size: 1rem; padding: 14px 16px; }
       .op-abrir-input-row button { font-size: 0.9rem; padding: 14px; }
-
-      .status-badge { font-size: 0.65rem; padding: 4px 10px; }
     }
 
     @media (max-width: 480px) {
@@ -1498,6 +1149,8 @@
       
       .panel-header { padding: 4px 0 8px 0; gap: 6px; }
       .panel-brand img { height: 32px; }
+      .panel-brand .status { font-size: 0.6rem; }
+      .panel-brand .status .dot { width: 6px; height: 6px; }
       
       .panel-user .user-info { font-size: 0.7rem; gap: 4px; }
       .panel-user .user-info i { font-size: 0.9rem; }
@@ -1508,6 +1161,7 @@
       .content-card { padding: 8px 8px 0 8px; min-height: 150px; border-radius: 14px; }
       .content-card .card-header { margin-bottom: 8px; gap: 6px; }
       .content-card .card-header h3 { font-size: 0.85rem; }
+      .content-card .card-header h3 i { font-size: 0.8rem; }
       
       .os-card { padding: 10px 12px; margin-bottom: 6px; border-radius: 12px; }
       .os-card .os-title .cliente { font-size: 0.8rem; }
@@ -1560,23 +1214,29 @@
       .op-abrir-input-row button { font-size: 0.8rem; padding: 12px; border-radius: 12px; }
     }
 
-    @media (min-width: 769px) {
-      .tec-card { padding: 16px 18px; }
-      .tec-card .tec-linha2 { flex-direction: row; flex-wrap: wrap; gap: 12px; }
-      .tec-card .tec-obs { -webkit-line-clamp: 4; }
-      .tec-card .tec-acoes { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
-    }
-
     @media (min-width: 1024px) {
       .dashboard-grid {
         grid-template-columns: repeat(6, 1fr);
       }
     }
 
-    ::-webkit-scrollbar { width: 5px; height: 5px; }
-    ::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); }
-    ::-webkit-scrollbar-thumb { background: rgba(255, 204, 0, 0.15); border-radius: 10px; }
-    ::-webkit-scrollbar-thumb:hover { background: rgba(255, 204, 0, 0.25); }
+    ::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: rgba(255,255,255,0.02);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: rgba(255, 204, 0, 0.15);
+      border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: rgba(255, 204, 0, 0.25);
+    }
   </style>
 </head>
 <body>
@@ -1610,7 +1270,7 @@
       <div class="panel-header">
         <div class="panel-brand">
           <img src="logo.png" alt="TOTAL" onerror="this.style.display='none';">
-          <span class="status-badge online" id="statusBadge">
+          <span class="status">
             <span class="dot"></span> Online
           </span>
         </div>
@@ -1677,11 +1337,7 @@
     </div>
   </div>
 
-  <!-- Toast de notificação -->
-  <div class="toast" id="toast"></div>
-
   <script>
-    // ==================== MANIFEST ====================
     (function() {
       const manifest = {
         "name": "TOTAL - Central de O.S.",
@@ -1689,7 +1345,7 @@
         "description": "Sistema de monitoramento e ordens de serviço TOTAL",
         "start_url": ".",
         "display": "standalone",
-        "background_color": "#0d0d0d",
+        "background_color": "#ffcc00",
         "theme_color": "#ffcc00",
         "orientation": "portrait",
         "scope": ".",
@@ -1698,103 +1354,30 @@
           { "src": "logo.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable" }
         ]
       };
+
       const blob = new Blob([JSON.stringify(manifest)], { type: 'application/json' });
       const url = URL.createObjectURL(blob);
       const link = document.querySelector('link[rel="manifest"]');
       if (link) link.href = url;
     })();
-  </script>
 
-  <script>
-    // ==================== SERVICE WORKER ROBUSTO COM OFFLINE ====================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
-        // SW inline: cacheia o app shell (HTML + logo)
         const swCode = `
-          const CACHE_NAME = 'total-v3';
-          const APP_SHELL = [
-            './',
-            './index.html',
-            './logo.png',
-            './manifest.json'
-          ];
-
-          self.addEventListener('install', (event) => {
-            event.waitUntil(
-              caches.open(CACHE_NAME).then((cache) => {
-                console.log('[SW] Pre-cacheando app shell');
-                return cache.addAll(APP_SHELL).catch((err) => {
-                  console.warn('[SW] Falha ao cachear alguns recursos:', err);
-                });
-              }).then(() => self.skipWaiting())
-            );
+          self.addEventListener('install', function(e) {
+            e.waitUntil(caches.open('total-v1').then(function(cache) {
+              return cache.addAll(['/', '/index.html', '/logo.png']);
+            }));
           });
-
-          self.addEventListener('activate', (event) => {
-            event.waitUntil(
-              caches.keys().then((keys) => {
-                return Promise.all(
-                  keys.filter((key) => key !== CACHE_NAME).map((key) => caches.delete(key))
-                );
-              }).then(() => self.clients.claim())
-            );
-          });
-
-          self.addEventListener('fetch', (event) => {
-            const req = event.request;
-            const url = new URL(req.url);
-
-            // Firebase Auth/Database/Websockets: SEMPRE tenta rede (não faz cache)
-            if (url.hostname.includes('firebase') || 
-                url.hostname.includes('firebaseio') ||
-                url.hostname.includes('googleapis') ||
-                url.hostname.includes('gstatic') && url.pathname.includes('firebase') ||
-                req.method !== 'GET') {
-              return; // deixa o browser lidar normalmente
-            }
-
-            // Font Awesome e outros CDNs: Cache-first
-            if (url.hostname.includes('cdnjs.cloudflare.com') ||
-                url.hostname.includes('cdn.jsdelivr.net')) {
-              event.respondWith(
-                caches.match(req).then((cached) => {
-                  return cached || fetch(req).then((res) => {
-                    const copy = res.clone();
-                    caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-                    return res;
-                  }).catch(() => cached);
-                })
-              );
-              return;
-            }
-
-            // App shell (index.html, logo): Network-first com fallback pra cache
-            event.respondWith(
-              fetch(req).then((res) => {
-                if (res && res.status === 200 && req.method === 'GET') {
-                  const copy = res.clone();
-                  caches.open(CACHE_NAME).then((cache) => cache.put(req, copy));
-                }
-                return res;
-              }).catch(() => {
-                return caches.match(req).then((cached) => {
-                  if (cached) return cached;
-                  // Fallback: index.html para navegação
-                  if (req.mode === 'navigate') {
-                    return caches.match('./index.html');
-                  }
-                });
-              })
-            );
+          self.addEventListener('fetch', function(e) {
+            e.respondWith(caches.match(e.request).then(function(response) {
+              return response || fetch(e.request);
+            }));
           });
         `;
         const blob = new Blob([swCode], { type: 'application/javascript' });
         const swUrl = URL.createObjectURL(blob);
-        navigator.serviceWorker.register(swUrl).then((reg) => {
-          console.log('✅ Service Worker registrado:', reg.scope);
-        }).catch((err) => {
-          console.warn('⚠️ Service Worker falhou:', err);
-        });
+        navigator.serviceWorker.register(swUrl).catch(() => {});
       });
     }
   </script>
@@ -1822,10 +1405,7 @@
     let currentUser = null;
     let ordensListener = null;
     let abaAtual = 'minhas';
-    let isOnline = navigator.onLine;
-    let ordensCacheLocal = [];
 
-    // Refs DOM
     const homeScreen = document.getElementById('homeScreen');
     const panelScreen = document.getElementById('panelScreen');
     const profileContent = document.getElementById('profileContent');
@@ -1834,20 +1414,6 @@
     const userRole = document.getElementById('userRole');
     const masterBadge = document.getElementById('masterBadge');
     const bottomNav = document.getElementById('bottomNav');
-    const statusBadge = document.getElementById('statusBadge');
-    const toastEl = document.getElementById('toast');
-
-    // ==================== TOAST ====================
-    let toastTimeout = null;
-    function showToast(msg, type = 'success', duration = 3000) {
-      if (toastTimeout) clearTimeout(toastTimeout);
-      toastEl.className = 'toast ' + type;
-      toastEl.innerHTML = msg;
-      toastEl.classList.add('show');
-      toastTimeout = setTimeout(() => {
-        toastEl.classList.remove('show');
-      }, duration);
-    }
 
     // ==================== UTILITÁRIOS ====================
     function getNow() {
@@ -1898,9 +1464,11 @@
     function salvarSessao(user) {
       try { localStorage.setItem('total_user_session', JSON.stringify(user)); } catch (e) {}
     }
+
     function removerSessao() {
       try { localStorage.removeItem('total_user_session'); } catch (e) {}
     }
+
     function recuperarSessao() {
       try {
         const data = localStorage.getItem('total_user_session');
@@ -1909,232 +1477,18 @@
       return null;
     }
 
-    // ==================== CACHE LOCAL DE ORDENS ====================
-    function salvarOrdensCache(ordens) {
-      try {
-        localStorage.setItem('total_ordens_cache', JSON.stringify(ordens));
-        localStorage.setItem('total_ordens_cache_ts', Date.now().toString());
-      } catch (e) {
-        console.warn('Erro ao salvar cache de ordens:', e);
-      }
-    }
-
-    function carregarOrdensCache() {
-      try {
-        const data = localStorage.getItem('total_ordens_cache');
-        if (data) return JSON.parse(data);
-      } catch (e) {}
-      return [];
-    }
-
-    // ==================== FILA DE SINCRONIZAÇÃO ====================
-    function getFila() {
-      try {
-        const data = localStorage.getItem('total_fila_sync');
-        if (data) return JSON.parse(data);
-      } catch (e) {}
-      return [];
-    }
-
-    function salvarFila(fila) {
-      try {
-        localStorage.setItem('total_fila_sync', JSON.stringify(fila));
-        atualizarBadgePendentesSync();
-      } catch (e) {}
-    }
-
-    function adicionarNaFila(acao) {
-      const fila = getFila();
-      acao._id = 'sync_' + Date.now() + '_' + Math.random().toString(36).slice(2, 9);
-      acao._timestamp = Date.now();
-      fila.push(acao);
-      salvarFila(fila);
-      console.log('📥 Ação adicionada na fila:', acao.tipo);
-      return acao._id;
-    }
-
-    function removerDaFila(syncId) {
-      const fila = getFila().filter(a => a._id !== syncId);
-      salvarFila(fila);
-    }
-
-    function atualizarBadgePendentesSync() {
-      const pendentes = getFila().length;
-      const badge = document.getElementById('badgeSyncCount');
-      if (badge) {
-        if (pendentes > 0) {
-          badge.textContent = pendentes;
-          badge.style.display = 'flex';
-        } else {
-          badge.style.display = 'none';
-        }
-      }
-    }
-
-    // Aplica operações locais (offline) ao cache de ordens
-    function aplicarAcaoLocal(acao) {
-      let ordens = carregarOrdensCache();
-      
-      switch(acao.tipo) {
-        case 'CRIAR_OS': {
-          const novaOS = {
-            id: acao._id,
-            ...acao.dados,
-            _pendenteSync: true
-          };
-          ordens.push(novaOS);
-          break;
-        }
-        case 'UPDATE_OS': {
-          ordens = ordens.map(o => {
-            if (o.id === acao.osId) {
-              return { ...o, ...acao.dados, _pendenteSync: true };
-            }
-            return o;
-          });
-          break;
-        }
-        case 'DELETE_OS': {
-          ordens = ordens.filter(o => o.id !== acao.osId);
-          break;
-        }
-      }
-      
-      salvarOrdensCache(ordens);
-      ordensCacheLocal = ordens;
-      return ordens;
-    }
-
-    // Processa a fila quando volta online
-    async function processarFila() {
-      if (!isOnline) return;
-      const fila = getFila();
-      if (fila.length === 0) return;
-
-      console.log('🔄 Processando fila de sincronização...', fila.length, 'itens');
-      showToast('<i class="fas fa-sync fa-spin"></i> Sincronizando ' + fila.length + ' ação(ões)...', 'warn', 4000);
-
-      let sucesso = 0;
-      let falha = 0;
-
-      for (const acao of fila) {
-        try {
-          if (acao.tipo === 'CRIAR_OS') {
-            const novaRef = push(ordensRef);
-            await set(novaRef, acao.dados);
-            // Remove do cache local o item pendente
-            let ordens = carregarOrdensCache().filter(o => o.id !== acao._id);
-            salvarOrdensCache(ordens);
-            ordensCacheLocal = ordens;
-            sucesso++;
-          } else if (acao.tipo === 'UPDATE_OS') {
-            await update(ref(database, `ordens/${acao.osId}`), acao.dados);
-            // Remove flag pendenteSync do cache
-            let ordens = carregarOrdensCache().map(o => {
-              if (o.id === acao.osId) {
-                const { _pendenteSync, ...resto } = o;
-                return resto;
-              }
-              return o;
-            });
-            salvarOrdensCache(ordens);
-            ordensCacheLocal = ordens;
-            sucesso++;
-          } else if (acao.tipo === 'DELETE_OS') {
-            await remove(ref(database, `ordens/${acao.osId}`));
-            sucesso++;
-          }
-          removerDaFila(acao._id);
-        } catch (err) {
-          console.warn('❌ Falha ao sincronizar:', acao.tipo, err);
-          falha++;
-          // Se for erro de rede, para o processamento
-          if (!navigator.onLine) break;
-        }
-      }
-
-      if (sucesso > 0 && falha === 0) {
-        showToast('<i class="fas fa-check-circle"></i> ' + sucesso + ' ação(ões) sincronizada(s)!', 'success', 3000);
-      } else if (sucesso > 0 && falha > 0) {
-        showToast('<i class="fas fa-exclamation-triangle"></i> ' + sucesso + ' ok, ' + falha + ' falharam', 'warn', 4000);
-      }
-
-      // Re-renderiza para remover flags pendentes
-      if (window.ordensLista && currentUser) {
-        renderPanelView();
-      }
-    }
-
-    // ==================== STATUS ONLINE/OFFLINE ====================
-    function atualizarStatusConexao() {
-      isOnline = navigator.onLine;
-      
-      if (!statusBadge) return;
-      
-      const filaPendente = getFila().length;
-      
-      if (!isOnline) {
-        statusBadge.className = 'status-badge offline';
-        statusBadge.innerHTML = '<span class="dot"></span> Offline' + (filaPendente > 0 ? ` · ${filaPendente} pend.` : '');
-      } else if (filaPendente > 0) {
-        statusBadge.className = 'status-badge pendente-sync';
-        statusBadge.innerHTML = `<i class="fas fa-sync"></i> Sincronizando (${filaPendente})`;
-      } else {
-        statusBadge.className = 'status-badge online';
-        statusBadge.innerHTML = '<span class="dot"></span> Online';
-      }
-    }
-
-    window.addEventListener('online', () => {
-      console.log('🌐 Conexão restaurada');
-      atualizarStatusConexao();
-      setTimeout(() => processarFila(), 800);
-    });
-
-    window.addEventListener('offline', () => {
-      console.log('📴 Sem conexão');
-      atualizarStatusConexao();
-      showToast('<i class="fas fa-wifi"></i> Modo offline ativado. Suas ações serão sincronizadas.', 'warn', 5000);
-    });
-
-    // Ping periódico para detectar conexão real (não só navigator.onLine)
-    setInterval(async () => {
-      if (!currentUser) return;
-      try {
-        const controller = new AbortController();
-        const timeout = setTimeout(() => controller.abort(), 3000);
-        await fetch('https://www.gstatic.com/generate_204', { 
-          method: 'HEAD', 
-          mode: 'no-cors',
-          signal: controller.signal,
-          cache: 'no-store'
-        });
-        clearTimeout(timeout);
-        if (!isOnline) {
-          isOnline = true;
-          atualizarStatusConexao();
-          setTimeout(() => processarFila(), 500);
-        } else {
-          atualizarStatusConexao();
-        }
-      } catch (e) {
-        if (isOnline) {
-          isOnline = false;
-          atualizarStatusConexao();
-        }
-      }
-    }, 20000);
-
-    // ==================== CONTROLE DE DASHBOARD ====================
+    // ==================== CONTROLE DE VISIBILIDADE DO DASHBOARD ====================
     function controlarVisibilidadeDashboard() {
+      // O dashboard só fica oculto para o OPERADOR quando NÃO estiver na aba "minhas" (Nova O.S.)
       if (currentUser && currentUser.funcao === 'Operador' && !isMaster()) {
         dashboardArea.style.display = (abaAtual === 'minhas') ? '' : 'none';
       } else {
+        // Para Técnico e Gestor: sempre visível
         dashboardArea.style.display = '';
       }
     }
 
-    // ==================== NAV ====================
+    // ==================== NAVEGAÇÃO INFERIOR ====================
     function setupBottomNav(ordens) {
       const navItems = bottomNav.querySelectorAll('.nav-item');
       
@@ -2170,6 +1524,7 @@
         }
       });
 
+      // Reaplica os listeners clicando em cada item (sem duplicar)
       navItems.forEach(item => {
         item.onclick = function() {
           const tab = this.dataset.tab;
@@ -2177,7 +1532,17 @@
           this.classList.add('active');
           abaAtual = tab;
           controlarVisibilidadeDashboard();
-          renderPanelView();
+          
+          if (currentUser) {
+            const ordensAtuais = window.ordensLista || [];
+            if (isMaster() || currentUser.funcao === 'Gestor') {
+              renderGestor(ordensAtuais, isMaster());
+            } else if (currentUser.funcao === 'Operador') {
+              renderOperador(ordensAtuais);
+            } else if (currentUser.funcao === 'Tecnico') {
+              renderTecnico(ordensAtuais);
+            }
+          }
         };
       });
     }
@@ -2188,30 +1553,7 @@
       const senha = document.getElementById('loginPass').value.trim();
       
       if (!usuario || !senha) {
-        showToast('⚠️ Preencha usuário e senha!', 'warn');
-        return;
-      }
-      
-      // Se offline, valida contra sessão salva / cache de usuários
-      if (!navigator.onLine) {
-        const sessao = recuperarSessao();
-        if (sessao && sessao.usuario === usuario && sessao.senha === senha) {
-          await entrarNoSistema(sessao);
-          showToast('<i class="fas fa-wifi"></i> Login offline (sessão salva)', 'warn', 3000);
-          return;
-        }
-        // Tenta cache de usuários
-        try {
-          const usersCache = JSON.parse(localStorage.getItem('total_users_cache') || '{}');
-          const found = Object.values(usersCache).find(u => u.usuario === usuario && u.senha === senha);
-          if (found) {
-            salvarSessao(found);
-            await entrarNoSistema(found);
-            showToast('<i class="fas fa-wifi"></i> Login offline (cache)', 'warn', 3000);
-            return;
-          }
-        } catch (e) {}
-        showToast('❌ Sem conexão. Faça login quando estiver online.', 'error', 5000);
+        alert('Preencha usuário e senha!');
         return;
       }
       
@@ -2219,10 +1561,8 @@
         const snapshot = await get(usersRef);
         const users = snapshot.val() || {};
         
-        // Salva cache de usuários para login offline futuro
-        try { localStorage.setItem('total_users_cache', JSON.stringify(users)); } catch (e) {}
-        
         let found = null;
+        
         if (usuario === 'IRLAN' && senha === '4747') {
           found = { usuario: 'IRLAN', senha: '4747', funcao: 'Gestor', isMaster: true };
         } else {
@@ -2230,7 +1570,7 @@
         }
         
         if (!found) {
-          showToast('❌ Credenciais inválidas!', 'error');
+          alert('Credenciais inválidas!');
           return;
         }
         
@@ -2238,14 +1578,7 @@
         await entrarNoSistema(found);
         
       } catch (error) {
-        // Falha de rede: tenta sessão salva
-        const sessao = recuperarSessao();
-        if (sessao && sessao.usuario === usuario) {
-          await entrarNoSistema(sessao);
-          showToast('Login offline pela sessão', 'warn');
-          return;
-        }
-        showToast('❌ Erro ao conectar. Verifique a internet.', 'error');
+        alert('Erro ao fazer login. Verifique a conexão.');
         console.error(error);
       }
     });
@@ -2253,11 +1586,12 @@
     document.getElementById('loginPass').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') document.getElementById('btnLoginExec').click();
     });
+
     document.getElementById('loginUser').addEventListener('keypress', (e) => {
       if (e.key === 'Enter') document.getElementById('loginPass').focus();
     });
 
-    // ==================== ENTRAR ====================
+    // ==================== SISTEMA ====================
     async function entrarNoSistema(user) {
       currentUser = user;
       abaAtual = 'minhas';
@@ -2265,9 +1599,13 @@
       userName.textContent = user.usuario;
       userRole.textContent = user.funcao;
       
-      if (user.isMaster) masterBadge.classList.remove('hidden');
-      else masterBadge.classList.add('hidden');
+      if (user.isMaster) {
+        masterBadge.classList.remove('hidden');
+      } else {
+        masterBadge.classList.add('hidden');
+      }
       
+      // Ajusta o rótulo e ícone da aba "Minhas" para "Nova O.S." quando for Operador
       const labelMinhas = document.getElementById('labelMinhas');
       const iconMinhas = document.querySelector('.nav-item[data-tab="minhas"] .nav-icon i');
       if (user.funcao === 'Operador' && !user.isMaster) {
@@ -2278,6 +1616,7 @@
         iconMinhas.className = 'fas fa-star';
       }
       
+      // Garante que a aba "minhas" esteja ativa ao entrar
       document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
       document.querySelector('.nav-item[data-tab="minhas"]').classList.add('active');
       
@@ -2287,13 +1626,7 @@
       document.getElementById('loginUser').value = '';
       document.getElementById('loginPass').value = '';
       
-      atualizarStatusConexao();
       await renderPanel();
-      
-      // Processa fila se voltou online
-      if (navigator.onLine) {
-        setTimeout(() => processarFila(), 1000);
-      }
     }
 
     document.getElementById('btnLogout').addEventListener('click', () => {
@@ -2309,7 +1642,6 @@
       dashboardArea.style.display = '';
     });
 
-    // ==================== DASHBOARD ====================
     function atualizarDashboard(ordens) {
       const abertas = ordens.filter(o => o.status === 'ABERTA').length;
       const andamento = ordens.filter(o => o.status === 'EM ANDAMENTO').length;
@@ -2340,30 +1672,10 @@
       }
     }
 
-    // Mescla ordens do Firebase com ordens pendentes no cache local
-    function mesclarOrdens(ordensFirebase) {
-      const pendentes = carregarOrdensCache().filter(o => o._pendenteSync);
-      // Evita duplicar por codMoni se já sincronizou
-      const codigosFirebase = new Set(ordensFirebase.map(o => o.codMoni));
-      const pendentesUnicas = pendentes.filter(p => !codigosFirebase.has(p.codMoni));
-      return [...ordensFirebase, ...pendentesUnicas];
-    }
-
     async function renderPanel() {
       if (!currentUser) return;
       
       profileContent.innerHTML = '<div class="loading"><i class="fas fa-spinner"></i> Carregando dados...</div>';
-      
-      // Renderiza do cache primeiro (offline instantâneo)
-      const cached = carregarOrdensCache();
-      if (cached.length > 0) {
-        ordensCacheLocal = cached;
-        window.ordensLista = cached;
-        atualizarDashboard(cached);
-        setupBottomNav(cached);
-        controlarVisibilidadeDashboard();
-        renderPanelView();
-      }
       
       if (ordensListener) {
         off(ordensRef, 'value', ordensListener);
@@ -2376,53 +1688,33 @@
           ...value
         }));
         
-        // Salva cache limpo (sem pendentes - eles vêm do cache local)
-        const cacheLimpo = ordensList.filter(o => !o._pendenteSync);
-        salvarOrdensCache(cacheLimpo);
+        window.ordensLista = ordensList;
         
-        // Mescla com pendentes locais
-        const mescladas = mesclarOrdens(ordensList);
-        ordensCacheLocal = mescladas;
-        window.ordensLista = mescladas;
-        
-        atualizarDashboard(mescladas);
-        setupBottomNav(mescladas);
+        atualizarDashboard(ordensList);
+        setupBottomNav(ordensList);
         controlarVisibilidadeDashboard();
-        renderPanelView();
-      }, (error) => {
-        console.warn('⚠️ Firebase offline - usando cache local:', error);
-        if (ordensCacheLocal.length > 0) {
-          window.ordensLista = ordensCacheLocal;
-          atualizarDashboard(ordensCacheLocal);
-          setupBottomNav(ordensCacheLocal);
-          controlarVisibilidadeDashboard();
-          renderPanelView();
+        
+        if (isMaster()) {
+          renderGestor(ordensList, true);
+        } else if (currentUser.funcao === 'Operador') {
+          renderOperador(ordensList);
+        } else if (currentUser.funcao === 'Gestor') {
+          renderGestor(ordensList, false);
+        } else if (currentUser.funcao === 'Tecnico') {
+          renderTecnico(ordensList);
         }
       });
     }
 
-    // Re-renderiza a view atual do perfil logado
-    function renderPanelView() {
-      if (!currentUser) return;
-      const ordens = window.ordensLista || [];
-      
-      if (isMaster()) {
-        renderGestor(ordens, true);
-      } else if (currentUser.funcao === 'Operador') {
-        renderOperador(ordens);
-      } else if (currentUser.funcao === 'Gestor') {
-        renderGestor(ordens, false);
-      } else if (currentUser.funcao === 'Tecnico') {
-        renderTecnico(ordens);
-      }
-    }
-
-    // ==================== ADD TIMELINE (para envio online) ====================
+    // ==================== ADD TIMELINE ====================
     async function addTimeline(ordemId, texto) {
       const ordemRef = ref(database, `ordens/${ordemId}/timeline`);
       const snapshot = await get(ordemRef);
       let timeline = snapshot.val() || [];
-      if (!Array.isArray(timeline)) timeline = [];
+      
+      if (!Array.isArray(timeline)) {
+        timeline = [];
+      }
       
       timeline.push({ 
         hora: getNow().hora, 
@@ -2432,64 +1724,6 @@
       });
       
       await set(ordemRef, timeline);
-    }
-
-    // AddTimeline local (offline): retorna timeline atualizada no cache
-    function addTimelineLocal(ordens, osId, texto) {
-      return ordens.map(o => {
-        if (o.id === osId) {
-          const timeline = Array.isArray(o.timeline) ? o.timeline : [];
-          return {
-            ...o,
-            timeline: [...timeline, {
-              hora: getNow().hora,
-              texto,
-              data: getNow().data,
-              timestamp: Date.now()
-            }]
-          };
-        }
-        return o;
-      });
-    }
-
-    // ==================== UPDATE GENÉRICO (online → Firebase / offline → fila) ====================
-    async function executarUpdate(osId, dados, timelineTexto) {
-      // Aplica otimisticamente no cache local
-      let ordens = carregarOrdensCache();
-      ordens = ordens.map(o => o.id === osId ? { ...o, ...dados } : o);
-      if (timelineTexto) {
-        ordens = addTimelineLocal(ordens, osId, timelineTexto);
-      }
-      salvarOrdensCache(ordens);
-      ordensCacheLocal = ordens;
-      window.ordensLista = mesclarOrdens((window.ordensLista || []).filter(o => !o._pendenteSync));
-      
-      // Re-renderiza imediato
-      atualizarDashboard(window.ordensLista);
-      setupBottomNav(window.ordensLista);
-      renderPanelView();
-      
-      // Se online, tenta enviar direto
-      if (navigator.onLine) {
-        try {
-          await update(ref(database, `ordens/${osId}`), dados);
-          if (timelineTexto) {
-            await addTimeline(osId, timelineTexto);
-          }
-          return { ok: true, offline: false };
-        } catch (err) {
-          console.warn('Falha no envio direto, adicionando na fila:', err);
-          // Cai para fila
-        }
-      }
-      
-      // Offline ou falhou: adiciona na fila
-      adicionarNaFila({ tipo: 'UPDATE_OS', osId, dados });
-      if (timelineTexto) {
-        // Timeline local já foi adicionada acima
-      }
-      return { ok: true, offline: true };
     }
 
     // ==================== LISTAGEM OPERADOR ====================
@@ -2514,7 +1748,7 @@
       }
       
       div.innerHTML = lista.map(o => `
-        <div class="os-card ${o.operador === currentUser.usuario ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)} ${o._pendenteSync ? 'pendente-sync' : ''}">
+        <div class="os-card ${o.operador === currentUser.usuario ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
           <div class="os-header">
             <div class="os-title">
               <span class="codmoni">${o.codMoni}</span>
@@ -2554,6 +1788,7 @@
       `).join('');
     }
 
+    // ==================== RENDER OPERADOR ====================
     function renderOperador(ordens) {
       const user = currentUser;
       
@@ -2609,7 +1844,9 @@
           <div class="os-list" id="listaOperador"></div>
         `;
         
-        setTimeout(() => listarOrdensOperador(ordens), 30);
+        setTimeout(() => {
+          listarOrdensOperador(ordens);
+        }, 30);
       }
     }
 
@@ -2637,7 +1874,7 @@
       }
       
       div.innerHTML = lista.map(o => `
-        <div class="os-card ${getPrioridadeClass(o.prioridade)} ${o._pendenteSync ? 'pendente-sync' : ''}">
+        <div class="os-card ${getPrioridadeClass(o.prioridade)}">
           <div class="os-header">
             <div class="os-title">
               <input type="checkbox" class="os-check" value="${o.id}">
@@ -2707,7 +1944,9 @@
         });
       }
       
-      setTimeout(() => listarOrdensGestor(ordens), 50);
+      setTimeout(() => {
+        listarOrdensGestor(ordens);
+      }, 50);
     }
 
     // ==================== LISTAGEM TÉCNICO ====================
@@ -2734,137 +1973,67 @@
         return;
       }
       
-      div.innerHTML = lista.map(o => {
-        const isMinha = o.tecnico === user;
-        const podeAssumir = !o.tecnico || o.tecnico === '' || isMinha;
-        const enderecoUrl = o.endereco && o.endereco !== 'Não informado' 
-          ? `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.endereco)}` 
-          : null;
-        
-        return `
-        <div class="tec-card ${getPrioridadeClass(o.prioridade)} ${isMinha ? 'minha-os' : ''} ${o._pendenteSync ? 'pendente-sync' : ''}">
-          <div class="tec-linha1">
-            <span class="tec-cod">${o.codMoni}</span>
-            <span class="tec-cliente">${o.cliente}</span>
-            ${o.prioridade ? `<span class="tec-badge-prioridade badge-prioridade ${getPrioridadeBadgeClass(o.prioridade)}">${o.prioridade}</span>` : ''}
-          </div>
-          
-          <div class="tec-linha2">
-            <div class="tec-item">
-              <i class="far fa-clock"></i>
-              <span>${o.dataAbertura} ${o.horaAbertura}</span>
+      div.innerHTML = lista.map(o => `
+        <div class="os-card ${o.tecnico === user ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
+          <div class="os-header">
+            <div class="os-title">
+              <span class="codmoni">${o.codMoni}</span>
+              <span class="cliente">${o.cliente}</span>
+              ${o.tecnico === user ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
+              ${o.dataReabertura ? '<span style="font-size:0.6rem;color:#ffcc00;margin-left:4px;">🔄 Reaberta</span>' : ''}
             </div>
-            ${enderecoUrl ? `
-              <div class="tec-item">
-                <i class="fas fa-map-marker-alt"></i>
-                <a href="${enderecoUrl}" target="_blank" rel="noopener" class="tec-endereco">${o.endereco}</a>
-              </div>
-            ` : ''}
-            ${o.tecnico ? `
-              <div class="tec-item">
-                <i class="fas fa-user-cog"></i>
-                <span>Téc: ${o.tecnico}</span>
-              </div>
-            ` : ''}
+            <div class="os-status">
+              ${o.prioridade ? `<span class="badge-prioridade ${getPrioridadeBadgeClass(o.prioridade)}">${o.prioridade}</span>` : ''}
+              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
+            </div>
           </div>
-          
-          <div class="tec-status-row">
-            <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
+          <div class="os-body">
+            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
+            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
             ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
-            ${isMinha ? '<span style="font-size:0.65rem;color:#ffcc00;"><i class="fas fa-star"></i> Minha</span>' : ''}
           </div>
-          
           ${o.observacao ? `
-            <div class="tec-obs">
-              <i class="fas fa-comment-alt"></i>${o.observacao}
+            <div class="os-observacao">
+              <i class="fas fa-comment-alt"></i>
+              <span>${o.observacao}</span>
             </div>
           ` : ''}
-          
-          <div class="tec-acoes">
-            ${podeAssumir ? `
-              <button class="tec-btn tec-btn-assumir" onclick="window.assumirOS('${o.id}')">
-                <i class="fas fa-play"></i> ${isMinha ? 'Retomar' : 'Assumir'}
-              </button>
+          <div class="os-actions">
+            ${!o.tecnico || o.tecnico === '' || o.tecnico === user ? `
+              <button class="btn-xs" onclick="window.assumirOS('${o.id}')"><i class="fas fa-play"></i> ${o.tecnico === user ? 'Retomar' : 'Assumir'}</button>
             ` : ''}
-            ${isMinha ? `
-              <button class="tec-btn tec-btn-pendente" onclick="window.pendenteOS('${o.id}')">
-                <i class="fas fa-pause"></i> Pendente
-              </button>
-              <button class="tec-btn tec-btn-finalizar" onclick="window.finalizarOS('${o.id}')">
-                <i class="fas fa-check"></i> Finalizar
-              </button>
+            ${o.tecnico === user ? `
+              <button class="btn-xs" onclick="window.pendenteOS('${o.id}')"><i class="fas fa-pause"></i> Pendente</button>
+              <button class="btn-xs" onclick="window.finalizarOS('${o.id}')"><i class="fas fa-check"></i> Finalizar</button>
             ` : ''}
           </div>
-          
           ${o.timeline && o.timeline.length > 0 ? `
-            <button class="tec-ver-historico" onclick="window.toggleTimeline('${o.id}')">
-              <i class="fas fa-history"></i> Ver histórico (${o.timeline.length})
-            </button>
-            <div class="tec-timeline hidden" id="timeline-${o.id}">
-              ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span>${t.texto}</div>`).join('')}
+            <div class="timeline timeline-infinito">
+              ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
             </div>
           ` : ''}
         </div>
-        `;
-      }).join('');
+      `).join('');
     }
 
-    window.toggleTimeline = function(osId) {
-      const el = document.getElementById(`timeline-${osId}`);
-      if (!el) return;
-      el.classList.toggle('hidden');
-    };
-
     function renderTecnico(ordens) {
-      const user = currentUser;
-      
-      const minhas = ordens.filter(o => o.tecnico === user.usuario && o.status !== 'FINALIZADA').length;
-      const abertas = ordens.filter(o => o.status === 'ABERTA' && (!o.tecnico || o.tecnico === '')).length;
-      const andamento = ordens.filter(o => o.tecnico === user.usuario && o.status === 'EM ANDAMENTO').length;
-      
       profileContent.innerHTML = `
-        <div class="tec-topbar">
-          <button class="tec-filtro ${abaAtual === 'minhas' ? 'active' : ''}" data-tec-tab="minhas">
-            <i class="fas fa-star"></i>
-            <span>Minhas (${minhas})</span>
-          </button>
-          <button class="tec-filtro ${abaAtual === 'abertas' ? 'active' : ''}" data-tec-tab="abertas">
-            <i class="fas fa-folder-open"></i>
-            <span>Livres (${abertas})</span>
-          </button>
-          <button class="tec-filtro ${abaAtual === 'andamento' ? 'active' : ''}" data-tec-tab="andamento">
-            <i class="fas fa-play-circle"></i>
-            <span>Em rota (${andamento})</span>
-          </button>
+        <div class="card-header">
+          <h3><i class="fas fa-tools"></i> Painel Técnico</h3>
         </div>
         
         <div class="os-list" id="listaTecnico"></div>
       `;
-      
-      profileContent.querySelectorAll('.tec-filtro').forEach(btn => {
-        btn.onclick = () => {
-          abaAtual = btn.dataset.tecTab;
-          profileContent.querySelectorAll('.tec-filtro').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          
-          document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
-          const navEquiv = document.querySelector(`.nav-item[data-tab="${abaAtual}"]`);
-          if (navEquiv) navEquiv.classList.add('active');
-          
-          listarOrdensTecnico(window.ordensLista || []);
-        };
-      });
-      
-      setTimeout(() => listarOrdensTecnico(ordens), 30);
+
+      setTimeout(() => {
+        listarOrdensTecnico(ordens);
+      }, 50);
     }
 
-    // ==================== BUSCAR OU ABRIR O.S. (com offline) ====================
+    // ==================== FUNÇÕES DE OPERADOR ====================
     async function buscarOuAbrirOS(ordens) {
       const cod = document.getElementById('codMoniInput').value.trim();
-      if (!cod) {
-        showToast('Informe o código MONI', 'warn');
-        return;
-      }
+      if (!cod) return alert('Informe o código MONI');
       
       const existente = ordens.find(o => o.codMoni === cod && o.status !== 'FINALIZADA');
       const novaDiv = document.getElementById('novaOsForm');
@@ -2911,176 +2080,160 @@
           const obs = document.getElementById('obsAbertura').value.trim();
           
           if (!cliente) {
-            showToast('⚠️ Nome do cliente é obrigatório!', 'warn');
+            alert('Nome do cliente é obrigatório!');
             return;
           }
           
-          const { data, hora } = getNow();
-          
-          const novaOS = {
-            codMoni: cod,
-            cliente,
-            endereco: 'Não informado',
-            observacao: obs || '',
-            operador: currentUser.usuario,
-            dataAbertura: data,
-            horaAbertura: hora,
-            status: 'ABERTA',
-            prioridade: null,
-            tecnico: null,
-            statusPagamento: null,
-            tecnicoInicio: null,
-            tecnicoFinalizacao: null,
-            timeline: [{ hora, texto: `📋 Operador ${currentUser.usuario} abriu a O.S.` }]
-          };
-          
-          // Se online, tenta enviar direto
-          if (navigator.onLine) {
-            try {
-              await push(ordensRef, novaOS);
-              novaDiv.classList.add('hidden');
-              document.getElementById('codMoniInput').value = '';
-              showToast('✅ O.S. aberta com sucesso!', 'success');
-              return;
-            } catch (err) {
-              console.warn('Falha ao enviar, vai pra fila:', err);
-            }
-          }
-          
-          // Offline: adiciona na fila + cache local
-          adicionarNaFila({ tipo: 'CRIAR_OS', dados: novaOS });
-          aplicarAcaoLocal({ tipo: 'CRIAR_OS', dados: novaOS, _id: getFila()[getFila().length - 1]._id });
-          
-          novaDiv.classList.add('hidden');
-          document.getElementById('codMoniInput').value = '';
-          atualizarBadgePendentesSync();
-          
-          if (navigator.onLine) {
-            showToast('⏳ O.S. salva. Sincronizando...', 'warn');
-            setTimeout(() => processarFila(), 500);
-          } else {
-            showToast('📴 O.S. salva offline. Será sincronizada quando voltar a conexão.', 'warn', 4000);
+          try {
+            const { data, hora } = getNow();
+            
+            const novaOS = {
+              codMoni: cod,
+              cliente,
+              endereco: 'Não informado',
+              observacao: obs || '',
+              operador: currentUser.usuario,
+              dataAbertura: data,
+              horaAbertura: hora,
+              status: 'ABERTA',
+              prioridade: null,
+              tecnico: null,
+              statusPagamento: null,
+              tecnicoInicio: null,
+              tecnicoFinalizacao: null,
+              timeline: [{ hora, texto: `📋 Operador ${currentUser.usuario} abriu a O.S.` }]
+            };
+            
+            await push(ordensRef, novaOS);
+            novaDiv.classList.add('hidden');
+            document.getElementById('codMoniInput').value = '';
+            alert('✅ O.S. aberta com sucesso!\n\n📌 Técnicos e Gestores já podem visualizá-la.');
+            
+          } catch (error) {
+            alert('Erro ao salvar O.S. Tente novamente.');
+            console.error(error);
           }
         });
       }
     }
 
-    // ==================== AÇÕES GLOBAIS (com offline) ====================
-
+    // ==================== FUNÇÕES GLOBAIS ====================
     window.reabrirOS = async function(osId) {
       if (!confirm('⚠️ Deseja reabrir esta O.S. finalizada?\n\n📌 Todo o histórico anterior será mantido.')) return;
       
-      const { data, hora } = getNow();
-      const dados = {
-        status: 'ABERTA',
-        dataReabertura: data,
-        horaReabertura: hora
-      };
-      
-      const timelineTexto = `🔄 O.S. reaberta por ${currentUser.usuario} em ${data} às ${hora}`;
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      if (result.offline) {
-        showToast('📴 Reaberta offline. Sincroniza quando conectar.', 'warn', 3500);
-      } else {
-        showToast('✅ O.S. reaberta com sucesso!', 'success');
+      try {
+        const { data, hora } = getNow();
+        
+        const snapshot = await get(ref(database, `ordens/${osId}`));
+        const osAtual = snapshot.val();
+        
+        if (!osAtual) {
+          alert('❌ O.S. não encontrada!');
+          return;
+        }
+        
+        await update(ref(database, `ordens/${osId}`), {
+          status: 'ABERTA',
+          dataReabertura: data,
+          horaReabertura: hora,
+          tecnico: osAtual.tecnico || null,
+          tecnicoInicio: osAtual.tecnicoInicio || null,
+          tecnicoFinalizacao: osAtual.tecnicoFinalizacao || null,
+          statusPagamento: osAtual.statusPagamento || null,
+          materiaisUtilizados: osAtual.materiaisUtilizados || null,
+          observacoesFinais: osAtual.observacoesFinais || null,
+          prioridade: osAtual.prioridade || null
+        });
+        
+        await addTimeline(osId, `🔄 O.S. reaberta por ${currentUser.usuario} em ${data} às ${hora}`);
+        
+        alert('✅ O.S. reaberta com sucesso!\n\n📌 Todos os registros anteriores foram mantidos!');
+        
+      } catch (error) {
+        alert('❌ Erro ao reabrir O.S.');
+        console.error(error);
       }
     };
 
     window.assumirOS = async function(osId) {
-      const os = (window.ordensLista || []).find(o => o.id === osId);
-      if (!os) return;
-      
-      if (os.tecnico && os.tecnico !== currentUser.usuario) {
-        showToast('⚠️ Esta O.S. já está com outro técnico!', 'error');
-        return;
-      }
-      
-      const tecnicoInicio = prompt('Qual o nome do técnico ou auxiliar técnico que está iniciando o serviço?');
-      if (!tecnicoInicio) return;
-      
-      const dados = {
-        tecnico: currentUser.usuario,
-        status: 'EM ANDAMENTO',
-        tecnicoInicio: tecnicoInicio
-      };
-      
-      const timelineTexto = `👨‍🔧 Técnico ${currentUser.usuario} assumiu o atendimento | Iniciando: ${tecnicoInicio}`;
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      if (result.offline) {
-        showToast('📴 O.S. assumida offline. Sincroniza automaticamente.', 'warn', 3500);
-      } else {
-        showToast('✅ O.S. assumida com sucesso!', 'success');
+      try {
+        const snapshot = await get(ref(database, `ordens/${osId}`));
+        const os = snapshot.val();
+        
+        if (os.tecnico && os.tecnico !== currentUser.usuario) {
+          alert('⚠️ Esta O.S. já está com outro técnico!');
+          return;
+        }
+        
+        const tecnicoInicio = prompt('Qual o nome do técnico ou auxiliar técnico que está iniciando o serviço?');
+        if (!tecnicoInicio) return;
+        
+        await update(ref(database, `ordens/${osId}`), {
+          tecnico: currentUser.usuario,
+          status: 'EM ANDAMENTO',
+          tecnicoInicio: tecnicoInicio
+        });
+        
+        await addTimeline(osId, `👨‍🔧 Técnico ${currentUser.usuario} assumiu o atendimento`);
+        await addTimeline(osId, `🔧 Técnico/Auxiliar iniciando serviço: ${tecnicoInicio}`);
+        await addTimeline(osId, '▶️ Atendimento iniciado');
+        
+        alert('✅ O.S. assumida com sucesso!\n\n📌 Todo o histórico anterior foi mantido.');
+        
+      } catch (error) {
+        alert('❌ Erro ao assumir O.S.');
+        console.error(error);
       }
     };
 
     window.finalizarOS = async function(osId) {
-      if (!confirm('⚠️ Confirmar finalização da O.S.?')) return;
-      
-      const tecnicoFinal = prompt('Nome do técnico/auxiliar finalizando:');
-      if (!tecnicoFinal) return;
-      
-      const pagamento = prompt('Pagamento (1-PAGO, 2-GRÁTIS, 3-FALTA PAGAR):');
-      let statusPagamento = null;
-      if (pagamento === '1') statusPagamento = 'PAGO';
-      else if (pagamento === '2') statusPagamento = 'GRATIS';
-      else if (pagamento === '3') statusPagamento = 'FALTA PAGAR';
-      else { showToast('Opção inválida!', 'error'); return; }
-      
-      const materiais = prompt('Materiais utilizados:');
-      const obsFinais = prompt('Observações finais:');
-      
-      const dados = {
-        status: 'FINALIZADA',
-        materiaisUtilizados: materiais || 'Não informado',
-        observacoesFinais: obsFinais || 'Não informado',
-        tecnicoFinalizacao: tecnicoFinal,
-        statusPagamento: statusPagamento
-      };
-      
-      const timelineTexto = `✅ Finalizando: ${tecnicoFinal} | Materiais: ${materiais || 'N/A'} | Pagamento: ${statusPagamento}`;
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      if (result.offline) {
-        showToast('📴 O.S. finalizada offline. Sincroniza quando conectar.', 'warn', 3500);
-      } else {
-        showToast('✅ O.S. finalizada com sucesso!', 'success');
-      }
-    };
-
-    window.pendenteOS = async function(osId) {
-      const motivo = prompt('Motivo da pendência:');
-      if (!motivo) return;
-      
-      const dados = { status: 'PENDENTE' };
-      const timelineTexto = `⏸️ Status alterado para PENDENTE - Motivo: ${motivo}`;
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      if (result.offline) {
-        showToast('📴 O.S. marcada como pendente offline.', 'warn', 3500);
-      } else {
-        showToast('✅ O.S. pendente!', 'success');
+      try {
+        if (!confirm('⚠️ Confirmar finalização da O.S.?')) return;
+        
+        const tecnicoFinal = prompt('Nome do técnico/auxiliar finalizando:');
+        if (!tecnicoFinal) return;
+        
+        const pagamento = prompt('Pagamento (1-PAGO, 2-GRÁTIS, 3-FALTA PAGAR):');
+        let statusPagamento = null;
+        if (pagamento === '1') statusPagamento = 'PAGO';
+        else if (pagamento === '2') statusPagamento = 'GRATIS';
+        else if (pagamento === '3') statusPagamento = 'FALTA PAGAR';
+        else { alert('Opção inválida!'); return; }
+        
+        const materiais = prompt('Materiais utilizados:');
+        const obsFinais = prompt('Observações finais:');
+        
+        await update(ref(database, `ordens/${osId}`), {
+          status: 'FINALIZADA',
+          materiaisUtilizados: materiais || 'Não informado',
+          observacoesFinais: obsFinais || 'Não informado',
+          tecnicoFinalizacao: tecnicoFinal,
+          statusPagamento: statusPagamento
+        });
+        
+        await addTimeline(osId, `✅ Técnico/Auxiliar finalizando serviço: ${tecnicoFinal}`);
+        await addTimeline(osId, `📦 Materiais utilizados: ${materiais || 'N/A'}`);
+        await addTimeline(osId, `💰 Status de pagamento: ${statusPagamento}`);
+        await addTimeline(osId, '🏁 O.S. Finalizada');
+        
+        alert('✅ O.S. finalizada com sucesso!\n\n📌 Todo o histórico anterior foi mantido.');
+        
+      } catch (error) {
+        alert('❌ Erro ao finalizar O.S.');
+        console.error(error);
       }
     };
 
     window.transferirOS = async function(osId) {
       const novo = prompt('Nome do novo técnico:');
       if (!novo) return;
-      
-      const dados = { tecnico: novo };
-      const timelineTexto = `🔄 Gestor transferiu O.S. para ${novo}`;
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      if (result.offline) {
-        showToast('📴 Transferência offline.', 'warn', 3000);
-      } else {
-        showToast('✅ Transferida!', 'success');
+      try {
+        await update(ref(database, `ordens/${osId}`), { tecnico: novo });
+        await addTimeline(osId, `🔄 Gestor transferiu O.S. para ${novo}`);
+        alert('✅ Transferida!');
+      } catch (error) {
+        alert('❌ Erro ao transferir.');
+        console.error(error);
       }
     };
 
@@ -3089,50 +2242,61 @@
       if (!status) return;
       const validos = ['ABERTA', 'EM ANDAMENTO', 'PENDENTE', 'FINALIZADA'];
       if (!validos.includes(status.toUpperCase())) {
-        showToast('Status inválido!', 'error');
+        alert('Status inválido!');
         return;
       }
-      
-      const dados = { status: status.toUpperCase() };
-      const timelineTexto = `📌 Gestor alterou status para ${status.toUpperCase()}`;
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      showToast(result.offline ? '📴 Alterado offline.' : '✅ Status alterado!', result.offline ? 'warn' : 'success');
+      try {
+        await update(ref(database, `ordens/${osId}`), { status: status.toUpperCase() });
+        await addTimeline(osId, `📌 Gestor alterou status para ${status.toUpperCase()}`);
+        alert('✅ Status alterado!');
+      } catch (error) {
+        alert('❌ Erro ao alterar.');
+        console.error(error);
+      }
     };
 
     window.editarOS = async function(osId) {
-      const os = (window.ordensLista || []).find(o => o.id === osId);
-      if (!os) { showToast('O.S. não encontrada!', 'error'); return; }
-      
-      const cliente = prompt('Cliente:', os.cliente) || os.cliente;
-      const endereco = prompt('Endereço:', os.endereco || '') || os.endereco || 'Não informado';
-      const obs = prompt('Observação:', os.observacao || '') || os.observacao || '';
-      
-      const dados = { cliente, endereco, observacao: obs };
-      const timelineTexto = '✏️ Gestor editou informações da O.S.';
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      showToast(result.offline ? '📴 Editado offline.' : '✅ Editada!', result.offline ? 'warn' : 'success');
+      try {
+        const snapshot = await get(ref(database, `ordens/${osId}`));
+        const os = snapshot.val();
+        if (!os) { alert('O.S. não encontrada!'); return; }
+        
+        const cliente = prompt('Cliente:', os.cliente) || os.cliente;
+        const endereco = prompt('Endereço:', os.endereco || '') || os.endereco || 'Não informado';
+        const obs = prompt('Observação:', os.observacao || '') || os.observacao || '';
+        
+        await update(ref(database, `ordens/${osId}`), { cliente, endereco, observacao: obs });
+        await addTimeline(osId, '✏️ Gestor editou informações da O.S.');
+        alert('✅ Editada!');
+      } catch (error) {
+        alert('❌ Erro ao editar.');
+        console.error(error);
+      }
     };
 
     window.removerOS = async function(osId) {
-      if (!isMaster()) { showToast('Apenas Master pode excluir!', 'error'); return; }
+      if (!isMaster()) { alert('Apenas Master pode excluir!'); return; }
       if (!confirm('⚠️ Excluir permanentemente esta O.S.?')) return;
-      
-      if (navigator.onLine) {
-        try {
-          await remove(ref(database, `ordens/${osId}`));
-          showToast('✅ Excluída!', 'success');
-          return;
-        } catch (err) {
-          console.warn('Falha ao excluir online:', err);
-        }
+      try {
+        await remove(ref(database, `ordens/${osId}`));
+        alert('✅ Excluída!');
+      } catch (error) {
+        alert('❌ Erro ao excluir.');
+        console.error(error);
       }
-      
-      adicionarNaFila({ tipo: 'DELETE_OS', osId });
-      showToast('📴 Exclusão na fila.', 'warn');
+    };
+
+    window.pendenteOS = async function(osId) {
+      const motivo = prompt('Motivo da pendência:');
+      if (!motivo) return;
+      try {
+        await update(ref(database, `ordens/${osId}`), { status: 'PENDENTE' });
+        await addTimeline(osId, `⏸️ Status alterado para PENDENTE - Motivo: ${motivo}`);
+        alert('✅ Pendente!');
+      } catch (error) {
+        alert('❌ Erro ao pausar.');
+        console.error(error);
+      }
     };
 
     window.definirPrioridadeOS = async function(osId) {
@@ -3154,22 +2318,24 @@
       else if (opcao === '3') novaPrioridade = '🟡 Normal';
       else if (opcao === '4') novaPrioridade = '🔵 Baixa';
       else if (opcao === '0') novaPrioridade = null;
-      else { showToast('Opção inválida!', 'error'); return; }
+      else { alert('❌ Opção inválida!'); return; }
       
-      const dados = { prioridade: novaPrioridade };
-      const timelineTexto = novaPrioridade ? `🏷️ Gestor definiu prioridade: ${novaPrioridade}` : '🏷️ Gestor removeu a prioridade';
-      
-      const result = await executarUpdate(osId, dados, timelineTexto);
-      
-      showToast(
-        result.offline ? '📴 Prioridade salva offline.' : (novaPrioridade ? `✅ Prioridade: ${novaPrioridade}` : '✅ Prioridade removida!'),
-        result.offline ? 'warn' : 'success'
-      );
+      try {
+        await update(ref(database, `ordens/${osId}`), { prioridade: novaPrioridade });
+        await addTimeline(osId, novaPrioridade 
+          ? `🏷️ Gestor definiu prioridade: ${novaPrioridade}` 
+          : '🏷️ Gestor removeu a prioridade'
+        );
+        alert(novaPrioridade ? `✅ Prioridade definida: ${novaPrioridade}` : '✅ Prioridade removida!');
+      } catch (error) {
+        alert('❌ Erro ao definir prioridade.');
+        console.error(error);
+      }
     };
 
     async function definirPrioridade(ordens) {
       const checks = [...document.querySelectorAll('.os-check:checked')].map(c => c.value);
-      if (!checks.length) { showToast('Selecione pelo menos uma O.S.', 'warn'); return; }
+      if (!checks.length) return alert('Selecione pelo menos uma O.S. na lista.');
       
       const opcao = prompt(
         `🏷️ Definir prioridade para ${checks.length} O.S. selecionada(s):\n\n` +
@@ -3188,40 +2354,36 @@
       else if (opcao === '3') novaPrioridade = '🟡 Normal';
       else if (opcao === '4') novaPrioridade = '🔵 Baixa';
       else if (opcao === '0') novaPrioridade = null;
-      else { showToast('Opção inválida!', 'error'); return; }
+      else { alert('❌ Opção inválida!'); return; }
       
-      const timelineTexto = novaPrioridade 
-        ? `🏷️ Prioridade definida em lote: ${novaPrioridade}` 
-        : '🏷️ Prioridade removida em lote';
-      
-      let algumOffline = false;
-      for (const osId of checks) {
-        const result = await executarUpdate(osId, { prioridade: novaPrioridade }, timelineTexto);
-        if (result.offline) algumOffline = true;
+      try {
+        for (const osId of checks) {
+          await update(ref(database, `ordens/${osId}`), { prioridade: novaPrioridade });
+          await addTimeline(osId, novaPrioridade 
+            ? `🏷️ Prioridade definida em lote: ${novaPrioridade}` 
+            : '🏷️ Prioridade removida em lote'
+          );
+        }
+        alert('✅ Prioridades atualizadas!');
+        document.querySelectorAll('.os-check').forEach(c => c.checked = false);
+      } catch (error) {
+        alert('❌ Erro ao definir.');
+        console.error(error);
       }
-      
-      showToast(
-        algumOffline ? '📴 Prioridades salvas offline.' : '✅ Prioridades atualizadas!',
-        algumOffline ? 'warn' : 'success'
-      );
-      document.querySelectorAll('.os-check').forEach(c => c.checked = false);
     }
 
     async function enviarParaTecnicos(ordens) {
       const checks = [...document.querySelectorAll('.os-check:checked')].map(c => c.value);
-      if (!checks.length) { showToast('Selecione pelo menos uma O.S.', 'warn'); return; }
+      if (!checks.length) return alert('Selecione pelo menos uma O.S.');
       
       try {
         for (const osId of checks) {
-          if (navigator.onLine) {
-            await addTimeline(osId, '📨 Enviada para fila dos técnicos');
-          } else {
-            adicionarNaFila({ tipo: 'UPDATE_OS', osId, dados: {}, timeline: '📨 Enviada para fila dos técnicos' });
-          }
+          await addTimeline(osId, '📨 Enviada para fila dos técnicos');
         }
-        showToast('✅ Enviadas!', 'success');
+        alert('✅ Enviadas!');
       } catch (error) {
-        showToast('❌ Erro ao enviar.', 'error');
+        alert('❌ Erro ao enviar.');
+        console.error(error);
       }
     }
 
@@ -3297,28 +2459,33 @@
             await push(usersRef, newUser);
             msg.innerHTML = '✅ Usuário adicionado!';
             setTimeout(() => carregarGerenciamentoUsuarios(), 500);
+            
           } catch (error) {
             msg.innerHTML = '❌ Erro ao adicionar usuário.';
+            console.error(error);
           }
         });
+        
       } catch (error) {
         area.innerHTML = '<p style="color:#ff4444;">❌ Erro ao carregar usuários.</p>';
+        console.error(error);
       }
     }
 
     window.removerUsuario = async function(userId) {
       if (!isMaster()) {
-        showToast('Apenas o Master pode remover usuários!', 'error');
+        alert('Apenas o Master pode remover usuários!');
         return;
       }
       if (!confirm('Remover este usuário?')) return;
       
       try {
         await remove(ref(database, `users/${userId}`));
-        showToast('✅ Usuário removido!', 'success');
+        alert('✅ Usuário removido!');
         carregarGerenciamentoUsuarios();
       } catch (error) {
-        showToast('❌ Erro ao remover usuário.', 'error');
+        alert('❌ Erro ao remover usuário.');
+        console.error(error);
       }
     };
 
@@ -3328,13 +2495,6 @@
       
       if (sessao) {
         console.log('🔄 Restaurando sessão...');
-        
-        // Se offline, entra direto com a sessão salva
-        if (!navigator.onLine) {
-          await entrarNoSistema(sessao);
-          showToast('<i class="fas fa-wifi"></i> Modo offline ativado', 'warn', 3000);
-          return;
-        }
         
         if (sessao.isMaster) {
           await entrarNoSistema(sessao);
@@ -3353,9 +2513,8 @@
             removerSessao();
           }
         } catch (error) {
-          // Falha de rede: entra com a sessão mesmo assim
-          await entrarNoSistema(sessao);
-          return;
+          console.error(error);
+          removerSessao();
         }
       }
       
@@ -3365,15 +2524,13 @@
 
     // ==================== INICIAR ====================
     window.addEventListener('load', async () => {
-      atualizarStatusConexao();
-      atualizarBadgePendentesSync();
       await restaurarSessao();
     });
 
     console.log('✅ TOTAL - Sistema de Monitoramento');
     console.log('👨‍💻 Desenvolvido por Manuel Francisco');
-    console.log('📌 LINHA DO TEMPO INFINITA + MODO OFFLINE');
-    console.log('🌐 Offline: ações vão pra fila e sincronizam automaticamente');
+    console.log('📌 LINHA DO TEMPO INFINITA - Todos os registros são salvos permanentemente!');
+    console.log('🎯 Dashboard oculto para Operador fora da aba "Nova O.S."');
   </script>
 </body>
 </html>
