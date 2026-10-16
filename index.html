@@ -225,7 +225,6 @@
       transition: all 0.3s ease;
     }
 
-    /* ===== STATUS ONLINE/OFFLINE ===== */
     .status-badge {
       display: flex;
       align-items: center;
@@ -438,7 +437,6 @@
       margin-left: auto;
     }
 
-    /* ===== BARRA DE PESQUISA ===== */
     .search-bar {
       display: flex;
       align-items: center;
@@ -605,16 +603,6 @@
       padding: 3px 8px;
       border-radius: 10px;
       letter-spacing: 0.5px;
-    }
-
-    .os-card.highlight-search {
-      animation: highlightSearch 1.5s ease;
-      border-color: rgba(255, 204, 0, 0.5) !important;
-    }
-
-    @keyframes highlightSearch {
-      0%, 100% { background: rgba(255,255,255,0.03); }
-      50% { background: rgba(255, 204, 0, 0.12); }
     }
 
     .os-card .os-header {
@@ -1173,7 +1161,6 @@
       box-shadow: 0 6px 25px rgba(255, 204, 0, 0.25);
     }
 
-    /* ===== PAINEL TÉCNICO MOBILE-FIRST ===== */
     .tec-topbar {
       display: flex;
       gap: 6px;
@@ -1441,7 +1428,6 @@
       margin-right: 4px;
     }
 
-    /* ===== TELA EXPANDIDA DA O.S. ===== */
     #osDetailScreen {
       position: fixed;
       inset: 0;
@@ -1622,7 +1608,6 @@
       word-break: break-word;
     }
 
-    /* OBSERVAÇÃO COMPLETA - sem cortar */
     .detail-observacao {
       background: rgba(255, 204, 0, 0.04);
       border-left: 4px solid #ffcc00;
@@ -1682,7 +1667,6 @@
       border-radius: 20px;
     }
 
-    /* AÇÕES DA TELA EXPANDIDA */
     .detail-acoes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
@@ -1767,7 +1751,6 @@
       filter: grayscale(0.6);
     }
 
-    /* ===== TOAST DE NOTIFICAÇÃO ===== */
     .toast {
       position: fixed;
       bottom: 100px;
@@ -1800,6 +1783,81 @@
     .toast.success { border-color: rgba(0, 204, 102, 0.4); color: #00cc66; }
     .toast.warn { border-color: rgba(255, 204, 0, 0.4); color: #ffcc00; }
     .toast.error { border-color: rgba(255, 68, 68, 0.4); color: #ff4444; }
+
+    /* ===== LISTA DE USUÁRIOS (MASTER) ===== */
+    .user-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 400px;
+      overflow-y: auto;
+      padding-right: 4px;
+    }
+
+    .user-list::-webkit-scrollbar { width: 4px; }
+    .user-list::-webkit-scrollbar-thumb { background: rgba(255, 204, 0, 0.2); border-radius: 4px; }
+
+    .user-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.04);
+      border-radius: 12px;
+      transition: all 0.25s;
+      flex-wrap: wrap;
+    }
+
+    .user-item:hover {
+      border-color: rgba(255, 204, 0, 0.15);
+      background: rgba(255, 204, 0, 0.02);
+    }
+
+    .user-item .user-name {
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-right: 8px;
+    }
+
+    .user-item .user-role {
+      color: #ffcc00;
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 2px 10px;
+      background: rgba(255, 204, 0, 0.1);
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .btn-xs {
+      padding: 5px 12px;
+      font-size: 0.72rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 204, 0, 0.08);
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      cursor: pointer;
+      transition: all 0.3s;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .btn-xs:hover {
+      background: rgba(255, 204, 0, 0.04);
+      color: #ffcc00;
+      border-color: rgba(255, 204, 0, 0.15);
+    }
+
+    .btn-xs.danger:hover {
+      color: #ff4444;
+      border-color: rgba(255, 68, 68, 0.15);
+    }
 
     @media (max-width: 768px) {
       #app { padding: 8px 8px 0 8px; }
@@ -1879,6 +1937,11 @@
       .op-abrir-input-row button { font-size: 0.9rem; padding: 14px; }
 
       .status-badge { font-size: 0.65rem; padding: 4px 10px; }
+
+      .user-item { padding: 8px 10px; }
+      .user-item .user-name { font-size: 0.85rem; }
+      .user-item .user-role { font-size: 0.6rem; padding: 2px 8px; }
+      .btn-xs { font-size: 0.65rem; padding: 4px 10px; }
     }
 
     @media (max-width: 480px) {
@@ -1988,7 +2051,6 @@
       .op-abrir-input-row input { font-size: 0.85rem; padding: 12px 14px; border-radius: 12px; }
       .op-abrir-input-row button { font-size: 0.8rem; padding: 12px; border-radius: 12px; }
 
-      /* Tela expandida mobile */
       .detail-header { padding: 12px 12px; }
       .btn-voltar { width: 38px; height: 38px; font-size: 1rem; }
       .detail-header-info .titulo { font-size: 0.95rem; }
@@ -2006,6 +2068,11 @@
       .detail-timeline .item { font-size: 0.75rem; }
       .detail-acoes { grid-template-columns: repeat(2, 1fr); gap: 8px; }
       .detail-btn { padding: 14px 8px; font-size: 0.75rem; min-height: 48px; }
+
+      .user-item { padding: 8px 8px; gap: 6px; }
+      .user-item .user-name { font-size: 0.8rem; }
+      .user-item .user-role { font-size: 0.55rem; padding: 2px 6px; }
+      .btn-xs { font-size: 0.6rem; padding: 3px 8px; gap: 3px; }
     }
 
     @media (min-width: 769px) {
@@ -2029,7 +2096,6 @@
 </head>
 <body>
 
-  <!-- ==================== TELA EXPANDIDA DA O.S. ==================== -->
   <div id="osDetailScreen">
     <div class="detail-header">
       <button class="btn-voltar" id="btnVoltarDetalhes">
@@ -2143,11 +2209,9 @@
     </div>
   </div>
 
-  <!-- Toast de notificação -->
   <div class="toast" id="toast"></div>
 
   <script>
-    // ==================== MANIFEST ====================
     (function() {
       const manifest = {
         "name": "TOTAL - Central de O.S.",
@@ -2172,11 +2236,10 @@
   </script>
 
   <script>
-    // ==================== SERVICE WORKER ROBUSTO COM OFFLINE ====================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         const swCode = `
-          const CACHE_NAME = 'total-v4';
+          const CACHE_NAME = 'total-v5';
           const APP_SHELL = [
             './',
             './index.html',
@@ -2288,7 +2351,6 @@
     let osDetalheAbertoId = null;
     let termoBusca = '';
 
-    // Refs DOM
     const homeScreen = document.getElementById('homeScreen');
     const panelScreen = document.getElementById('panelScreen');
     const profileContent = document.getElementById('profileContent');
@@ -2300,7 +2362,6 @@
     const statusBadge = document.getElementById('statusBadge');
     const toastEl = document.getElementById('toast');
 
-    // Refs tela expandida
     const osDetailScreen = document.getElementById('osDetailScreen');
     const detailBody = document.getElementById('detailBody');
     const detailCodMoni = document.getElementById('detailCodMoni');
@@ -2601,7 +2662,6 @@
       }
     }, 20000);
 
-    // ==================== CONTROLE DE DASHBOARD ====================
     function controlarVisibilidadeDashboard() {
       if (currentUser && currentUser.funcao === 'Operador' && !isMaster()) {
         dashboardArea.style.display = (abaAtual === 'minhas') ? '' : 'none';
@@ -2898,7 +2958,6 @@
 
     // ==================== FILTRO DE BUSCA (SOMENTE OPERADOR) ====================
     function filtrarPorBusca(lista) {
-      // Busca ativa apenas para Operadores
       if (!isOperador()) return lista;
       if (!termoBusca || !termoBusca.trim()) return lista;
       const termo = termoBusca.trim().toLowerCase();
@@ -2917,7 +2976,6 @@
     }
 
     function renderSearchBar() {
-      // Barra de pesquisa visível apenas para Operadores
       if (!isOperador()) return '';
       return `
         <div class="search-bar">
@@ -2967,7 +3025,7 @@
 
     function atualizarListaComBusca() {
       if (!currentUser) return;
-      if (!isOperador()) return; // Busca só para operadores
+      if (!isOperador()) return;
       const ordens = window.ordensLista || [];
       
       const countEl = document.getElementById('searchCount');
@@ -3224,7 +3282,6 @@
         `;
       }
       
-      // ============ AÇÕES CONTEXTUAIS ============
       let acoesHTML = '';
       
       if (isTecnico && podeAssumir) {
@@ -3245,7 +3302,6 @@
         `;
       }
       
-      // Ações do OPERADOR — QUALQUER operador pode editar O.S. ABERTA
       if (isOperadorUser && os.status === 'ABERTA') {
         acoesHTML += `
           <button class="detail-btn detail-btn-editar" onclick="window.detailEditarOperador('${os.id}')">
@@ -3314,7 +3370,6 @@
       }
     });
 
-    // ============ WRAPPERS DE AÇÃO NA TELA EXPANDIDA ============
     window.detailAssumir = function(osId) { window.assumirOS(osId); };
     window.detailPendente = function(osId) { window.pendenteOS(osId); };
     window.detailFinalizar = function(osId) { window.finalizarOS(osId); };
@@ -3449,9 +3504,6 @@
     // ==================== LISTAGEM GESTOR ====================
     function listarOrdensGestor(ordens) {
       let lista = obterListaBase(ordens);
-      
-      // Sem busca para gestores
-      
       lista.sort((a, b) => getPrioridadeOrdenacao(a.prioridade) - getPrioridadeOrdenacao(b.prioridade));
       
       const div = document.getElementById('listaGestor');
@@ -3540,9 +3592,6 @@
     function listarOrdensTecnico(ordens) {
       const user = currentUser.usuario;
       let lista = obterListaBase(ordens);
-      
-      // Sem busca para técnicos
-      
       lista.sort((a, b) => getPrioridadeOrdenacao(a.prioridade) - getPrioridadeOrdenacao(b.prioridade));
       
       const div = document.getElementById('listaTecnico');
@@ -4103,6 +4152,7 @@
       }
     }
 
+    // ==================== GERENCIAMENTO DE USUÁRIOS (MASTER) ====================
     async function carregarGerenciamentoUsuarios() {
       const area = document.getElementById('gerenciarUsuariosArea');
       if (!area) return;
@@ -4130,14 +4180,27 @@
               ${userList.length === 0 ? '<p style="color:rgba(255,255,255,0.2);font-size:1rem;">Nenhum usuário cadastrado.</p>' : 
                 userList.map(u => `
                   <div class="user-item">
-                    <div>
+                    <div style="flex:1;min-width:0;">
                       <span class="user-name">${escaparHTML(u.usuario)}</span>
                       <span class="user-role">${escaparHTML(u.funcao)}</span>
-                      ${u.turno ? `<span style="font-size:0.75rem;color:rgba(255,255,255,0.2);">Turno: ${escaparHTML(u.turno)}</span>` : ''}
+                      ${u.turno ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);margin-left:6px;">· ${escaparHTML(u.turno)}</span>` : ''}
+                      ${u.senhaRedefinidaEm ? `
+                        <div style="font-size:0.65rem;color:rgba(255,204,0,0.45);margin-top:3px;">
+                          <i class="fas fa-key"></i> Senha alterada em ${new Date(u.senhaRedefinidaEm).toLocaleDateString('pt-BR')}
+                          ${u.senhaRedefinidaPor ? ` por ${escaparHTML(u.senhaRedefinidaPor)}` : ''}
+                        </div>
+                      ` : ''}
                     </div>
-                    <button class="btn-xs danger" onclick="window.removerUsuario('${u.id}')" style="color:#ff4444;border-color:rgba(255,68,68,0.1);">
-                      <i class="fas fa-trash"></i>
-                    </button>
+                    <div style="display:flex;gap:6px;flex-wrap:wrap;">
+                      ${(u.funcao === 'Tecnico' || u.funcao === 'Operador') ? `
+                        <button class="btn-xs" onclick="window.redefinirSenha('${u.id}', '${escaparHTML(u.usuario)}')" style="color:#ffcc00;border-color:rgba(255,204,0,0.25);">
+                          <i class="fas fa-key"></i> Redefinir Senha
+                        </button>
+                      ` : ''}
+                      <button class="btn-xs danger" onclick="window.removerUsuario('${u.id}', '${escaparHTML(u.usuario)}')" style="color:#ff4444;border-color:rgba(255,68,68,0.15);">
+                        <i class="fas fa-trash"></i>
+                      </button>
+                    </div>
                   </div>
                 `).join('')
               }
@@ -4184,19 +4247,82 @@
       }
     }
 
-    window.removerUsuario = async function(userId) {
+    window.removerUsuario = async function(userId, nomeUsuario) {
       if (!isMaster()) {
         showToast('Apenas o Master pode remover usuários!', 'error');
         return;
       }
-      if (!confirm('Remover este usuário?')) return;
+      
+      const nome = nomeUsuario || 'este usuário';
+      if (!confirm(`⚠️ Remover permanentemente o usuário "${nome}"?\n\nEsta ação não pode ser desfeita.`)) return;
       
       try {
         await remove(ref(database, `users/${userId}`));
-        showToast('✅ Usuário removido!', 'success');
+        showToast(`✅ Usuário ${nome} removido!`, 'success');
         carregarGerenciamentoUsuarios();
       } catch (error) {
         showToast('❌ Erro ao remover usuário.', 'error');
+      }
+    };
+
+    // ==================== REDEFINIR SENHA (APENAS MASTER) ====================
+    window.redefinirSenha = async function(userId, nomeUsuario) {
+      if (!isMaster()) {
+        showToast('❌ Apenas o Master pode redefinir senhas!', 'error');
+        return;
+      }
+
+      // 1) Pede a nova senha
+      const novaSenha = prompt(
+        `🔑 Redefinir senha do usuário: ${nomeUsuario}\n\n` +
+        `Digite a nova senha (mínimo 3 caracteres):`
+      );
+
+      if (novaSenha === null) return;
+      if (!novaSenha || novaSenha.trim().length < 3) {
+        showToast('⚠️ Senha muito curta! Mínimo 3 caracteres.', 'warn', 4000);
+        return;
+      }
+
+      // 2) Pede confirmação
+      const confirmar = prompt(`🔁 Confirme a nova senha de ${nomeUsuario}:`);
+      if (confirmar === null) return;
+      if (confirmar !== novaSenha) {
+        showToast('❌ As senhas não coincidem!', 'error', 4000);
+        return;
+      }
+
+      // 3) Confirma a operação
+      if (!confirm(`⚠️ Confirmar redefinição de senha?\n\n👤 Usuário: ${nomeUsuario}\n\nEsta ação será registrada.`)) {
+        return;
+      }
+
+      // 4) Atualiza no Firebase
+      try {
+        const userRef = ref(database, `users/${userId}`);
+        
+        await update(userRef, {
+          senha: novaSenha.trim(),
+          senhaRedefinidaEm: new Date().toISOString(),
+          senhaRedefinidaPor: currentUser.usuario
+        });
+
+        showToast(`✅ Senha de ${nomeUsuario} redefinida com sucesso!`, 'success', 4000);
+        console.log(`🔑 Senha redefinida: ${nomeUsuario} por ${currentUser.usuario}`);
+
+        // Atualiza o cache local de usuários
+        try {
+          const snap = await get(usersRef);
+          const users = snap.val() || {};
+          localStorage.setItem('total_users_cache', JSON.stringify(users));
+        } catch (e) {}
+
+        // Recarrega a lista
+        carregarGerenciamentoUsuarios();
+
+      } catch (err) {
+        console.error('Erro ao redefinir senha:', err);
+        showToast('❌ Erro ao redefinir senha. Verifique a conexão.', 'error', 5000);
       }
     };
 
@@ -4239,7 +4365,6 @@
       panelScreen.classList.remove('active');
     }
 
-    // ==================== INICIAR ====================
     window.addEventListener('load', async () => {
       atualizarStatusConexao();
       atualizarBadgePendentesSync();
@@ -4249,8 +4374,9 @@
     console.log('✅ TOTAL - Sistema de Monitoramento');
     console.log('👨‍💻 Desenvolvido por Manuel Francisco');
     console.log('📌 TELA EXPANDIDA + MODO OFFLINE + ABAS TÉCNICAS');
-    console.log('✏️ QUALQUER OPERADOR PODE EDITAR O.S. ABERTAS');
+    console.log('✏️ OPERADORES PODEM EDITAR O.S. ABERTAS');
     console.log('🔎 PESQUISA POR CÓDIGO MONI — APENAS PARA OPERADORES');
+    console.log('🔑 MASTER PODE REDEFINIR SENHAS DE TÉCNICOS E OPERADORES');
     console.log('🎯 Clique em qualquer O.S. para abrir os detalhes completos');
   </script>
 </body>
