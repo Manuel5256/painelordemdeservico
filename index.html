@@ -21,6 +21,7 @@
       padding: 0;
       box-sizing: border-box;
       font-family: 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, 'Helvetica Neue', sans-serif;
+      -webkit-tap-highlight-color: transparent;
     }
 
     html, body {
@@ -30,11 +31,13 @@
       color: #fff;
       overflow: hidden;
       font-size: 18px;
+      overscroll-behavior: none;
     }
 
     #app {
       width: 100%;
       height: 100vh;
+      height: 100dvh;
       max-width: 1400px;
       margin: 0 auto;
       padding: 12px 12px 0 12px;
@@ -326,11 +329,6 @@
       transition: all 0.3s;
     }
 
-    .stat-card:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255, 204, 0, 0.08);
-    }
-
     .stat-card .icon {
       font-size: 1.4rem;
       color: #ffcc00;
@@ -427,20 +425,10 @@
       color: #000;
     }
 
-    .btn-primary:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(255, 204, 0, 0.2);
-    }
-
     .btn-outline {
       background: transparent;
       color: #ffcc00;
       border: 1px solid rgba(255, 204, 0, 0.15);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 204, 0, 0.04);
-      border-color: rgba(255, 204, 0, 0.3);
     }
 
     .os-list {
@@ -448,6 +436,7 @@
       overflow-y: auto;
       padding-right: 4px;
       padding-bottom: 8px;
+      -webkit-overflow-scrolling: touch;
     }
 
     .os-list::-webkit-scrollbar {
@@ -473,11 +462,6 @@
       transition: all 0.3s;
     }
 
-    .os-card:hover {
-      background: rgba(255,255,255,0.05);
-      border-color: rgba(255, 204, 0, 0.06);
-    }
-
     .os-card.prioridade-urgente { border-left: 4px solid #ff0040; }
     .os-card.prioridade-alta { border-left: 4px solid #ff6600; }
     .os-card.prioridade-normal { border-left: 4px solid #ffcc00; }
@@ -499,7 +483,7 @@
       flex-wrap: wrap;
     }
 
-    .os-card .os-title .protocolo {
+    .os-card .os-title .codmoni {
       background: rgba(255, 204, 0, 0.08);
       color: #ffcc00;
       padding: 3px 12px;
@@ -507,12 +491,6 @@
       font-size: 0.9rem;
       font-weight: 700;
       border: 1px solid rgba(255, 204, 0, 0.06);
-    }
-
-    .os-card .os-title .codmoni {
-      color: rgba(255,255,255,0.5);
-      font-size: 0.9rem;
-      font-weight: 500;
     }
 
     .os-card .os-title .cliente {
@@ -556,6 +534,17 @@
     .badge-gratis { background: rgba(255, 204, 0, 0.12); color: #ffcc00; }
     .badge-falta-pagar { background: rgba(255, 102, 0, 0.12); color: #ff6600; }
 
+    .badge-prioridade {
+      padding: 3px 12px;
+      border-radius: 14px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+    .badge-prioridade.urgente { background: rgba(255, 0, 64, 0.15); color: #ff0040; }
+    .badge-prioridade.alta { background: rgba(255, 102, 0, 0.15); color: #ff6600; }
+    .badge-prioridade.normal { background: rgba(255, 204, 0, 0.15); color: #ffcc00; }
+    .badge-prioridade.baixa { background: rgba(0, 102, 255, 0.15); color: #0066ff; }
+
     .os-card .os-body {
       margin-top: 8px;
       display: flex;
@@ -574,6 +563,26 @@
     .os-card .os-body span i {
       font-size: 0.75rem;
       width: 16px;
+    }
+
+    .os-card .os-observacao {
+      margin-top: 8px;
+      padding: 8px 12px;
+      background: rgba(255, 204, 0, 0.04);
+      border-left: 3px solid rgba(255, 204, 0, 0.4);
+      border-radius: 8px;
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.75);
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.4;
+    }
+
+    .os-card .os-observacao i {
+      color: #ffcc00;
+      margin-top: 2px;
+      flex-shrink: 0;
     }
 
     .os-card .os-actions {
@@ -606,8 +615,48 @@
       border-color: rgba(255, 68, 68, 0.15);
     }
 
-    .os-card .timeline {
+    .os-card .os-actions .btn-xs.btn-prioridade {
+      border-color: rgba(255, 204, 0, 0.2);
+      color: #ffcc00;
+    }
+
+    .os-card .os-actions .btn-xs.btn-prioridade:hover {
+      background: rgba(255, 204, 0, 0.08);
+    }
+
+    /* ===== TIMELINE COLAPSÁVEL ===== */
+    .timeline-toggle {
       margin-top: 10px;
+      width: 100%;
+      padding: 8px 12px;
+      background: rgba(0,0,0,0.2);
+      border: 1px solid rgba(255, 204, 0, 0.08);
+      border-radius: 10px;
+      color: rgba(255, 204, 0, 0.7);
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: all 0.3s;
+    }
+
+    .timeline-toggle:hover {
+      background: rgba(255, 204, 0, 0.05);
+      color: #ffcc00;
+    }
+
+    .timeline-toggle .chev {
+      transition: transform 0.3s;
+    }
+
+    .timeline-toggle.open .chev {
+      transform: rotate(180deg);
+    }
+
+    .os-card .timeline {
+      margin-top: 8px;
       padding: 10px 12px;
       background: rgba(0,0,0,0.2);
       border-radius: 10px;
@@ -673,7 +722,6 @@
       min-width: 60px;
       flex: 1;
       border-radius: 16px;
-      -webkit-tap-highlight-color: transparent;
     }
 
     .nav-item::after {
@@ -734,12 +782,6 @@
       min-width: 20px;
       text-align: center;
       box-shadow: 0 2px 12px rgba(255, 0, 64, 0.4);
-      animation: badgePulse 2s ease-in-out infinite;
-    }
-
-    @keyframes badgePulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
     }
 
     .empty-state {
@@ -804,19 +846,11 @@
       transition: all 0.3s;
     }
 
-    .form-group input:focus,
-    .form-group textarea:focus,
-    .form-group select:focus {
-      border-color: rgba(255, 204, 0, 0.2);
-      box-shadow: 0 0 20px rgba(255, 204, 0, 0.02);
-    }
-
     .form-group textarea {
       resize: vertical;
       min-height: 70px;
     }
 
-    /* ===== NOVA O.S. FORM - VISÍVEL E AJUSTADA ===== */
     #novaOsForm {
       flex-shrink: 0;
       margin-bottom: 10px;
@@ -852,18 +886,6 @@
       color: #ffcc00;
       font-size: 0.95rem;
       outline: none;
-      transition: all 0.3s;
-    }
-
-    #novaOsForm .form-card .form-group input:focus,
-    #novaOsForm .form-card .form-group textarea:focus {
-      border-color: rgba(255, 204, 0, 0.2);
-      box-shadow: 0 0 20px rgba(255, 204, 0, 0.02);
-    }
-
-    #novaOsForm .form-card .form-group textarea {
-      resize: vertical;
-      min-height: 50px;
     }
 
     #novaOsForm .form-card .btn-salvar-os {
@@ -884,17 +906,198 @@
       transition: all 0.3s;
     }
 
-    #novaOsForm .form-card .btn-salvar-os:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 20px rgba(255, 204, 0, 0.2);
+    .op-abrir-area {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      padding: 20px 4px 10px 4px;
+      gap: 16px;
+      overflow-y: auto;
     }
 
-    #novaOsForm .form-card .btn-salvar-os:active {
-      transform: scale(0.98);
+    .op-abrir-titulo {
+      text-align: center;
+      margin-bottom: 8px;
     }
 
-    /* ===== FIM NOVA O.S. FORM ===== */
+    .op-abrir-titulo h2 {
+      color: #ffcc00;
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
 
+    .op-abrir-titulo p {
+      color: rgba(255,255,255,0.35);
+      font-size: 0.9rem;
+    }
+
+    .op-abrir-form {
+      background: rgba(255, 204, 0, 0.03);
+      border: 1px solid rgba(255, 204, 0, 0.1);
+      border-radius: 18px;
+      padding: 22px 20px;
+      max-width: 700px;
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .op-abrir-form label {
+      display: block;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 8px;
+    }
+
+    .op-abrir-input-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .op-abrir-input-row input {
+      flex: 2;
+      min-width: 200px;
+      padding: 16px 20px;
+      background: rgba(0,0,0,0.5);
+      border: 1px solid rgba(255, 204, 0, 0.15);
+      border-radius: 14px;
+      color: #ffcc00;
+      font-size: 1.1rem;
+      font-weight: 600;
+      outline: none;
+      letter-spacing: 1px;
+    }
+
+    .op-abrir-input-row button {
+      flex: 1;
+      min-width: 130px;
+      padding: 16px 20px;
+      background: linear-gradient(135deg, #ffcc00, #e6b800);
+      color: #000;
+      font-weight: 700;
+      font-size: 1rem;
+      border: none;
+      border-radius: 14px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    /* ===== TÉCNICO: BARRA DE FILTROS RÁPIDOS ===== */
+    .tec-filtros {
+      display: flex;
+      gap: 6px;
+      margin-bottom: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      flex-shrink: 0;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tec-filtros::-webkit-scrollbar {
+      height: 3px;
+    }
+
+    .tec-filtros::-webkit-scrollbar-thumb {
+      background: rgba(255, 204, 0, 0.15);
+      border-radius: 3px;
+    }
+
+    .tec-filtro-btn {
+      flex-shrink: 0;
+      padding: 8px 16px;
+      border-radius: 20px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.5);
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .tec-filtro-btn.active {
+      background: linear-gradient(135deg, #ffcc00, #e6b800);
+      color: #000;
+      border-color: transparent;
+    }
+
+    .tec-filtro-btn .count-pill {
+      background: rgba(0,0,0,0.2);
+      padding: 1px 8px;
+      border-radius: 10px;
+      font-size: 0.7rem;
+      font-weight: 700;
+    }
+
+    .tec-filtro-btn.active .count-pill {
+      background: rgba(0,0,0,0.15);
+    }
+
+    /* ===== TÉCNICO: BOTÕES DE AÇÃO GRANDES (MOBILE) ===== */
+    .tec-card-actions {
+      margin-top: 12px;
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .tec-btn-acao {
+      flex: 1;
+      min-height: 44px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: none;
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.2s;
+    }
+
+    .tec-btn-assumir {
+      background: linear-gradient(135deg, #ffcc00, #e6b800);
+      color: #000;
+    }
+
+    .tec-btn-retomar {
+      background: linear-gradient(135deg, #00cc66, #00a855);
+      color: #fff;
+    }
+
+    .tec-btn-finalizar {
+      background: linear-gradient(135deg, #00cc66, #00a855);
+      color: #fff;
+    }
+
+    .tec-btn-pendente {
+      background: rgba(255, 204, 0, 0.1);
+      color: #ffcc00;
+      border: 1px solid rgba(255, 204, 0, 0.2);
+    }
+
+    .tec-btn-acao:active {
+      transform: scale(0.97);
+    }
+
+    /* ===== RESPONSIVO MOBILE ===== */
     @media (max-width: 768px) {
       #app { padding: 8px 8px 0 8px; }
       html, body { font-size: 16px; }
@@ -905,9 +1108,6 @@
       .login-card h3 { font-size: 1.3rem; }
       .login-card input { font-size: 1rem; padding: 14px 16px; }
       .login-card .btn { font-size: 1.1rem; padding: 14px; }
-      
-      .login-footer .footer-text { font-size: 0.85rem; }
-      .login-footer .footer-text strong { font-size: 0.95rem; }
       
       .dashboard-grid {
         grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
@@ -928,12 +1128,14 @@
       
       .os-card { padding: 12px 14px; }
       .os-card .os-title .cliente { font-size: 0.9rem; }
-      .os-card .os-title .protocolo { font-size: 0.8rem; padding: 2px 10px; }
-      .os-card .os-title .codmoni { font-size: 0.8rem; }
+      .os-card .os-title .codmoni { font-size: 0.8rem; padding: 2px 10px; }
       .os-card .os-body { font-size: 0.7rem; gap: 4px 12px; }
+      
+      .os-card .os-observacao { font-size: 0.75rem; padding: 6px 10px; }
       
       .badge-status { font-size: 0.65rem; padding: 3px 10px; }
       .badge-pagamento { font-size: 0.6rem; padding: 2px 10px; }
+      .badge-prioridade { font-size: 0.6rem; padding: 2px 10px; }
       
       .btn-sm { padding: 6px 14px; font-size: 0.75rem; }
       
@@ -956,11 +1158,55 @@
       .nav-item .nav-badge { font-size: 0.45rem; min-width: 16px; top: -4px; right: 0; padding: 1px 6px; }
       .nav-item::after { width: 22px; height: 3px; }
 
-      #novaOsForm .form-card { padding: 14px 14px; }
-      #novaOsForm .form-card h4 { font-size: 1rem; }
-      #novaOsForm .form-card .form-group input,
-      #novaOsForm .form-card .form-group textarea { font-size: 0.9rem; padding: 8px 12px; }
-      #novaOsForm .form-card .btn-salvar-os { font-size: 0.9rem; padding: 10px; }
+      .op-abrir-titulo h2 { font-size: 1.2rem; }
+      .op-abrir-form { padding: 16px 14px; }
+      .op-abrir-input-row input { font-size: 1rem; padding: 14px 16px; }
+      .op-abrir-input-row button { font-size: 0.9rem; padding: 14px; }
+
+      /* ===== TÉCNICO MOBILE OTIMIZADO ===== */
+      body.tecnico-mode .dashboard-grid { display: none !important; }
+      body.tecnico-mode .panel-header { padding: 4px 0 8px 0; }
+      body.tecnico-mode .panel-brand img { height: 34px; }
+      body.tecnico-mode .content-card { padding: 10px 10px 0 10px; }
+
+      body.tecnico-mode .os-card {
+        padding: 14px 14px;
+        margin-bottom: 10px;
+        border-radius: 14px;
+      }
+
+      body.tecnico-mode .os-card .os-title {
+        width: 100%;
+      }
+
+      body.tecnico-mode .os-card .os-title .codmoni {
+        font-size: 0.85rem;
+        padding: 4px 12px;
+      }
+
+      body.tecnico-mode .os-card .os-title .cliente {
+        font-size: 0.95rem;
+        font-weight: 700;
+      }
+
+      body.tecnico-mode .os-card .os-status {
+        margin-top: 6px;
+      }
+
+      body.tecnico-mode .os-card .os-body {
+        font-size: 0.75rem;
+        margin-top: 8px;
+      }
+
+      body.tecnico-mode .tec-filtros {
+        margin-bottom: 12px;
+      }
+
+      body.tecnico-mode .tec-filtro-btn {
+        padding: 9px 16px;
+        font-size: 0.8rem;
+        min-height: 40px;
+      }
     }
 
     @media (max-width: 480px) {
@@ -973,9 +1219,6 @@
       .login-card h3 { font-size: 1rem; margin-bottom: 16px; }
       .login-card input { font-size: 0.9rem; padding: 12px 14px; border-radius: 12px; }
       .login-card .btn { font-size: 0.95rem; padding: 12px; border-radius: 12px; }
-      
-      .login-footer .footer-text { font-size: 0.75rem; }
-      .login-footer .footer-text strong { font-size: 0.85rem; }
       
       .dashboard-grid {
         grid-template-columns: repeat(3, 1fr);
@@ -991,20 +1234,13 @@
         border-radius: 12px;
       }
       
-      .stat-card .icon {
-        width: 28px;
-        height: 28px;
-        font-size: 0.9rem;
-        border-radius: 8px;
-      }
-      
+      .stat-card .icon { width: 28px; height: 28px; font-size: 0.9rem; border-radius: 8px; }
       .stat-card .info .value { font-size: 1rem; }
-      .stat-card .info .label { font-size: 0.5rem; letter-spacing: 0.3px; }
+      .stat-card .info .label { font-size: 0.5rem; }
       
       .panel-header { padding: 4px 0 8px 0; gap: 6px; }
       .panel-brand img { height: 32px; }
       .panel-brand .status { font-size: 0.6rem; }
-      .panel-brand .status .dot { width: 6px; height: 6px; }
       
       .panel-user .user-info { font-size: 0.7rem; gap: 4px; }
       .panel-user .user-info i { font-size: 0.9rem; }
@@ -1015,19 +1251,20 @@
       .content-card { padding: 8px 8px 0 8px; min-height: 150px; border-radius: 14px; }
       .content-card .card-header { margin-bottom: 8px; gap: 6px; }
       .content-card .card-header h3 { font-size: 0.85rem; }
-      .content-card .card-header h3 i { font-size: 0.8rem; }
       
       .os-card { padding: 10px 12px; margin-bottom: 6px; border-radius: 12px; }
       .os-card .os-title .cliente { font-size: 0.8rem; }
-      .os-card .os-title .protocolo { font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; }
-      .os-card .os-title .codmoni { font-size: 0.7rem; }
+      .os-card .os-title .codmoni { font-size: 0.65rem; padding: 2px 8px; border-radius: 10px; }
       .os-card .os-body { font-size: 0.6rem; gap: 3px 8px; }
       .os-card .os-body span i { font-size: 0.6rem; width: 14px; }
       
+      .os-card .os-observacao { font-size: 0.65rem; padding: 5px 8px; margin-top: 6px; }
+      
       .badge-status { font-size: 0.55rem; padding: 2px 8px; border-radius: 10px; }
       .badge-pagamento { font-size: 0.5rem; padding: 2px 8px; border-radius: 10px; }
+      .badge-prioridade { font-size: 0.5rem; padding: 2px 8px; border-radius: 10px; }
       
-      .btn-sm { padding: 4px 10px; font-size: 0.6rem; border-radius: 18px; gap: 4px; }
+      .btn-sm { padding: 4px 10px; font-size: 0.6rem; border-radius: 18px; }
       
       .os-card .os-actions .btn-xs { font-size: 0.55rem; padding: 3px 8px; border-radius: 10px; }
       .os-card .timeline { font-size: 0.6rem; padding: 6px 10px; }
@@ -1049,14 +1286,39 @@
       .empty-state i { font-size: 2rem; }
       .empty-state p { font-size: 0.85rem; }
       .loading { font-size: 0.9rem; padding: 20px; }
-      
-      .os-check { width: 14px; height: 14px; }
 
-      #novaOsForm .form-card { padding: 10px 10px; }
-      #novaOsForm .form-card h4 { font-size: 0.9rem; }
-      #novaOsForm .form-card .form-group input,
-      #novaOsForm .form-card .form-group textarea { font-size: 0.8rem; padding: 6px 10px; }
-      #novaOsForm .form-card .btn-salvar-os { font-size: 0.8rem; padding: 8px; }
+      .op-abrir-titulo h2 { font-size: 1rem; }
+      .op-abrir-titulo p { font-size: 0.75rem; }
+      .op-abrir-form { padding: 12px 10px; border-radius: 14px; }
+      .op-abrir-form label { font-size: 0.65rem; }
+      .op-abrir-input-row input { font-size: 0.85rem; padding: 12px 14px; border-radius: 12px; }
+      .op-abrir-input-row button { font-size: 0.8rem; padding: 12px; border-radius: 12px; }
+
+      /* ===== TÉCNICO MOBILE ULTRA COMPACTO ===== */
+      body.tecnico-mode .os-card {
+        padding: 12px 12px;
+        margin-bottom: 8px;
+      }
+
+      body.tecnico-mode .os-card .os-title .codmoni {
+        font-size: 0.8rem;
+        padding: 3px 10px;
+      }
+
+      body.tecnico-mode .os-card .os-title .cliente {
+        font-size: 0.85rem;
+      }
+
+      body.tecnico-mode .tec-btn-acao {
+        min-height: 48px;
+        font-size: 0.85rem;
+      }
+
+      body.tecnico-mode .tec-filtro-btn {
+        padding: 8px 14px;
+        font-size: 0.75rem;
+        min-height: 38px;
+      }
     }
 
     @media (min-width: 1024px) {
@@ -1077,10 +1339,6 @@
     ::-webkit-scrollbar-thumb {
       background: rgba(255, 204, 0, 0.15);
       border-radius: 10px;
-    }
-
-    ::-webkit-scrollbar-thumb:hover {
-      background: rgba(255, 204, 0, 0.25);
     }
   </style>
 </head>
@@ -1150,7 +1408,7 @@
       <nav class="bottom-nav" id="bottomNav">
         <button class="nav-item active" data-tab="minhas">
           <span class="nav-icon"><i class="fas fa-star"></i></span>
-          <span class="nav-label">Minhas</span>
+          <span class="nav-label" id="labelMinhas">Minhas</span>
           <span class="nav-badge" id="badgeMinhas">0</span>
         </button>
         <button class="nav-item" data-tab="abertas">
@@ -1183,7 +1441,6 @@
   </div>
 
   <script>
-    // ==================== CRIAR MANIFEST.JSON DINAMICAMENTE ====================
     (function() {
       const manifest = {
         "name": "TOTAL - Central de O.S.",
@@ -1207,7 +1464,6 @@
       if (link) link.href = url;
     })();
 
-    // ==================== SERVICE WORKER ====================
     if ('serviceWorker' in navigator) {
       window.addEventListener('load', () => {
         const swCode = `
@@ -1248,11 +1504,11 @@
 
     const usersRef = ref(database, 'users');
     const ordensRef = ref(database, 'ordens');
-    const configRef = ref(database, 'config');
 
     let currentUser = null;
     let ordensListener = null;
     let abaAtual = 'minhas';
+    let filtroTecnico = 'todas'; // 'todas', 'urgente', 'alta', 'normal', 'baixa'
 
     const homeScreen = document.getElementById('homeScreen');
     const panelScreen = document.getElementById('panelScreen');
@@ -1270,18 +1526,6 @@
         data: d.toLocaleDateString('pt-BR'), 
         hora: d.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit', second: '2-digit' }) 
       };
-    }
-
-    async function getNextProtocolo() {
-      const snapshot = await get(configRef);
-      let config = snapshot.val() || {};
-      if (!config.nextProtocolo) {
-        config.nextProtocolo = 458921;
-        await set(configRef, config);
-      }
-      const next = config.nextProtocolo;
-      await update(configRef, { nextProtocolo: next + 1 });
-      return next;
     }
 
     function getStatusBadgeClass(status) {
@@ -1303,8 +1547,26 @@
       return '';
     }
 
+    function getPrioridadeBadgeClass(prioridade) {
+      if (!prioridade) return '';
+      if (prioridade.includes('Urgente')) return 'urgente';
+      if (prioridade.includes('Alta')) return 'alta';
+      if (prioridade.includes('Normal')) return 'normal';
+      if (prioridade.includes('Baixa')) return 'baixa';
+      return '';
+    }
+
+    function getPrioridadeOrdenacao(prioridade) {
+      const ordem = { '🔴 Urgente': 1, '🟠 Alta': 2, '🟡 Normal': 3, '🔵 Baixa': 4 };
+      return ordem[prioridade] || 99;
+    }
+
     function isMaster() {
       return currentUser && currentUser.isMaster === true;
+    }
+
+    function isTecnico() {
+      return currentUser && currentUser.funcao === 'Tecnico' && !isMaster();
     }
 
     function salvarSessao(user) {
@@ -1321,6 +1583,23 @@
         if (data) return JSON.parse(data);
       } catch (e) {}
       return null;
+    }
+
+    // ==================== CONTROLE DE VISIBILIDADE ====================
+    function controlarVisibilidadeDashboard() {
+      // Operador: esconde fora da aba "minhas" (Nova O.S.)
+      if (currentUser && currentUser.funcao === 'Operador' && !isMaster()) {
+        dashboardArea.style.display = (abaAtual === 'minhas') ? '' : 'none';
+      } else {
+        dashboardArea.style.display = '';
+      }
+      
+      // Aplica modo técnico no body (para CSS mobile customizado)
+      if (isTecnico()) {
+        document.body.classList.add('tecnico-mode');
+      } else {
+        document.body.classList.remove('tecnico-mode');
+      }
     }
 
     // ==================== NAVEGAÇÃO INFERIOR ====================
@@ -1360,25 +1639,24 @@
       });
 
       navItems.forEach(item => {
-        item.addEventListener('click', function() {
+        item.onclick = function() {
           const tab = this.dataset.tab;
           navItems.forEach(n => n.classList.remove('active'));
           this.classList.add('active');
           abaAtual = tab;
+          controlarVisibilidadeDashboard();
           
           if (currentUser) {
-            if (isMaster()) {
-              const ordensAtuais = window.ordensLista || [];
-              listarOrdensGestor(ordensAtuais);
+            const ordensAtuais = window.ordensLista || [];
+            if (isMaster() || currentUser.funcao === 'Gestor') {
+              renderGestor(ordensAtuais, isMaster());
             } else if (currentUser.funcao === 'Operador') {
-              const ordensAtuais = window.ordensLista || [];
-              listarOrdensOperador(ordensAtuais);
+              renderOperador(ordensAtuais);
             } else if (currentUser.funcao === 'Tecnico') {
-              const ordensAtuais = window.ordensLista || [];
-              listarOrdensTecnico(ordensAtuais);
+              renderTecnico(ordensAtuais);
             }
           }
-        });
+        };
       });
     }
 
@@ -1430,6 +1708,7 @@
     async function entrarNoSistema(user) {
       currentUser = user;
       abaAtual = 'minhas';
+      filtroTecnico = 'todas';
       
       userName.textContent = user.usuario;
       userRole.textContent = user.funcao;
@@ -1440,12 +1719,35 @@
         masterBadge.classList.add('hidden');
       }
       
+      // Ajusta o rótulo/ícone da aba "Minhas"
+      const labelMinhas = document.getElementById('labelMinhas');
+      const iconMinhas = document.querySelector('.nav-item[data-tab="minhas"] .nav-icon i');
+      if (user.funcao === 'Operador' && !user.isMaster) {
+        labelMinhas.textContent = 'Nova O.S.';
+        iconMinhas.className = 'fas fa-plus-circle';
+      } else {
+        labelMinhas.textContent = 'Minhas';
+        iconMinhas.className = 'fas fa-star';
+      }
+      
+      // Se for técnico, esconde a aba "Todas" no mobile (fica mais limpo)
+      const navTodas = document.querySelector('.nav-item[data-tab="todas"]');
+      if (user.funcao === 'Tecnico' && !user.isMaster && window.innerWidth <= 768) {
+        navTodas.style.display = 'none';
+      } else {
+        navTodas.style.display = '';
+      }
+      
+      document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+      document.querySelector('.nav-item[data-tab="minhas"]').classList.add('active');
+      
       homeScreen.classList.remove('active');
       panelScreen.classList.add('active');
       
       document.getElementById('loginUser').value = '';
       document.getElementById('loginPass').value = '';
       
+      controlarVisibilidadeDashboard();
       await renderPanel();
     }
 
@@ -1456,9 +1758,12 @@
       }
       currentUser = null;
       abaAtual = 'minhas';
+      filtroTecnico = 'todas';
       removerSessao();
+      document.body.classList.remove('tecnico-mode');
       panelScreen.classList.remove('active');
       homeScreen.classList.add('active');
+      dashboardArea.style.display = '';
     });
 
     function atualizarDashboard(ordens) {
@@ -1511,52 +1816,21 @@
         
         atualizarDashboard(ordensList);
         setupBottomNav(ordensList);
+        controlarVisibilidadeDashboard();
         
         if (isMaster()) {
           renderGestor(ordensList, true);
-          setTimeout(() => {
-            const navItems = bottomNav.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-              if (item.dataset.tab === abaAtual) {
-                item.click();
-              }
-            });
-          }, 100);
         } else if (currentUser.funcao === 'Operador') {
           renderOperador(ordensList);
-          setTimeout(() => {
-            const navItems = bottomNav.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-              if (item.dataset.tab === abaAtual) {
-                item.click();
-              }
-            });
-          }, 100);
         } else if (currentUser.funcao === 'Gestor') {
           renderGestor(ordensList, false);
-          setTimeout(() => {
-            const navItems = bottomNav.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-              if (item.dataset.tab === abaAtual) {
-                item.click();
-              }
-            });
-          }, 100);
         } else if (currentUser.funcao === 'Tecnico') {
           renderTecnico(ordensList);
-          setTimeout(() => {
-            const navItems = bottomNav.querySelectorAll('.nav-item');
-            navItems.forEach(item => {
-              if (item.dataset.tab === abaAtual) {
-                item.click();
-              }
-            });
-          }, 100);
         }
       });
     }
 
-    // ==================== FUNÇÃO ADD TIMELINE - INFINITA ====================
+    // ==================== ADD TIMELINE ====================
     async function addTimeline(ordemId, texto) {
       const ordemRef = ref(database, `ordens/${ordemId}/timeline`);
       const snapshot = await get(ordemRef);
@@ -1576,7 +1850,22 @@
       await set(ordemRef, timeline);
     }
 
-    // ==================== FUNÇÕES DE LISTAGEM ====================
+    // ==================== TOGGLE TIMELINE ====================
+    window.toggleTimeline = function(osId) {
+      const el = document.getElementById('timeline-' + osId);
+      const btn = document.getElementById('tltoggle-' + osId);
+      if (!el || !btn) return;
+      
+      if (el.classList.contains('hidden')) {
+        el.classList.remove('hidden');
+        btn.classList.add('open');
+      } else {
+        el.classList.add('hidden');
+        btn.classList.remove('open');
+      }
+    };
+
+    // ==================== LISTAGEM OPERADOR ====================
     function listarOrdensOperador(ordens) {
       let lista = [];
       
@@ -1601,14 +1890,13 @@
         <div class="os-card ${o.operador === currentUser.usuario ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
           <div class="os-header">
             <div class="os-title">
-              <span class="protocolo">#${o.protocolo}</span>
               <span class="codmoni">${o.codMoni}</span>
               <span class="cliente">${o.cliente}</span>
               ${o.operador === currentUser.usuario ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
               ${o.dataReabertura ? '<span style="font-size:0.6rem;color:#ffcc00;margin-left:4px;">🔄 Reaberta</span>' : ''}
             </div>
             <div class="os-status">
-              ${o.prioridade ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
+              ${o.prioridade ? `<span class="badge-prioridade ${getPrioridadeBadgeClass(o.prioridade)}">${o.prioridade}</span>` : ''}
               <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
             </div>
           </div>
@@ -1616,16 +1904,25 @@
             <span><i class="fas fa-user"></i> ${o.operador}</span>
             <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
             ${o.tecnico ? `<span><i class="fas fa-tools"></i> ${o.tecnico}</span>` : ''}
-            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
             ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
           </div>
+          ${o.observacao ? `
+            <div class="os-observacao">
+              <i class="fas fa-comment-alt"></i>
+              <span>${o.observacao}</span>
+            </div>
+          ` : ''}
           ${o.status === 'FINALIZADA' && currentUser.funcao === 'Operador' ? `
             <div class="os-actions">
               <button class="btn-xs" onclick="window.reabrirOS('${o.id}')"><i class="fas fa-redo"></i> Reabrir</button>
             </div>
           ` : ''}
           ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline timeline-infinito">
+            <button class="timeline-toggle" id="tltoggle-${o.id}" onclick="window.toggleTimeline('${o.id}')">
+              <span><i class="fas fa-history"></i> Ver histórico (${o.timeline.length})</span>
+              <i class="fas fa-chevron-down chev"></i>
+            </button>
+            <div class="timeline hidden" id="timeline-${o.id}">
               ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
             </div>
           ` : ''}
@@ -1633,6 +1930,69 @@
       `).join('');
     }
 
+    // ==================== RENDER OPERADOR ====================
+    function renderOperador(ordens) {
+      const user = currentUser;
+      
+      if (abaAtual === 'minhas') {
+        profileContent.innerHTML = `
+          <div class="card-header">
+            <h3><i class="fas fa-plus-circle"></i> Abrir Nova O.S.</h3>
+            <div class="actions">
+              <span class="badge" style="background:rgba(255,204,0,0.08);color:#ffcc00;font-size:0.8rem;padding:4px 14px;border-radius:20px;">
+                <i class="fas fa-clock"></i> ${user.turno || 'Diurno'}
+              </span>
+            </div>
+          </div>
+          
+          <div class="op-abrir-area">
+            <div class="op-abrir-titulo">
+              <h2><i class="fas fa-folder-plus"></i> Nova Ordem de Serviço</h2>
+              <p>Digite o Código MONI para verificar e abrir uma nova O.S.</p>
+            </div>
+            
+            <div class="op-abrir-form">
+              <label><i class="fas fa-barcode"></i> Código MONI</label>
+              <div class="op-abrir-input-row">
+                <input type="text" id="codMoniInput" placeholder="Digite o Código MONI" autocomplete="off">
+                <button id="btnBuscarMoni">
+                  <i class="fas fa-search"></i> Verificar
+                </button>
+              </div>
+            </div>
+            
+            <div id="osExistenteMsg" class="hidden" style="max-width:700px;width:100%;margin:0 auto;"></div>
+            <div id="novaOsForm" class="hidden" style="max-width:700px;width:100%;margin:0 auto;"></div>
+          </div>
+        `;
+
+        document.getElementById('btnBuscarMoni').addEventListener('click', () => buscarOuAbrirOS(ordens));
+        document.getElementById('codMoniInput').addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') buscarOuAbrirOS(ordens);
+        });
+      } else {
+        let titulo = 'Ordens de Serviço';
+        let icone = 'fas fa-list';
+        if (abaAtual === 'abertas') { titulo = 'O.S. Abertas'; icone = 'fas fa-folder-open'; }
+        else if (abaAtual === 'andamento') { titulo = 'O.S. em Andamento'; icone = 'fas fa-play-circle'; }
+        else if (abaAtual === 'pendentes') { titulo = 'O.S. Pendentes'; icone = 'fas fa-pause-circle'; }
+        else if (abaAtual === 'finalizadas') { titulo = 'O.S. Finalizadas'; icone = 'fas fa-check-circle'; }
+        else if (abaAtual === 'todas') { titulo = 'Todas as O.S.'; icone = 'fas fa-list'; }
+        
+        profileContent.innerHTML = `
+          <div class="card-header">
+            <h3><i class="${icone}"></i> ${titulo}</h3>
+          </div>
+          <div class="os-list" id="listaOperador"></div>
+        `;
+        
+        setTimeout(() => {
+          listarOrdensOperador(ordens);
+        }, 30);
+      }
+    }
+
+    // ==================== LISTAGEM GESTOR ====================
     function listarOrdensGestor(ordens) {
       let lista = [];
       
@@ -1644,6 +2004,8 @@
         case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
         default: lista = ordens;
       }
+      
+      lista.sort((a, b) => getPrioridadeOrdenacao(a.prioridade) - getPrioridadeOrdenacao(b.prioridade));
       
       const div = document.getElementById('listaGestor');
       if (!div) return;
@@ -1658,13 +2020,12 @@
           <div class="os-header">
             <div class="os-title">
               <input type="checkbox" class="os-check" value="${o.id}">
-              <span class="protocolo">#${o.protocolo}</span>
               <span class="codmoni">${o.codMoni}</span>
               <span class="cliente">${o.cliente}</span>
               ${o.dataReabertura ? '<span style="font-size:0.6rem;color:#ffcc00;margin-left:4px;">🔄 Reaberta</span>' : ''}
             </div>
             <div class="os-status">
-              ${o.prioridade ? `<span style="font-size:0.7rem;color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
+              ${o.prioridade ? `<span class="badge-prioridade ${getPrioridadeBadgeClass(o.prioridade)}">${o.prioridade}</span>` : ''}
               <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
             </div>
           </div>
@@ -1672,10 +2033,16 @@
             <span><i class="fas fa-user"></i> ${o.operador}</span>
             <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
             ${o.tecnico ? `<span><i class="fas fa-tools"></i> ${o.tecnico}</span>` : ''}
-            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
             ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
           </div>
+          ${o.observacao ? `
+            <div class="os-observacao">
+              <i class="fas fa-comment-alt"></i>
+              <span>${o.observacao}</span>
+            </div>
+          ` : ''}
           <div class="os-actions">
+            <button class="btn-xs btn-prioridade" onclick="window.definirPrioridadeOS('${o.id}')"><i class="fas fa-flag"></i> Prioridade</button>
             <button class="btn-xs" onclick="window.transferirOS('${o.id}')"><i class="fas fa-exchange-alt"></i> Transferir</button>
             <button class="btn-xs" onclick="window.alterarStatusOS('${o.id}')"><i class="fas fa-edit"></i> Status</button>
             <button class="btn-xs" onclick="window.editarOS('${o.id}')"><i class="fas fa-pen"></i> Editar</button>
@@ -1683,107 +2050,16 @@
             ${isMaster() ? `<button class="btn-xs danger" onclick="window.removerOS('${o.id}')"><i class="fas fa-trash"></i></button>` : ''}
           </div>
           ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline timeline-infinito">
+            <button class="timeline-toggle" id="tltoggle-${o.id}" onclick="window.toggleTimeline('${o.id}')">
+              <span><i class="fas fa-history"></i> Ver histórico (${o.timeline.length})</span>
+              <i class="fas fa-chevron-down chev"></i>
+            </button>
+            <div class="timeline hidden" id="timeline-${o.id}">
               ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
             </div>
           ` : ''}
         </div>
       `).join('');
-    }
-
-    function listarOrdensTecnico(ordens) {
-      const user = currentUser.usuario;
-      let lista = [];
-      
-      switch(abaAtual) {
-        case 'minhas': lista = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA'); break;
-        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
-        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
-        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
-        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
-        default: lista = ordens;
-      }
-      
-      lista.sort((a, b) => (a.prioridade || '').localeCompare(b.prioridade || ''));
-      
-      const div = document.getElementById('listaTecnico');
-      if (!div) return;
-      
-      if (lista.length === 0) {
-        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
-        return;
-      }
-      
-      div.innerHTML = lista.map(o => `
-        <div class="os-card ${o.tecnico === user ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
-          <div class="os-header">
-            <div class="os-title">
-              <span class="protocolo">#${o.protocolo}</span>
-              <span class="codmoni">${o.codMoni}</span>
-              <span class="cliente">${o.cliente}</span>
-              ${o.tecnico === user ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
-              ${o.dataReabertura ? '<span style="font-size:0.6rem;color:#ffcc00;margin-left:4px;">🔄 Reaberta</span>' : ''}
-            </div>
-            <div class="os-status">
-              <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
-            </div>
-          </div>
-          <div class="os-body">
-            <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
-            ${o.prioridade ? `<span style="color:rgba(255,255,255,0.3);">${o.prioridade}</span>` : ''}
-            ${o.endereco ? `<span><i class="fas fa-map-marker-alt"></i> ${o.endereco}</span>` : ''}
-            ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
-          </div>
-          <div class="os-actions">
-            ${!o.tecnico || o.tecnico === '' || o.tecnico === user ? `
-              <button class="btn-xs" onclick="window.assumirOS('${o.id}')"><i class="fas fa-play"></i> ${o.tecnico === user ? 'Retomar' : 'Assumir'}</button>
-            ` : ''}
-            ${o.tecnico === user ? `
-              <button class="btn-xs" onclick="window.pendenteOS('${o.id}')"><i class="fas fa-pause"></i> Pendente</button>
-              <button class="btn-xs" onclick="window.finalizarOS('${o.id}')"><i class="fas fa-check"></i> Finalizar</button>
-            ` : ''}
-          </div>
-          ${o.timeline && o.timeline.length > 0 ? `
-            <div class="timeline timeline-infinito">
-              ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
-            </div>
-          ` : ''}
-        </div>
-      `).join('');
-    }
-
-    // ==================== FUNÇÕES DE RENDERIZAÇÃO ====================
-    function renderOperador(ordens) {
-      const user = currentUser;
-      
-      profileContent.innerHTML = `
-        <div class="card-header">
-          <h3><i class="fas fa-user-shield"></i> Painel Operador</h3>
-          <div class="actions">
-            <span class="badge" style="background:rgba(255,204,0,0.08);color:#ffcc00;font-size:0.8rem;padding:4px 14px;border-radius:20px;">
-              <i class="fas fa-clock"></i> ${user.turno || 'Diurno'}
-            </span>
-          </div>
-        </div>
-        
-        <div class="flex-row" style="display:flex;gap:10px;margin-bottom:12px;flex-wrap:wrap;flex-shrink:0;">
-          <input type="text" id="codMoniInput" placeholder="Digite o Código MONI" style="flex:2;min-width:180px;padding:10px 16px;background:rgba(0,0,0,0.3);border:1px solid rgba(255,204,0,0.08);border-radius:12px;color:#ffcc00;font-size:1rem;outline:none;">
-          <button class="btn-sm btn-primary" id="btnBuscarMoni">
-            <i class="fas fa-search"></i> Verificar
-          </button>
-        </div>
-        
-        <div id="novaOsForm" class="hidden"></div>
-        <div id="osExistenteMsg" class="hidden"></div>
-        
-        <div class="os-list" id="listaOperador"></div>
-      `;
-
-      document.getElementById('btnBuscarMoni').addEventListener('click', () => buscarOuAbrirOS(ordens));
-      
-      setTimeout(() => {
-        listarOrdensOperador(ordens);
-      }, 50);
     }
 
     function renderGestor(ordens, isMasterUser = false) {
@@ -1792,7 +2068,7 @@
           <h3><i class="fas fa-crown"></i> Painel ${isMasterUser ? 'Master' : 'Gestor'}</h3>
           <div class="actions">
             ${isMasterUser ? `<button class="btn-sm btn-primary" id="btnGerenciarUsuarios"><i class="fas fa-users-cog"></i> Usuários</button>` : ''}
-            <button class="btn-sm btn-outline" id="btnDefinirPrioridade"><i class="fas fa-flag"></i> Prioridade</button>
+            <button class="btn-sm btn-outline" id="btnDefinirPrioridade"><i class="fas fa-flag"></i> Prioridade (lote)</button>
             <button class="btn-sm btn-outline" id="btnEnviarTecnicos"><i class="fas fa-paper-plane"></i> Enviar</button>
           </div>
         </div>
@@ -1818,10 +2094,150 @@
       }, 50);
     }
 
+    // ==================== LISTAGEM TÉCNICO ====================
+    function listarOrdensTecnico(ordens) {
+      const user = currentUser.usuario;
+      let lista = [];
+      
+      switch(abaAtual) {
+        case 'minhas': lista = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA'); break;
+        case 'abertas': lista = ordens.filter(o => o.status === 'ABERTA'); break;
+        case 'andamento': lista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+        case 'pendentes': lista = ordens.filter(o => o.status === 'PENDENTE'); break;
+        case 'finalizadas': lista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+        default: lista = ordens;
+      }
+      
+      // Filtro de prioridade (novo)
+      if (filtroTecnico !== 'todas') {
+        const mapFiltro = { urgente: 'Urgente', alta: 'Alta', normal: 'Normal', baixa: 'Baixa' };
+        lista = lista.filter(o => o.prioridade && o.prioridade.includes(mapFiltro[filtroTecnico]));
+      }
+      
+      lista.sort((a, b) => getPrioridadeOrdenacao(a.prioridade) - getPrioridadeOrdenacao(b.prioridade));
+      
+      const div = document.getElementById('listaTecnico');
+      if (!div) return;
+      
+      if (lista.length === 0) {
+        div.innerHTML = `<div class="empty-state"><i class="fas fa-inbox"></i><p>Nenhuma O.S. encontrada</p></div>`;
+        return;
+      }
+      
+      div.innerHTML = lista.map(o => {
+        const isMinha = o.tecnico === user;
+        const semTecnico = !o.tecnico || o.tecnico === '';
+        
+        let botoesAcao = '';
+        if (semTecnico || isMinha) {
+          if (o.status === 'ABERTA' || semTecnico) {
+            botoesAcao = `
+              <button class="tec-btn-acao tec-btn-assumir" onclick="window.assumirOS('${o.id}')">
+                <i class="fas fa-play"></i> Assumir
+              </button>`;
+          } else if (o.status === 'EM ANDAMENTO' && isMinha) {
+            botoesAcao = `
+              <button class="tec-btn-acao tec-btn-pendente" onclick="window.pendenteOS('${o.id}')">
+                <i class="fas fa-pause"></i> Pendente
+              </button>
+              <button class="tec-btn-acao tec-btn-finalizar" onclick="window.finalizarOS('${o.id}')">
+                <i class="fas fa-check"></i> Finalizar
+              </button>`;
+          } else if (o.status === 'PENDENTE' && isMinha) {
+            botoesAcao = `
+              <button class="tec-btn-acao tec-btn-retomar" onclick="window.assumirOS('${o.id}')">
+                <i class="fas fa-play"></i> Retomar
+              </button>
+              <button class="tec-btn-acao tec-btn-finalizar" onclick="window.finalizarOS('${o.id}')">
+                <i class="fas fa-check"></i> Finalizar
+              </button>`;
+          }
+        }
+        
+        return `
+          <div class="os-card ${isMinha ? 'minha-os' : ''} ${getPrioridadeClass(o.prioridade)}">
+            <div class="os-header">
+              <div class="os-title">
+                <span class="codmoni">${o.codMoni}</span>
+                <span class="cliente">${o.cliente}</span>
+                ${isMinha ? '<span class="star"><i class="fas fa-star"></i></span>' : ''}
+              </div>
+              <div class="os-status">
+                ${o.prioridade ? `<span class="badge-prioridade ${getPrioridadeBadgeClass(o.prioridade)}">${o.prioridade}</span>` : ''}
+                <span class="badge-status ${getStatusBadgeClass(o.status)}">${o.status}</span>
+              </div>
+            </div>
+            <div class="os-body">
+              <span><i class="far fa-clock"></i> ${o.dataAbertura} ${o.horaAbertura}</span>
+              ${o.dataReabertura ? `<span style="color:#ffcc00;">🔄 Reaberta</span>` : ''}
+              ${o.statusPagamento ? `<span class="badge-pagamento badge-${o.statusPagamento === 'PAGO' ? 'pago' : o.statusPagamento === 'GRATIS' ? 'gratis' : 'falta-pagar'}">${o.statusPagamento}</span>` : ''}
+            </div>
+            ${o.observacao ? `
+              <div class="os-observacao">
+                <i class="fas fa-comment-alt"></i>
+                <span>${o.observacao}</span>
+              </div>
+            ` : ''}
+            ${botoesAcao ? `<div class="tec-card-actions">${botoesAcao}</div>` : ''}
+            ${o.timeline && o.timeline.length > 0 ? `
+              <button class="timeline-toggle" id="tltoggle-${o.id}" onclick="window.toggleTimeline('${o.id}')">
+                <span><i class="fas fa-history"></i> Ver histórico (${o.timeline.length})</span>
+                <i class="fas fa-chevron-down chev"></i>
+              </button>
+              <div class="timeline hidden" id="timeline-${o.id}">
+                ${o.timeline.map(t => `<div><span class="time">🕐 ${t.hora}</span> ${t.texto}</div>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `;
+      }).join('');
+    }
+
     function renderTecnico(ordens) {
+      const user = currentUser.usuario;
+      
+      // Conta as O.S. por filtro
+      let baseLista = [];
+      switch(abaAtual) {
+        case 'minhas': baseLista = ordens.filter(o => o.tecnico === user && o.status !== 'FINALIZADA'); break;
+        case 'abertas': baseLista = ordens.filter(o => o.status === 'ABERTA'); break;
+        case 'andamento': baseLista = ordens.filter(o => o.status === 'EM ANDAMENTO'); break;
+        case 'pendentes': baseLista = ordens.filter(o => o.status === 'PENDENTE'); break;
+        case 'finalizadas': baseLista = ordens.filter(o => o.status === 'FINALIZADA'); break;
+        default: baseLista = ordens;
+      }
+      
+      const cntUrgente = baseLista.filter(o => o.prioridade && o.prioridade.includes('Urgente')).length;
+      const cntAlta = baseLista.filter(o => o.prioridade && o.prioridade.includes('Alta')).length;
+      const cntNormal = baseLista.filter(o => o.prioridade && o.prioridade.includes('Normal')).length;
+      const cntBaixa = baseLista.filter(o => o.prioridade && o.prioridade.includes('Baixa')).length;
+      
       profileContent.innerHTML = `
         <div class="card-header">
-          <h3><i class="fas fa-tools"></i> Painel Técnico</h3>
+          <h3><i class="fas fa-tools"></i> Minhas Ordens</h3>
+        </div>
+        
+        <div class="tec-filtros">
+          <button class="tec-filtro-btn ${filtroTecnico === 'todas' ? 'active' : ''}" onclick="window.aplicarFiltroTecnico('todas')">
+            <i class="fas fa-list"></i> Todas
+            <span class="count-pill">${baseLista.length}</span>
+          </button>
+          <button class="tec-filtro-btn ${filtroTecnico === 'urgente' ? 'active' : ''}" onclick="window.aplicarFiltroTecnico('urgente')">
+            🔴 Urgentes
+            <span class="count-pill">${cntUrgente}</span>
+          </button>
+          <button class="tec-filtro-btn ${filtroTecnico === 'alta' ? 'active' : ''}" onclick="window.aplicarFiltroTecnico('alta')">
+            🟠 Altas
+            <span class="count-pill">${cntAlta}</span>
+          </button>
+          <button class="tec-filtro-btn ${filtroTecnico === 'normal' ? 'active' : ''}" onclick="window.aplicarFiltroTecnico('normal')">
+            🟡 Normais
+            <span class="count-pill">${cntNormal}</span>
+          </button>
+          <button class="tec-filtro-btn ${filtroTecnico === 'baixa' ? 'active' : ''}" onclick="window.aplicarFiltroTecnico('baixa')">
+            🔵 Baixas
+            <span class="count-pill">${cntBaixa}</span>
+          </button>
         </div>
         
         <div class="os-list" id="listaTecnico"></div>
@@ -1831,6 +2247,12 @@
         listarOrdensTecnico(ordens);
       }, 50);
     }
+
+    window.aplicarFiltroTecnico = function(filtro) {
+      filtroTecnico = filtro;
+      const ordensAtuais = window.ordensLista || [];
+      renderTecnico(ordensAtuais);
+    };
 
     // ==================== FUNÇÕES DE OPERADOR ====================
     async function buscarOuAbrirOS(ordens) {
@@ -1848,7 +2270,6 @@
             <i class="fas fa-exclamation-triangle" style="color:#ffcc00;font-size:1.2rem;"></i>
             <strong style="color:#ffcc00;font-size:1.1rem;">Já existe O.S. aberta para este Código MONI</strong><br>
             <span style="color:rgba(255,255,255,0.5);font-size:1rem;">
-              Protocolo: <strong style="color:#ffcc00;">${existente.protocolo}</strong> | 
               Operador: ${existente.operador}<br>
               Data: ${existente.dataAbertura} | Hora: ${existente.horaAbertura}<br>
               Status: <span class="badge-status ${getStatusBadgeClass(existente.status)}">${existente.status}</span>
@@ -1888,11 +2309,9 @@
           }
           
           try {
-            const protocolo = await getNextProtocolo();
             const { data, hora } = getNow();
             
             const novaOS = {
-              protocolo,
               codMoni: cod,
               cliente,
               endereco: 'Não informado',
@@ -1912,7 +2331,7 @@
             await push(ordensRef, novaOS);
             novaDiv.classList.add('hidden');
             document.getElementById('codMoniInput').value = '';
-            alert('✅ O.S. aberta com sucesso!');
+            alert('✅ O.S. aberta com sucesso!\n\n📌 Técnicos e Gestores já podem visualizá-la.');
             
           } catch (error) {
             alert('Erro ao salvar O.S. Tente novamente.');
@@ -1983,7 +2402,7 @@
         await addTimeline(osId, `🔧 Técnico/Auxiliar iniciando serviço: ${tecnicoInicio}`);
         await addTimeline(osId, '▶️ Atendimento iniciado');
         
-        alert('✅ O.S. assumida com sucesso!\n\n📌 Todo o histórico anterior foi mantido.');
+        alert('✅ O.S. assumida com sucesso!');
         
       } catch (error) {
         alert('❌ Erro ao assumir O.S.');
@@ -1993,17 +2412,7 @@
 
     window.finalizarOS = async function(osId) {
       try {
-        const snapshot = await get(ref(database, `ordens/${osId}`));
-        const os = snapshot.val();
-        
         if (!confirm('⚠️ Confirmar finalização da O.S.?')) return;
-        
-        const protocolo = prompt('Digite o número do protocolo:');
-        if (!protocolo) return;
-        if (parseInt(protocolo) !== os.protocolo) {
-          alert('❌ Protocolo incorreto!');
-          return;
-        }
         
         const tecnicoFinal = prompt('Nome do técnico/auxiliar finalizando:');
         if (!tecnicoFinal) return;
@@ -2031,7 +2440,7 @@
         await addTimeline(osId, `💰 Status de pagamento: ${statusPagamento}`);
         await addTimeline(osId, '🏁 O.S. Finalizada');
         
-        alert('✅ O.S. finalizada com sucesso!\n\n📌 Todo o histórico anterior foi mantido.');
+        alert('✅ O.S. finalizada com sucesso!');
         
       } catch (error) {
         alert('❌ Erro ao finalizar O.S.');
@@ -2114,22 +2523,73 @@
       }
     };
 
-    // ==================== DEMAIS FUNÇÕES ====================
+    window.definirPrioridadeOS = async function(osId) {
+      const opcao = prompt(
+        '🏷️ Defina a prioridade:\n\n' +
+        '1 - 🔴 Urgente\n' +
+        '2 - 🟠 Alta\n' +
+        '3 - 🟡 Normal\n' +
+        '4 - 🔵 Baixa\n' +
+        '0 - ⚪ Remover prioridade\n\n' +
+        'Digite o número:'
+      );
+      
+      if (opcao === null) return;
+      
+      let novaPrioridade = null;
+      if (opcao === '1') novaPrioridade = '🔴 Urgente';
+      else if (opcao === '2') novaPrioridade = '🟠 Alta';
+      else if (opcao === '3') novaPrioridade = '🟡 Normal';
+      else if (opcao === '4') novaPrioridade = '🔵 Baixa';
+      else if (opcao === '0') novaPrioridade = null;
+      else { alert('❌ Opção inválida!'); return; }
+      
+      try {
+        await update(ref(database, `ordens/${osId}`), { prioridade: novaPrioridade });
+        await addTimeline(osId, novaPrioridade 
+          ? `🏷️ Gestor definiu prioridade: ${novaPrioridade}` 
+          : '🏷️ Gestor removeu a prioridade'
+        );
+        alert(novaPrioridade ? `✅ Prioridade definida: ${novaPrioridade}` : '✅ Prioridade removida!');
+      } catch (error) {
+        alert('❌ Erro ao definir prioridade.');
+        console.error(error);
+      }
+    };
+
     async function definirPrioridade(ordens) {
       const checks = [...document.querySelectorAll('.os-check:checked')].map(c => c.value);
-      if (!checks.length) return alert('Selecione pelo menos uma O.S.');
+      if (!checks.length) return alert('Selecione pelo menos uma O.S. na lista.');
       
-      const prior = prompt('Prioridade (1-Urgente, 2-Alta, 3-Normal, 4-Baixa):');
-      if (!prior || !['1','2','3','4'].includes(prior)) return;
+      const opcao = prompt(
+        `🏷️ Definir prioridade para ${checks.length} O.S. selecionada(s):\n\n` +
+        '1 - 🔴 Urgente\n' +
+        '2 - 🟠 Alta\n' +
+        '3 - 🟡 Normal\n' +
+        '4 - 🔵 Baixa\n' +
+        '0 - ⚪ Remover prioridade'
+      );
       
-      const priorMap = { '1': '🔴 Urgente', '2': '🟠 Alta', '3': '🟡 Normal', '4': '🔵 Baixa' };
+      if (opcao === null) return;
+      
+      let novaPrioridade = null;
+      if (opcao === '1') novaPrioridade = '🔴 Urgente';
+      else if (opcao === '2') novaPrioridade = '🟠 Alta';
+      else if (opcao === '3') novaPrioridade = '🟡 Normal';
+      else if (opcao === '4') novaPrioridade = '🔵 Baixa';
+      else if (opcao === '0') novaPrioridade = null;
+      else { alert('❌ Opção inválida!'); return; }
       
       try {
         for (const osId of checks) {
-          await update(ref(database, `ordens/${osId}`), { prioridade: priorMap[prior] });
-          await addTimeline(osId, `🏷️ Prioridade definida: ${priorMap[prior]}`);
+          await update(ref(database, `ordens/${osId}`), { prioridade: novaPrioridade });
+          await addTimeline(osId, novaPrioridade 
+            ? `🏷️ Prioridade definida em lote: ${novaPrioridade}` 
+            : '🏷️ Prioridade removida em lote'
+          );
         }
-        alert('✅ Prioridades definidas!');
+        alert('✅ Prioridades atualizadas!');
+        document.querySelectorAll('.os-check').forEach(c => c.checked = false);
       } catch (error) {
         alert('❌ Erro ao definir.');
         console.error(error);
@@ -2292,8 +2752,7 @@
     });
 
     console.log('✅ TOTAL - Sistema de Monitoramento');
-    console.log('👨‍💻 Desenvolvido por Manuel Francisco');
-    console.log('📌 LINHA DO TEMPO INFINITA - Todos os registros são salvos permanentemente!');
+    console.log('📱 Painel Técnico OTIMIZADO para mobile!');
   </script>
 </body>
 </html>
